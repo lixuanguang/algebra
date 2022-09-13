@@ -37,6 +37,7 @@
 \usepackage{mathrsfs}
 \usepackage{tikz-cd}
 \usepackage{float}
+\usepackage{enumitem}
 
 %%
 % Math Commands
@@ -418,6 +419,54 @@ If a map $ f: A \rightarrow B $ has both a left inverse $ g $ and a right invers
 \chapter{Ring Theory}
 \begin{fullwidth}
 \section{Basic Axioms}
+
+\begin{definition}
+A \textit{{\color{blue} ring}} is a nonempty set $ R $ with two binary operations $ + $ (addition) and $ \times $ (multiplication), $ (R, +, \times) $, such that:
+\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\item $(R, +)$ is an additive abelian group with $0$ as the additive identity
+\item the binary operation $\times$ is associative: $(a \times b) \times c = a \times (b \times c) $, $ \forall a, b, c \in R$
+\item left and right distributive laws: $(a+b) \times c = (a \times c) + (b \times c) $, $a \times (b+c) = (a \times c) + (b \times c)$, $\forall a, b, c \in R$.
+\end{enumerate}
+\end{definition}
+\>
+
+\begin{definition}
+If in addition to definition of ring, $a \times b = b \times a \forall a, b \in R$, then $R$ is a \textit{{\color{blue} commutative ring}}.\\
+\end{definition}
+\>
+
+\begin{definition}
+The ring $R$ has a \textit{{\color{blue} multiplicative identity}} if there is an element $1_R \in R$ such that $1_R \times a = a \times 1_R = a$, $\forall a \in R$.\\
+The ring $R$ has a \textit{{\color{blue} additive identity}} if there is an element $0_R \in R$ such that $a-b = a+(-b) = 0_R$, where $-b$ is the \textit{{\color{blue} additive inverse}}.\\
+\end{definition}
+\>
+
+\begin{definition}
+A \textit{{\color{blue} division ring}} $R$ is a ring such that:
+\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\item $R$ has a multiplicative identity $1_R$;
+\item $1_R \neq 0_R$; and
+\item $\forall$ nonzero element $a \in R \textbackslash \{0\}$ has a unique multiplicative inverse $a \textsuperscript{-1}$ such that $aa \textsuperscript{-1} = 1 = a \textsuperscript{-1} a$
+\end{enumerate}
+\end{definition}
+\>
+
+\begin{definition}
+A \textit{{\color{blue} field}} is a division ring which is commutative.\\
+If $R$ is a division ring (field), then $(R, \times)$ is a (commutative) \textit{{\color{blue} multiplicative group}}, $R^\times = R \textbackslash \{0\}$.\\
+\end{definition}
+\>
+
+\begin{definition}
+Let $F = (F, +, \times) $ be a field. A nonempty subset $E \subseteq F$ is a \textit{{\color{blue} subfield}} if:
+\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\item $(E, +)$ is an additive subgroup of $(F, +)$;
+\item $E$ is closed under multiplication $\times$: $a, b \in E \Rightarrow a \times b \in E$;
+\item $1_F \in E$; and
+\item $a \in E \textbackslash \{0\ \Rightarrow a \textsuperscript{-1} \in E$
+\end{enumerate}
+\end{definition}
+\>
 
 \section{Ring Homomorphisms}
 

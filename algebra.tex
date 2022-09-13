@@ -1,10 +1,10 @@
-\documentclass{tufte-book}
+\documentclass[a4paper,sfsidenotes,openany]{tufte-book}
 
 \hypersetup{colorlinks}% uncomment this line if you prefer colored hyperlinks (e.g., for onscreen viewing)
 
 %%
 % Book metadata
-\title{Abstract Algebra\thanks{Thanks to Edward R.~Tufte for his inspiration on the book format.}}
+\title{Abstract Algebra\thanks{}}
 \author[Arthur Li]{Arthur Li}
 \publisher{}
 
@@ -15,6 +15,11 @@
 %\IfFileExists{chantill.sty}{\usepackage{chantill}}{}% Gill Sans
 
 %\usepackage{microtype}
+
+%%
+% Used to set numbering of the content
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{1}
 
 %%
 % Just some sample text
@@ -30,6 +35,8 @@
 \usepackage{amsmath}
 \usepackage{rotating}
 \usepackage{mathrsfs}
+\usepackage{tikz-cd}
+\usepackage{float}
 
 %%
 % Math Commands
@@ -84,6 +91,17 @@
 %%
 % For nicely typeset tabular material
 \usepackage{booktabs}
+
+
+%%
+% Formatting of chapter header
+\titleformat{\chapter}
+  [block]% shape
+  {\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}% format applied to label+text
+  {\itshape\huge\thechapter}% label
+  {1em}% horizontal separation between label and title body
+  {\huge\rmfamily\itshape}% before the title body
+  [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body
 
 %%
 % For graphics / images
@@ -212,8 +230,7 @@
 \maketitle
 
 \bibliographystyle{chicago}
-	
-\newpage
+
 \chapter*{Introduction}
 \newthought
 {This collection} of notes serve as a guide to mastering abstract algebra with content from undergraduate to graduate level course. The notes combine knowledge from different sources, including course notes and textbooks used in the courses.
@@ -233,49 +250,111 @@ This section will be edited as the notes progress towards completion.
 \chapter{Preliminaries}
 \section{Introductory Ideas and Definitions}
 \begin{fullwidth}
+
 \begin{definition}
-
 \textit{{\color{blue} Class}} is a collection $ A $ of objects (elements) such that given any object $ x $ it is possible to determine if $ x $ is a member of $ A $.\\
-
-\textit{{\color{blue} Axiom of extensionality}} asserts that two classes with the same elements are equal. (Formally, $ \left[x \in A \Longleftrightarrow x \in B \right] \Rightarrow A=B $).\\
-
-A class is defined to be a \textit{{\color{blue} set}} if and only if there exists a class $ B $ such that $ A \in B $.\\
-
-A class that is not a set is called a \textit{{\color{blue} proper set}}.\\
-
-\textit{{\color{blue} Axiom of class formation}} asserts that for any statement $ P(y) $ in the first predicate calculus involve a variable $ y $, there exists a class $ A $ such that $ x \in A $ if and only if $ x $ is a set and the statement $ P(x) $ is true. The class is denoted 	$\{ x | P(x) \}$.\\
-
-A class $ A $ is a \textit{{\color{blue} subclass}} of class $ B $ ($ B \subset A $) provided $ \forall x \in A, x \in A \Longleftrightarrow x \in B $. \\
-
-A subclass $ A $ of a class $ B $ that is itself a set is called a \textit{{\color{blue} subset}} of $ B $.\\
-
-The \textit{{\color{blue} empty or null set}} (denoted $\emptyset$) is the set with no elements.\\
-
-\textit{{\color{blue} Power axiom}} asserts that for every set $ A $ the class $ P(A) $ of all subsets of $ A $ is itself a set. $ P(A) $ is the \textit{{\color{blue} power set}} of $ A $, denoted $ 2^A $.\\
-
-A \textit{{\color{blue} family of sets}} indexed by (nonempty) class $ I $ is a collection of sets $ A_i $, one for each $ i \in I $ (denoted $\{ A_i | i \in I \}$).\newline
-The \textit{{\color{blue} union}} is defined as $ \bigcup\limits_{i \in I}A_{i} = \{ x | x \in A_i for some i \in I \}$.\newline
-The \textit{{\color{blue} intersection}} is defined as $ \bigcap\limits_{i \in I}A_{i} = \{ x | x \in A_i for every i \in I \}$.\\
-
-If $ A \cap B = \emptyset $, then $ A $ and $ B $ are disjoint.\\
-
-The \textit{{\color{blue} relative complement}} of $ A $ in $ B $ is the following subclass of $ B $: $ B-A = \{ x | x \in B and x \notin A \}$. \\
-
-If all classes under discussion are subsets of some fixed set $ U $ (the universe of discussion), then $ U - A = A' $ is the \textit{{\color{blue} complement}} of $ A $.\\
-
 \end{definition}
-
 \>
 
 \begin{definition}
+\textit{{\color{blue} Axiom of extensionality}} asserts that two classes with the same elements are equal. \\
+(Formally, $ \left[x \in A \Longleftrightarrow x \in B \right] \Rightarrow A=B $).\\
+\end{definition}
+\>
 
+\begin{definition}
+A class is defined to be a \textit{{\color{blue} set}} if and only if there exists a class $ B $ such that $ A \in B $.\\
+A class that is not a set is called a \textit{{\color{blue} proper set}}.\\
+\end{definition}
+\>
+
+\begin{definition}
+\textit{{\color{blue} Axiom of class formation}} asserts that for any statement $ P(y) $ in the first predicate calculus involve a variable $ y $, there exists a class $ A $ such that $ x \in A $ if and only if $ x $ is a set and the statement $ P(x) $ is true. The class is denoted 	$\{ x | P(x) \}$.\\
+\end{definition}
+\>
+
+\begin{definition}
+A class $ A $ is a \textit{{\color{blue} subclass}} of class $ B $ ($ B \subset A $) provided $ \forall x \in A, x \in A \Longleftrightarrow x \in B $. \\
+A subclass $ A $ of a class $ B $ that is itself a set is called a \textit{{\color{blue} subset}} of $ B $.\\
+The \textit{{\color{blue} empty or null set}} (denoted $\emptyset$) is the set with no elements.\\
+\end{definition}
+\>
+
+\begin{definition}
+\textit{{\color{blue} Power axiom}} asserts that for every set $ A $ the class $ P(A) $ of all subsets of $ A $ is itself a set. $ P(A) $ is the \textit{{\color{blue} power set}} of $ A $, denoted $ 2^A $.\\
+\end{definition}
+\>
+
+\begin{definition}
+A \textit{{\color{blue} family of sets}} indexed by (nonempty) class $ I $ is a collection of sets $ A_i $, one for each $ i \in I $ (denoted $\{ A_i | i \in I \}$).\newline
+The \textit{{\color{blue} union}} is defined as $ \bigcup\limits_{i \in I}A_{i} = \{ x | x \in A_i \ for \ some \ i \in I \}$.\newline
+The \textit{{\color{blue} intersection}} is defined as $ \bigcap\limits_{i \in I}A_{i} = \{ x | x \in A_i \ for \ every \ i \in I \}$.\\
+If $ A \cap B = \emptyset $, then $ A $ and $ B $ are disjoint.\\
+\end{definition}
+\>
+
+\begin{definition}
+The \textit{{\color{blue} relative complement}} of $ A $ in $ B $ is the following subclass of $ B $: $ B-A = \{ x | x \in B and x \notin A \}$. \\
+If all classes under discussion are subsets of some fixed set $ U $ (the universe of discussion), then $ U - A = A' $ is the \textit{{\color{blue} complement}} of $ A $.\\
+\end{definition}
+\>
+
+\begin{definition}
 Given classes $ A $ and $ B $, a \textit{{\color{blue} function / map / mapping}} $ f $ from $ A $ to $ B $ (written $ f: A \rightarrow B $ assigns to each $ a \in A $ exactly one element $ b \in B $.\newline
 Then $ b $ is the value of function at $ a $, or the \textit{{\color{blue} image}} of $ a $, written $ f(a) $.\newline
 $ A $ is the \textit{{\color{blue} domain}} of the function, written $ dom f $, and $ B $ is the \textit{{\color{blue} range}} or \textit{{\color{blue} codomain}}.\\
+Two functions are \textit{{\color{blue} equal}} if they have the same domain and range, and have the same value for each element of their common domain.\\
+\end{definition}
+\>
 
-Two functions are equal if they have
+\begin{definition}
+If $ f: A \rightarrow B $ is a function and $ S \subset A$, the function from $ S $ to $ B $ given by $ a \mapsto f(a) $, for $ a \in S $, is \textit{{\color{blue} restriction}} of $ f $ to $ S $, denoted $ f|S: S \rightarrow B$.\newline
+If $ S \in A$, the function $ 1_A | S: S \rightarrow A $ is the \textit{{\color{blue} inclusion map}} of $S$ into $A$.\\
+\end{definition}
+\>
+
+\begin{definition}
+Let $ f: A \rightarrow B $ and $ g: B \rightarrow C $ be functions. The \textit{{\color{blue} composite}} of $ f $ and $ g $ is the function $ A \rightarrow C $ given by $ a \mapsto g(f(a)), a \in A $. This is denoted $ g \circ f $ or simply $ gf $.\\
+\end{definition}
+\>
+
+\begin{definition}
+The \textit{{\color{blue} diagram of functions}} is said to be commutative if $ gf = h $, or if $ kh = gf $.\\
+
+\begin{equation}\label{diagram}
+\begin{tikzcd}
+A \arrow{rr}{f} \arrow[swap]{dr}{h} & & B \arrow{dl}{g} \\[10pt]
+    & C
+\end{tikzcd}
+\quad
+\begin{tikzcd}[row sep=2.5em]
+ A \ar{r}{f} \ar{d}{h} & B \ar{d}{g} \\
+ C \ar{r}{k} & D
+\end{tikzcd}
+\end{equation}
+\end{definition}
+\>
+
+\begin{definition}
+Let $ f: A \rightarrow B $ be a function. If $ S \in A $, \textit{{\color{blue} the image of $ S $ under $ f $}} (denoted $ f(S)) $) is the class $ { b \in B | b=f(a) \ for \ some \ a \in S} $.\\
+The class $ f(A) $ is the \textit{{\color{blue} image of $ f $}}, denoted $ Im \ f $.\\
+If $ T \subset B $, the \textit{{\color{blue} inverse image of $ T $}} under $ f $ (denoted $ f \textsuperscript{-1} (T) $), is the class $ { a \in A | f(a) \in T} $.\\
+\end{definition}
+\>
+
+\begin{definition}
+A function $ f: A \rightarrow B$ is said to be \textit{{\color{blue} injective}} (or one-to-one) provided $ \forall a, \ a' \in A, \ a \neq a' \Rightarrow f(a) \neq f(a') $, or $ f(a) = f(a') \Rightarrow a = a'  $.\\
+A function $ f $ is \textit{{\color{blue} surjective}} (or on-to) provided $ f(A) \approx B $; in other words, for each $ b \in B $, $ b=f(a) $ for some $ a \in A $.\\
+A function $ f $ is \textit{{\color{blue} bijective}} (or one-to-one correspondence) if it is both injective and surjective.\\
+\end{definition}
+\>
+
+\begin{definition}
+The map $ g: B \rightarrow A $ is a left inverse of $ f $ if 
 
 \end{definition}
+\>
+
 
 \end{fullwidth}
 

@@ -245,8 +245,11 @@ This section will be edited as the notes progress towards completion.
 
 \tableofcontents
 
+%%%
 % Start the main matter (normal chapters)
 \mainmatter
+
+% Chapter 1: Preliminaries
 \chapter{Preliminaries}
 \section{Introductory Ideas and Definitions}
 \begin{fullwidth}
@@ -294,7 +297,7 @@ If $ A \cap B = \emptyset $, then $ A $ and $ B $ are disjoint.\\
 \>
 
 \begin{definition}
-The \textit{{\color{blue} relative complement}} of $ A $ in $ B $ is the following subclass of $ B $: $ B-A = \{ x | x \in B and x \notin A \}$. \\
+The \textit{{\color{blue} relative complement}} of $ A $ in $ B $ is the following subclass of $ B $: $ B-A = \{ x | x \in B \ and \ x \notin A \}$. \\
 If all classes under discussion are subsets of some fixed set $ U $ (the universe of discussion), then $ U - A = A' $ is the \textit{{\color{blue} complement}} of $ A $.\\
 \end{definition}
 \>
@@ -336,9 +339,9 @@ A \arrow{rr}{f} \arrow[swap]{dr}{h} & & B \arrow{dl}{g} \\[10pt]
 \>
 
 \begin{definition}
-Let $ f: A \rightarrow B $ be a function. If $ S \in A $, \textit{{\color{blue} the image of $ S $ under $ f $}} (denoted $ f(S)) $) is the class $ { b \in B | b=f(a) \ for \ some \ a \in S} $.\\
+Let $ f: A \rightarrow B $ be a function. If $ S \in A $, \textit{{\color{blue} the image of $ S $ under $ f $}} (denoted $ f(S)) $) is the class $ \{ b \in B | b=f(a) \ for \ some \ a \in S\} $.\\
 The class $ f(A) $ is the \textit{{\color{blue} image of $ f $}}, denoted $ Im \ f $.\\
-If $ T \subset B $, the \textit{{\color{blue} inverse image of $ T $}} under $ f $ (denoted $ f \textsuperscript{-1} (T) $), is the class $ { a \in A | f(a) \in T} $.\\
+If $ T \subset B $, the \textit{{\color{blue} inverse image of $ T $}} under $ f $ (denoted $ f \textsuperscript{-1} (T) $), is the class $ \{ a \in A | f(a) \in T\} $.\\
 \end{definition}
 \>
 
@@ -350,16 +353,101 @@ A function $ f $ is \textit{{\color{blue} bijective}} (or one-to-one corresponde
 \>
 
 \begin{definition}
-The map $ g: B \rightarrow A $ is a left inverse of $ f $ if 
-
+The map $ g: B \rightarrow A $ is a \textit{{\color{blue} left inverse}} of $ f $ if $ gf = 1_A $.\\
+The map $ h: B \rightarrow A $ is a \textit{{\color{blue} right inverse}} of $ f $ if $ fb = 1_B $.\\
+If a map $ f: A \rightarrow B $ has both a left inverse $ g $ and a right inverse $ h $, then $ g = g1_B = g(fh) = (gf)h = 1 \textsubscript{A} h = h $, and $ g=h $ is the \textit{{\color{blue} two-sided inverse}}.\\
 \end{definition}
 \>
-
 
 \end{fullwidth}
 
 
+\newpage
 
+% Chapter 2: Group Theory
+\chapter{Group Theory}
+\begin{fullwidth}
+\section{Basic Axioms}
+
+\section{Homomorphisms and Subgroups}
+
+\section{Cyclic Groups}
+
+\section{Cosets}
+
+\section{Normality, Quotient Groups}
+
+\section{Isomorphism Theorems}
+
+\section{Symmetric, Alternating and Dihedral Groups}
+
+\section{Categories, Products, Coproducts, Free Objects}
+
+\section{Direct Products, Direct Sums}
+
+\section{Free Groups, Free Products}
+
+\section{Matrix Groups}
+	
+\end{fullwidth}
+
+\newpage
+
+% Chapter 3: Group Structures
+\chapter{Group Structures}
+\begin{fullwidth}
+\section{Free Abelian Groups}
+
+\section{Finitely Generated Abelian Groups}
+
+\section{Krull-Schmidt Theorem}
+
+\section{Group Action}
+
+\section{The Sylow Theorems}
+
+\section{Semidirect Products}
+
+\section{Normal and Subnormal Series}
+
+\end{fullwidth}
+
+\newpage
+
+% Chapter 4: Ring Theory
+\chapter{Ring Theory}
+\begin{fullwidth}
+\section{Basic Axioms}
+
+\section{Ring Homomorphisms}
+
+\section{Ring Isomorphisms}
+
+\section{Ideals, Rings of Fractions, Local Rings}
+
+\section{Euclidean Domains, PID, UFD}
+
+\end{fullwidth}
+
+\newpage
+
+% Chapter 5: Modules
+\chapter{Modules}
+\begin{fullwidth}
+\section{Basic Axioms}
+
+\end{fullwidth}
+
+\newpage
+
+% Chapter 6: Category Theory
+\chapter{Category Theory}
+\begin{fullwidth}
+\section{Basic Axioms}
+
+\end{fullwidth}
+
+\newpage
 
 \printindex
 

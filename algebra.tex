@@ -75,19 +75,16 @@
 \DeclareMathOperator{\diam}{diam}
 \newcommand{\Prr}[1]{\text{Pr}\left(#1\right)}
 
-
 %%
 % Set up math tools
-\theoremstyle{definition}
-\newtheorem{proposition}{Proposition}[section]
+\theoremstyle{theorem} 
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}{Lemma}[section]
-\newtheorem{definition}{Definition}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{ex}{Exercise}[section]
-\newtheorem{note}{Notation}[section]
-\newtheorem{example}{Example}[section]
-\newtheorem{remark}{Remark}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
 
 %%
 % For nicely typeset tabular material
@@ -463,9 +460,201 @@ Let $F = (F, +, \times) $ be a field. A nonempty subset $E \subseteq F$ is a \te
 \item $(E, +)$ is an additive subgroup of $(F, +)$;
 \item $E$ is closed under multiplication $\times$: $a, b \in E \Rightarrow a \times b \in E$;
 \item $1_F \in E$; and
-\item $a \in E \textbackslash \{0\ \Rightarrow a \textsuperscript{-1} \in E$
+\item $a \in E \textbackslash \{0\} \Rightarrow a \textsuperscript{-1} \in E$
 \end{enumerate}
 \end{definition}
+\>
+
+\begin{remark}
+The \textit{{\color{blue} trivial ring}} is $\{0\}$.\\
+The \textit{{\color{blue} integer ring}} is $(\mathbb{Z}, +, \times )$ with $ 1 $, but is neither a division ring or field.\\
+$n \mathbb{Z} = \{ns | s \in \mathbb{Z}\} $ is a subring of $\mathbb{Z}$.\\
+$(\mathbb{Z} / n \mathbb{Z}, +, \times) $ is a commutative ring with $ 1 $ for $ n \geq 2 $.\\
+\end{remark}
+\>
+
+\begin{remark}
+The $2$-dimensional vector space $\mathbb{Q}[\sqrt{D}] = \mathbb{Q} + \mathbb{Q}\sqrt{D} = \{a+b\sqrt{D}|a, b \in \mathbb{Q} \}$ with $\mathbb{Q}$-basis $\{1, \sqrt{D} \}$ is a \textit{{\color{blue} Quadratic Field}}.\\
+Define $\mathbb{Q}(\sqrt{D}) = \{ \frac{ a+b\sqrt{D} }{ c+d\sqrt{D} } | a, b, c, d \in \mathbb{Q}, c + d\sqrt{D} \neq 0 \} $. Then $\mathbb{Q}(\sqrt{D}) = \mathbb{Q}[\sqrt{D}]$.\\
+More generally, for a field $F$, $\mathbb{Q}(F) = \{\frac{\alpha}{\beta} = \alpha \beta \textsuperscript{-1} | \alpha \beta , \in F, \beta \neq 0\} = F$.\\
+\end{remark}
+\>
+
+\begin{remark}
+Let $H=\mathbb{R} + \mathbb{R} i + \mathbb{R} j + \mathbb{R} k = \{a+bi+cj+dk|a,b,c,d \in \mathbb{R}\}$ be the $4$-dimensional vector space over $\mathbb{R}$ with $\mathbb{R}$-basis $(1, i, j, k)$.\\
+The multiplication is extended linearly by distributive law: $i^2 = j^2 = k^2 = -1$, $ij=k=-ji$,$jk=i=-kj$, $ki=j=-ik$. Then $H$ is a \textit{{\color{blue} Real Quaternion Ring}}.\\
+$H_\mathbb{Q}=\mathbb{Q}+\mathbb{Q}i+\mathbb{Q}j+\mathbb{Q}k=\{a+bi+cj+dk|a, b, c, d\in \mathbb{Q}\}$ is the \textit{{\color{blue} Rational Hamilton Quaternion Ring}}.\\
+\end{remark}
+\>
+
+\begin{remark}
+Let $\mathbb{R}V[x]=\{f:\mathbb{R}\rightarrow\mathbb{R}\}$ be the set of all real-valued functions. Let $x\mapsto c(x) = c$ be a constant function.\\
+For $f, g \in \mathbb{R}V[x]$, the natural addition is $x\mapsto (f+g)(x) = f(x)+g(x)$.\\
+The multiplication (not composition) is $x\mapsto (fg)(x)=f(x)g(x)$.\\
+The $(\mathbb{R}V[x], +, \times)$ is a commutative \textit{{\color{blue} (real valued-function) ring}} with multiplicative identity $1$ being the constant function $1$.\\
+\end{remark}
+\>
+
+\begin{definition}
+Let $R$ be a ring with $1 \neq 0$. An element $u \in R$ is a \textit{{\color{blue} unit}} if it has a multiplicative identity inverse $u'$ such that $uu'=1=u'u$.\\
+The \textit{{\color{blue} set of all units}} of $R$ are $U(R)=\{u\in R | u \ is \ a \ unit\}$.\\
+The \textit{{\color{blue} multiplicative group of units of the ring}} $R$ is $(U(R), \times)$.\\
+\end{definition}
+\>
+
+\begin{remark}
+More generally, let $X$ be a set and $R$ be a ring. Let $X \textsubscript{to} R := \{f: X \rightarrow R\}$ be the set of all maps between $X$ and $R$. Then for $f, g \in X \textsubscript{to} R $, there are natural addition $f+g$ and multiplication $fg$ ($x\mapsto f(x)g(x)$) as in previous remark.\\
+Then $(X \textsubscript{to} R, +, \times)$ is a ring, called the \textit{{\color{blue} $R$-Valued Function Ring}}.\\
+If $R$ has $1$ then so does $X \textsubscript{to} R$. If $R$ is commutative then so does $X \textsubscript{to} R$.\\
+Every $c\in R$ defines a constant function (an element in $X \textsubscript{to} R$, $c:X\rightarrow R$; $x \mapsto c(x)=c$.\\
+Identify $R$ with the subset of $X \textsubscript{to} R$ of constant function. Then $R$ is a subring of $X \textsubscript{to} R$.\\
+\end{remark}
+\>
+
+\begin{remark}
+Let $n \geq 2$. Then $U(\mathbb{Z}/n\mathbb{Z})$ is a commutative multiplicative group of order $\left| U(\mathbb{Z}/n\mathbb{Z}) \right| = \varphi (n)$.
+Hence $\varphi (n)$ is the \textit{{\color{blue} Euler's $\varphi$-function}}, $\varphi (n)=\left|\{1 \leq s \leq n | gcd(s, n) = 1\}\right|$.\\
+\end{remark}
+\>
+
+\begin{definition}
+An \textit{{\color{blue} Integral Domain}} is a commutative ring with $1\neq 0$ such that $\forall a, b, \in R, \ ab = 0 \Rightarrow a=0 \ or \ b=0$,
+or equivalently, $\forall a, b \in R, \ a \neq 0, \ b \neq 0 \Rightarrow ab \neq 0$.\\
+$\mathbb{Z}$ is an integral domain.\\
+Every field is an integral domain.\\
+\end{definition}
+\>
+
+\begin{definition}
+Let $R$ be a ring. A nonzero element $a \in R$ is a 	\textit{{\color{blue} zero divisor}} if there is a nonzero $b\in R$ such that either $ab=0$ or $ba=0$.\\
+A commutative ring $R$ with $1$ is an integral domain if and only if $R$ as no zero divisors.\\
+\end{definition}
+\>
+
+\begin{proposition}
+Let $R$ be w ring with $1 \neq 0$. Then $R$ is an integral domain if and only if the cancellation law holds: $\forall a, b, c \in R, \ c \neq 0, \ ca=cb \Rightarrow a=b$.\\	
+\end{proposition}
+\>
+
+\begin{corollary}
+Let $R$ be a finite integral domain, i.e., $R$ is an integral domain with the cardinality $\left| R \right| < \infty$. Then $R$ is a field.\\
+\end{corollary}
+\>
+
+\begin{proposition}
+Let $n \geq 2$. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\item $\mathbb{Z}/n\mathbb{Z}$ is a field
+\item $\mathbb{Z}/n\mathbb{Z}$ is an integral domain
+\item $n$ is a prime
+\end{enumerate}
+\end{proposition}
+\>
+
+\begin{definition}
+Let $R$ be a ring. A nonempty subset $S \subseteq R$ is a \textit{{\color{blue} subring}} of $R$ if:
+\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\item $(S, +)$ is an additive subgroup of $(R, +)$ and
+\item $S$ is closed under multiplication
+\end{enumerate}
+$\mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C} $
+\end{definition}
+\>
+
+\begin{proposition}
+\textit{{\color{blue} (Subring Criterion)}} Let $R$ be a ring and $S \subseteq R$ a nonempty subset. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\item $S$ is a subring of $R$
+\item $S$ is closed under subtracting and multiplication: $a,b\in S \Rightarrow ab\in S$; $a-b = a + (-b) \in S$
+\end{enumerate}
+\end{proposition}
+\>
+
+\begin{remark}
+Being a subring is a transitive condition. If $R$ is a subring of $S$ and $S$ is a subring of $T$, then $R$ is a subring of $T$.\\
+If both $S_i$ are subring of $R$ and $S_1 \subseteq S_2$, then $S_1$ is a subring of $S_2$.\\
+\end{remark}
+\>
+
+\begin{remark}
+\textit{{\color{blue} (Subring without 1)}} If $R$ is a ring with $1 = 1_R$ then a subring $S \subseteq R$ may not contain $1$, i.e., $m\mathbb{Z} = {ms|s\in \mathbb{Z}, \left| m \right| \geq 2}$ is a subring of $\mathbb{Z}$ which does not contain $1$.
+\end{remark}
+\>
+
+\begin{remark}
+\textit{{\color{blue} (Intersection of subrings)}} Let $R_\alpha$ ($\alpha \in \Sigma$) be a (not necessarily finite or countable) collection of subrings of a ring $R$. Then the intersection $\bigcap\limits_{\alpha \in \Sigma} R_\alpha$ is a subring of $R$.\\
+Generally, the union of subrings may not be a subring.\\
+\end{remark}
+\>
+
+\begin{remark}
+\textit{{\color{blue} (Union of ascending subrings)}} Let $R_1 \subseteq R_2 \subseteq \cdots $ be an ascending chain of subrings $R_i$ of a ring $R$.
+Then the union $\bigcup\limits_{i=1}^{\infty} R_\alpha$ is a subring of $R$.\\
+\end{remark}
+\>
+
+\begin{remark}
+\textit{{\color{blue} (Addition of subrings)}} Let $R$ be a ring and let $R_i$ be subrings of $R$.\\
+Then the addition $R_1 + \cdots + R_n$ is closed under subtraction, but may not be closed under multiplication, hence may not be a subring of $R$.\\
+\end{remark}
+\>
+
+\begin{remark}
+\textit{{\color{blue} (Integral domain is a subring of a field)}}\\
+Let $F$ be a field. Let $R \subseteq F$ be a subring such that $1 \in R$. Then $R$ is an integral domain.\\
+Every integral domain $R$ is a subring of some field $\mathbb{Q}(R)$ (the fractional field of $R$).\\
+\end{remark}
+\>
+
+\begin{remark}
+\textit{{\color{blue} (Product of Rings)}} let $n \geq 1$ and let $R_i = (R_i, +, \times)$ ($i=1, \ldots, n$) be rings.\\
+Then the direct product is a ring, $R = R_1 \times \cdots \times R_n$. (The direct product is $(a_1, \ldots, a_n) \times (a'_1, \ldots, a'_n) = (a_1 a'_1, \ldots, a_n a'_n)$.\\
+The unit subgroups has the relation $U(R) = U(R_1)\times \cdots \times U(R_n)$\\
+\end{remark}
+\>
+
+\section{Examples of Rings}
+
+\begin{definition}
+The \textit{{\color{blue} (polynomial ring $R[x] over a ring R$)}} is $(R[x], +, \times)$,\\
+where $R[x] = \{\sum_{j=0}^{d} b_j x_j | d \geq 0, \ b_j \in \mathbb{R} \}$.\\
+There are natural addition and multiplication operations for polynomials.\\
+\end{definition}
+\>
+
+\begin{remark}
+Let $R$ be a commutative ring with $1$. Let $S:= R[x]$ be the polynomial ring over $R$.
+\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\item $R$ is a subring of $S$ which consists of constant polynomial functions.
+\item $0_S = 0_R$
+\item $S$ contains $1=1_S$, and $1_S = 1_R$.
+\end{enumerate}
+\end{remark}
+\>
+
+\begin{proposition}
+\textit{{\color{blue} (Polynomial ring over integral domain)}} Let $R$ be an integral domain. Let $f(x), g(x) \in R[x]$. Then
+\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\item $deg(f(x)g(x)) = deg(f(x))+deg(g(x))$
+\item $U(R[x]) = U(R)$. Namely, $g(x)$ is a unit of $R[x]$ if and only if $g=a_0 \in R$ (constant polynomial) with $a_0$ a unit in $R$.
+\item $R[x]$ is an integral domain
+\end{enumerate}
+\end{proposition}
+\>
+
+\begin{remark}
+The {{\color{blue} matrix ring of $n \times n$ square matrices with entries in the ring $R$}} is defined as $(M_n(R), +, \times)$, where\\
+$M_n(R) = \left\{A=\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn}\\
+\end{pmatrix} | a_{ij} \in R \right\}$\\
+If $A = (a_{ij}), B = (b_{ij}) \in M_n(F)$, then $A+B=(a_{ij} + b_{ij}), AB = (c_{ij})$ where $c_{ij} = \sum_{k=1}^{n} a_{ik} b_{kj}$.\\
+$A=(a_{ij}) = Diag[a_{11}, \ldots, a_{nn}]$ is a diagonal matrix if $a_{ij} = 0$ ($i \neq j$).\\
+$A=(a_{ij}) = Diag(a_1, \ldots, a_n)$ is a scalar matrix if $a_{ii} = a \in R \ \forall i$, and $a_{ij} = 0$ ($i \neq j$).\\
+$A=(a_{ij})$ is an upper triangular matrix if $a_{ij}=0$ ($i < j$). The lower triangular matrix is defined similarly.\\
+\end{remark}
 \>
 
 \section{Ring Homomorphisms}

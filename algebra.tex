@@ -1,29 +1,15 @@
-\documentclass[a4paper,sfsidenotes,openany]{tufte-book}
+\documentclass[a4paper,8pt]{article}
+\pagestyle{plain}
 
-\hypersetup{colorlinks}% uncomment this line if you prefer colored hyperlinks (e.g., for onscreen viewing)
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[margin=2cm,foot=1cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
 
-%%
-% Book metadata
-\title{Abstract Algebra\thanks{}}
-\author[Arthur Li]{Arthur Li}
-\publisher{}
-
-%%
-% If they're installed, use Bergamo and Chantilly from www.fontsite.com.
-% They're clones of Bembo and Gill Sans, respectively.
-%\IfFileExists{bergamo.sty}{\usepackage[osf]{bergamo}}{}% Bembo
-%\IfFileExists{chantill.sty}{\usepackage{chantill}}{}% Gill Sans
-
-%\usepackage{microtype}
-
-%%
 % Used to set numbering of the content
-\setcounter{tocdepth}{1}
-\setcounter{secnumdepth}{1}
-
-%%
-% Just some sample text
-\usepackage{lipsum}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
 
 %%
 % Math packages
@@ -76,242 +62,110 @@
 \newcommand{\Prr}[1]{\text{Pr}\left(#1\right)}
 
 %%
+\setcounter{section}{0}
 % Set up math tools
-\theoremstyle{theorem} 
-\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}[subsection]
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{definition}[theorem]{Definition}
+\let\olddefinition\definition
+\renewcommand{\definition}{\olddefinition\normalfont}
 \newtheorem{example}[theorem]{Example}
+\let\oldexample\example
+\renewcommand{\example}{\oldexample\normalfont}
 \newtheorem{remark}[theorem]{Remark}
+\let\oldremark\remark
+\renewcommand{\remark}{\oldremark\normalfont}
 
 %%
-% For nicely typeset tabular material
-\usepackage{booktabs}
 
-
-%%
-% Formatting of chapter header
-\titleformat{\chapter}
-  [block]% shape
-  {\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}% format applied to label+text
-  {\itshape\huge\thechapter}% label
-  {1em}% horizontal separation between label and title body
-  {\huge\rmfamily\itshape}% before the title body
-  [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body
-
-%%
-% For graphics / images
-\usepackage{graphicx}
-\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
-\graphicspath{{graphics/}}
-
-% The fancyvrb package lets us customize the formatting of verbatim
-% environments.  We use a slightly smaller font.
-\usepackage{fancyvrb}
-\fvset{fontsize=\normalsize}
-
-%%
-% Prints argument within hanging parentheses (i.e., parentheses that take
-% up no horizontal space).  Useful in tabular environments.
-\newcommand{\hangp}[1]{\makebox[0pt][r]{(}#1\makebox[0pt][l]{)}}
-
-%%
-% Prints an asterisk that takes up no horizontal space.
-% Useful in tabular environments.
-\newcommand{\hangstar}{\makebox[0pt][l]{*}}
-
-%%
-% Prints a trailing space in a smart way.
-\usepackage{xspace}
-
-%%
-% Some shortcuts for Tufte's book titles.  The lowercase commands will
-% produce the initials of the book title in italics.  The all-caps commands
-% will print out the full title of the book in italics.
-\newcommand{\vdqi}{\textit{VDQI}\xspace}
-\newcommand{\ei}{\textit{EI}\xspace}
-\newcommand{\ve}{\textit{VE}\xspace}
-\newcommand{\be}{\textit{BE}\xspace}
-\newcommand{\VDQI}{\textit{The Visual Display of Quantitative Information}\xspace}
-\newcommand{\EI}{\textit{Envisioning Information}\xspace}
-\newcommand{\VE}{\textit{Visual Explanations}\xspace}
-\newcommand{\BE}{\textit{Beautiful Evidence}\xspace}
-
-\newcommand{\TL}{Tufte-\LaTeX\xspace}
-
-% Prints the month name (e.g., January) and the year (e.g., 2008)
-\newcommand{\monthyear}{%
-  \ifcase\month\or January\or February\or March\or April\or May\or June\or
-  July\or August\or September\or October\or November\or
-  December\fi\space\number\year
-}
-
-
-% Prints an epigraph and speaker in sans serif, all-caps type.
-\newcommand{\openepigraph}[2]{%
-  %\sffamily\fontsize{14}{16}\selectfont
-  \begin{fullwidth}
-  \sffamily\large
-  \begin{doublespace}
-  \noindent\allcaps{#1}\\% epigraph
-  \noindent\allcaps{#2}% author
-  \end{doublespace}
-  \end{fullwidth}
-}
-
-% Inserts a blank page
-\newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage}
-
-\usepackage{units}
-
-% Typesets the font size, leading, and measure in the form of 10/12x26 pc.
-\newcommand{\measure}[3]{#1/#2$\times$\unit[#3]{pc}}
-
-% Macros for typesetting the documentation
-\newcommand{\hlred}[1]{\textcolor{Maroon}{#1}}% prints in red
-\newcommand{\hangleft}[1]{\makebox[0pt][r]{#1}}
-\newcommand{\hairsp}{\hspace{1pt}}% hair space
-\newcommand{\hquad}{\hskip0.5em\relax}% half quad space
-\newcommand{\TODO}{\textcolor{red}{\bf TODO!}\xspace}
-\newcommand{\na}{\quad--}% used in tables for N/A cells
-\providecommand{\XeLaTeX}{X\lower.5ex\hbox{\kern-0.15em\reflectbox{E}}\kern-0.1em\LaTeX}
-\newcommand{\tXeLaTeX}{\XeLaTeX\index{XeLaTeX@\protect\XeLaTeX}}
-% \index{\texttt{\textbackslash xyz}@\hangleft{\texttt{\textbackslash}}\texttt{xyz}}
-\newcommand{\tuftebs}{\symbol{'134}}% a backslash in tt type in OT1/T1
-\newcommand{\doccmdnoindex}[2][]{\texttt{\tuftebs#2}}% command name -- adds backslash automatically (and doesn't add cmd to the index)
-\newcommand{\doccmddef}[2][]{%
-  \hlred{\texttt{\tuftebs#2}}\label{cmd:#2}%
-  \ifthenelse{\isempty{#1}}%
-    {% add the command to the index
-      \index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2}}% command name
-    }%
-    {% add the command and package to the index
-      \index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2} (\texttt{#1} package)}% command name
-      \index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}% package name
-    }%
-}% command name -- adds backslash automatically
-\newcommand{\doccmd}[2][]{%
-  \texttt{\tuftebs#2}%
-  \ifthenelse{\isempty{#1}}%
-    {% add the command to the index
-      \index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2}}% command name
-    }%
-    {% add the command and package to the index
-      \index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2} (\texttt{#1} package)}% command name
-      \index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}% package name
-    }%
-}% command name -- adds backslash automatically
-\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
-\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
-\newenvironment{docspec}{\begin{quotation}\ttfamily\parskip0pt\parindent0pt\ignorespaces}{\end{quotation}}% command specification environment
-\newcommand{\docenv}[1]{\texttt{#1}\index{#1 environment@\texttt{#1} environment}\index{environments!#1@\texttt{#1}}}% environment name
-\newcommand{\docenvdef}[1]{\hlred{\texttt{#1}}\label{env:#1}\index{#1 environment@\texttt{#1} environment}\index{environments!#1@\texttt{#1}}}% environment name
-\newcommand{\docpkg}[1]{\texttt{#1}\index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}}% package name
-\newcommand{\doccls}[1]{\texttt{#1}}% document class name
-\newcommand{\docclsopt}[1]{\texttt{#1}\index{#1 class option@\texttt{#1} class option}\index{class options!#1@\texttt{#1}}}% document class option name
-\newcommand{\docclsoptdef}[1]{\hlred{\texttt{#1}}\label{clsopt:#1}\index{#1 class option@\texttt{#1} class option}\index{class options!#1@\texttt{#1}}}% document class option name defined
-\newcommand{\docmsg}[2]{\bigskip\begin{fullwidth}\noindent\ttfamily#1\end{fullwidth}\medskip\par\noindent#2}
-\newcommand{\docfilehook}[2]{\texttt{#1}\index{file hooks!#2}\index{#1@\texttt{#1}}}
-\newcommand{\doccounter}[1]{\texttt{#1}\index{#1 counter@\texttt{#1} counter}}
-
-% Generates the index
-\usepackage{makeidx}
-\makeindex
+\title{Graduate Algebra}
+\author{Arthur Li}
 
 \begin{document}
-
-% Front matter
-\frontmatter
-
 \maketitle
-
 \bibliographystyle{chicago}
 
-\chapter*{Introduction}
-\newthought
+\section*{Introduction}
 {This collection} of notes serve as a guide to mastering abstract algebra with content from undergraduate to graduate level course. The notes combine knowledge from different sources, including course notes and textbooks used in the courses.\\
 
-The proofs for Theorems, Propositions and Lemmas will be added when I have completed the entire skeleton.
+The proofs for Theorems, Propositions and Lemmas will be added after completion of the skeleton.
 	
-\subsection{Prerequisites}
-These notes will assume no familiarity with any aspects of abstract algebra, and builds upon the foundation from Group Theory to more abstract topics such as Categories and Commutative Algebra. A good starting point will be the series on  \href{https://www.youtube.com/watch?v=UwTQdOop-nU&list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv}{Visual Group Theory by Professor Matthew Macauley}.
+\subsection*{Prerequisites}
+These notes will assume no familiarity with any aspects of abstract algebra, and builds upon the foundation from Group Theory to more abstract topics such as Categories and Commutative Algebra. A good starting point will be the series on   \textit{{\color{blue} \href{https://www.youtube.com/watch?v=UwTQdOop-nU&list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv}{Visual Group Theory by Professor Matthew Macauley}}}.
 	
 Familiarity with basic styles of proof is assumed (contradiction, contrapositive, etc.).
 	
-\subsection{Organization and Sources}
+\subsection*{Organization and Sources}
 This section will be edited as the notes progress towards completion.
+
+\newpage
 
 \tableofcontents
 
-%%%
-% Start the main matter (normal chapters)
-\mainmatter
+\newpage
 
-% Chapter 1: Preliminaries
-\chapter{Preliminaries}
-\section{Introductory Ideas and Definitions}
-\begin{fullwidth}
+\section{Preliminaries}
+
+\subsection{Introductory Ideas and Definitions}
 
 \begin{definition}
 \textit{{\color{blue} Class}} is a collection $ A $ of objects (elements) such that given any object $ x $ it is possible to determine if $ x $ is a member of $ A $.\\
 \end{definition}
-\>
+
 
 \begin{definition}
 \textit{{\color{blue} Axiom of extensionality}} asserts that two classes with the same elements are equal. Formally, 
 \begin{equation}
-\left[x \in A \Longleftrightarrow x \in B \right] \Rightarrow A=B
+\left[x \in A \Longleftrightarrow x \in B \right] \Rightarrow A=B \nonumber
 \end{equation}
 \end{definition}
-\>
 
 \begin{definition}
 A class is defined to be a \textit{{\color{blue} set}} if and only if there exists a class $ B $ such that $ A \in B $.\\
 A class that is not a set is called a \textit{{\color{blue} proper set}}.\\
 \end{definition}
-\>
 
 \begin{definition}
 \textit{{\color{blue} Axiom of class formation}} asserts that for any statement $ P(y) $ in the first predicate calculus involve a variable $ y $, there exists a class $ A $ such that $ x \in A $ if and only if $ x $ is a set and the statement $ P(x) $ is true. The class is denoted 	$\{ x | P(x) \}$.\\
 \end{definition}
-\>
 
 \begin{definition}
 A class $ A $ is a \textit{{\color{blue} subclass}} of class $ B $ ($ B \subset A $) provided $ \forall x \in A, x \in A \Longleftrightarrow x \in B $. \\
 A subclass $ A $ of a class $ B $ that is itself a set is called a \textit{{\color{blue} subset}} of $ B $.\\
 The \textit{{\color{blue} empty or null set}} (denoted $\emptyset$) is the set with no elements.\\
 \end{definition}
-\>
 
 \begin{definition}
-\textit{{\color{blue} Power axiom}} asserts that for every set $ A $ the class $ P(A) $ of all subsets of $ A $ is itself a set. $ P(A) $ is the \textit{{\color{blue} power set}} of $ A $, denoted $ 2^A $.\\
+\textit{{\color{blue} Power axiom}} asserts that for every set $ A $ the class $ P(A) $ of all subsets of $ A $ is itself a set.\\
+$ P(A) $ is the \textit{{\color{blue} power set}} of $ A $, denoted $ 2^A $.\\
 \end{definition}
-\>
+
 
 \begin{definition}
 A \textit{{\color{blue} family of sets}} indexed by (nonempty) class $ I $ is a collection of sets $ A_i $, one for each $ i \in I $ (denoted $\{ A_i | i \in I \}$).\newline
 The \textit{{\color{blue} union}} is defined as 
 \begin{equation}
-\bigcup\limits_{i \in I}A_{i} = \{ x | x \in A_i \ for \ some \ i \in I \}
+\bigcup\limits_{i \in I}A_{i} = \{ x | x \in A_i \ for \ some \ i \in I \} \nonumber
 \end{equation}
 The \textit{{\color{blue} intersection}} is defined as 
 \begin{equation}
-\bigcap\limits_{i \in I}A_{i} = \{ x | x \in A_i \ for \ every \ i \in I \}
+\bigcap\limits_{i \in I}A_{i} = \{ x | x \in A_i \ for \ every \ i \in I \} \nonumber
 \end{equation}
 If $ A \cap B = \emptyset $, then $ A $ and $ B $ are disjoint.\\
 \end{definition}
-\>
+
 
 \begin{definition}
 The \textit{{\color{blue} relative complement}} of $ A $ in $ B $ is the following subclass of $ B $: \\
 \begin{equation}
-B-A = \{ x | x \in B \ and \ x \notin A \}
+B-A = \{ x | x \in B \ and \ x \notin A \} \nonumber
 \end{equation}
 If all classes under discussion are subsets of some fixed set $ U $ (the universe of discussion), then $ U - A = A' $ is the \textit{{\color{blue} complement}} of $ A $.\\
 \end{definition}
-\>
+
 
 \begin{definition}
 Given classes $ A $ and $ B $, a \textit{{\color{blue} function / map / mapping}} $ f $ from $ A $ to $ B $ (written $ f: A \rightarrow B $ assigns to each $ a \in A $ exactly one element $ b \in B $.\newline
@@ -319,22 +173,22 @@ Then $ b $ is the value of function at $ a $, or the \textit{{\color{blue} image
 $ A $ is the \textit{{\color{blue} domain}} of the function, written $ dom f $, and $ B $ is the \textit{{\color{blue} range}} or \textit{{\color{blue} codomain}}.\\
 Two functions are \textit{{\color{blue} equal}} if they have the same domain and range, and have the same value for each element of their common domain.\\
 \end{definition}
-\>
+
 
 \begin{definition}
 If $ f: A \rightarrow B $ is a function and $ S \subset A$, the function from $ S $ to $ B $ given by $ a \mapsto f(a) $, for $ a \in S $, is \textit{{\color{blue} restriction}} of $ f $ to $ S $, denoted $ f|S: S \rightarrow B$.\newline
 If $ S \in A$, the function $ 1_A | S: S \rightarrow A $ is the \textit{{\color{blue} inclusion map}} of $S$ into $A$.\\
 \end{definition}
-\>
+
 
 \begin{definition}
 Let $ f: A \rightarrow B $ and $ g: B \rightarrow C $ be functions. The \textit{{\color{blue} composite}} of $ f $ and $ g $ is the function
 \begin{align}
 g \circ f & = gf: A \rightarrow C \nonumber \\
-a & \mapsto g(f(a)),\ a \in A
+a & \mapsto g(f(a)),\ a \in A \nonumber
 \end{align}
 \end{definition}
-\>
+
 
 \begin{definition}
 The \textit{{\color{blue} diagram of functions}} is said to be commutative if $ gf = h $, or if $ kh = gf $.\\
@@ -353,20 +207,20 @@ A \arrow{rr}{f} \arrow[swap]{dr}{h} & & B \arrow{dl}{g} \\[10pt]
 \nonumber
 \end{equation}
 \end{definition}
-\>
+
 
 \begin{definition}
 Let $ f: A \rightarrow B $ be a function. If $ S \in A $, \textit{{\color{blue} the image of $ S $ under $ f $}} is the class
 \begin{equation}
-f(S)) = \{ b \in B | b=f(a) \ for \ some \ a \in S\}
+f(S)) = \{ b \in B | b=f(a) \ for \ some \ a \in S\} \nonumber
 \end{equation}
 The class $ f(A) $ is the \textit{{\color{blue} image of $ f $}}, denoted $ im \ f $.\\
 If $ T \subset B $, the \textit{{\color{blue} inverse image of $ T $}} under $ f $ is the class 
 \begin{equation}
-f \textsuperscript{-1} (T) = \{ a \in A | f(a) \in T\} 
+f \textsuperscript{-1} (T) = \{ a \in A | f(a) \in T\} \nonumber
 \end{equation}
 \end{definition}
-\>
+
 
 \begin{definition}
 A function $ f: A \rightarrow B$ is said to be \textit{{\color{blue} injective}} (or one-to-one) provided 
@@ -377,7 +231,7 @@ f(a) = f(a') & \Rightarrow a = a' \nonumber
 A function $ f $ is \textit{{\color{blue} surjective}} (or on-to) provided $ f(A) \approx B $; in other words, $\forall b \in B $, $ b=f(a) $ for some $ a \in A $.\\
 A function $ f $ is \textit{{\color{blue} bijective}} (or one-to-one correspondence) if it is both injective and surjective.\\
 \end{definition}
-\>
+
 
 \begin{definition}
 The map $ g: B \rightarrow A $ is a \textit{{\color{blue} left inverse}} of $ f $ if $ gf = 1_A $.\\
@@ -389,115 +243,122 @@ g = g1_B = g(fh) = (gf)h = 1 \textsubscript{A} h = h
 \end{equation}
 and $ g=h $ is the \textit{{\color{blue} two-sided inverse}}.\\
 \end{definition}
-\>
 
-\end{fullwidth}
+\newpage
+
+\section{Group Theory}
+
+\subsection{Basic Axioms}
+
+\subsection{Homomorphisms and Subgroups}
+
+\subsection{Cyclic Groups}
+
+\subsection{Cosets}
+
+\subsection{Normality, Quotient Groups}
+
+\subsection{Isomorphism Theorems}
+
+\subsection{Symmetric, Alternating and Dihedral Groups}
+
+\subsection{Categories, Products, Coproducts, Free Objects}
+
+\subsection{Direct Products, Direct Sums}
+
+\subsection{Free Groups, Free Products}
+
+\subsection{Matrix Groups}
 
 
 \newpage
 
-% Chapter 2: Group Theory
-\chapter{Group Theory}
-\begin{fullwidth}
-\section{Basic Axioms}
+\section{Group Structures}
 
-\section{Homomorphisms and Subgroups}
+\subsection{Free Abelian Groups}
 
-\section{Cyclic Groups}
+\subsection{Finitely Generated Abelian Groups}
 
-\section{Cosets}
+\subsection{Krull-Schmidt Theorem}
 
-\section{Normality, Quotient Groups}
+\subsection{Group Action}
 
-\section{Isomorphism Theorems}
+\subsection{The Sylow Theorems}
 
-\section{Symmetric, Alternating and Dihedral Groups}
+\subsection{Semidirect Products}
 
-\section{Categories, Products, Coproducts, Free Objects}
-
-\section{Direct Products, Direct Sums}
-
-\section{Free Groups, Free Products}
-
-\section{Matrix Groups}
-	
-\end{fullwidth}
+\subsection{Normal and Subnormal Series}
 
 \newpage
 
-% Chapter 3: Group Structures
-\chapter{Group Structures}
-\begin{fullwidth}
-\section{Free Abelian Groups}
+\section{Ring Theory}
 
-\section{Finitely Generated Abelian Groups}
-
-\section{Krull-Schmidt Theorem}
-
-\section{Group Action}
-
-\section{The Sylow Theorems}
-
-\section{Semidirect Products}
-
-\section{Normal and Subnormal Series}
-
-\end{fullwidth}
-
-\newpage
-
-% Chapter 4: Ring Theory
-\chapter{Ring Theory}
-\begin{fullwidth}
-\section{Basic Axioms}
+\subsection{Basic Axioms}
 
 \begin{definition}
 A \textit{{\color{blue} ring}} is a nonempty set $ R $ with two binary operations $ + $ (addition) and $ \times $ (multiplication), $ (R, +, \times) $, such that:
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $(R, +)$ is an additive abelian group with $0$ as the additive identity
-\item the binary operation $\times$ is associative: $(a \times b) \times c = a \times (b \times c) $, $ \forall a, b, c \in R$
-\item left and right distributive laws: $(a+b) \times c = (a \times c) + (b \times c) $, $a \times (b+c) = (a \times c) + (b \times c)$, $\forall a, b, c \in R$.
+\item the binary operation $\times$ is associative: 
+\begin{equation}
+(a \times b) \times c = a \times (b \times c), \ \forall a, b, c \in R
+\nonumber
+\end{equation}
+\item left and right distributive laws: 
+\begin{align}
+(a+b) \times c &= (a \times c) + (b \times c) \ \forall a, b, c \in R \nonumber \\
+a \times (b+c) &= (a \times c) + (b \times c), \ \forall a, b, c \in R \nonumber
+\end{align}
 \end{enumerate}
+If in addition, $a \times b = b \times a \ \forall a, b \in R$, then $R$ is a \textit{{\color{blue} commutative ring}}.
 \end{definition}
-\>
+
 
 \begin{definition}
-If in addition to definition of ring, $a \times b = b \times a \forall a, b \in R$, then $R$ is a \textit{{\color{blue} commutative ring}}.\\
+The ring $R$ has a \textit{{\color{blue} multiplicative identity}} if there is an element $1_R \in R$ such that 
+\begin{equation}
+1_R \times a = a \times 1_R = a, \ \forall a \in R
+\nonumber
+\end{equation}
+The ring $R$ has a \textit{{\color{blue} additive identity}} if there is an element $0_R \in R$ such that 
+\begin{equation}
+a-b = a+(-b) = 0_R
+\nonumber
+\end{equation}
+where $-b$ is the \textit{{\color{blue} additive inverse}}.\\
 \end{definition}
-\>
 
-\begin{definition}
-The ring $R$ has a \textit{{\color{blue} multiplicative identity}} if there is an element $1_R \in R$ such that $1_R \times a = a \times 1_R = a$, $\forall a \in R$.\\
-The ring $R$ has a \textit{{\color{blue} additive identity}} if there is an element $0_R \in R$ such that $a-b = a+(-b) = 0_R$, where $-b$ is the \textit{{\color{blue} additive inverse}}.\\
-\end{definition}
-\>
 
 \begin{definition}
 A \textit{{\color{blue} division ring}} $R$ is a ring such that:
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $R$ has a multiplicative identity $1_R$;
 \item $1_R \neq 0_R$; and
-\item $\forall$ nonzero element $a \in R \textbackslash \{0\}$ has a unique multiplicative inverse $a \textsuperscript{-1}$ such that $aa \textsuperscript{-1} = 1 = a \textsuperscript{-1} a$
+\item $\forall$ nonzero element $a \in R \textbackslash \{0\}$ has a unique multiplicative inverse $a \textsuperscript{-1}$ such that
+\begin{equation}
+aa \textsuperscript{-1} = 1 = a \textsuperscript{-1} a
+\nonumber
+\end{equation}
 \end{enumerate}
 \end{definition}
-\>
+
 
 \begin{definition}
 A \textit{{\color{blue} field}} is a division ring which is commutative.\\
 If $R$ is a division ring (field), then $(R, \times)$ is a (commutative) \textit{{\color{blue} multiplicative group}}, $R^\times = R \textbackslash \{0\}$.\\
 \end{definition}
-\>
+
 
 \begin{definition}
 Let $F = (F, +, \times) $ be a field. A nonempty subset $E \subseteq F$ is a \textit{{\color{blue} subfield}} if:
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $(E, +)$ is an additive subgroup of $(F, +)$;
 \item $E$ is closed under multiplication $\times$: $a, b \in E \Rightarrow a \times b \in E$;
 \item $1_F \in E$; and
 \item $a \in E \textbackslash \{0\} \Rightarrow a \textsuperscript{-1} \in E$
 \end{enumerate}
 \end{definition}
-\>
+
 
 \begin{remark}
 The \textit{{\color{blue} trivial ring}} is $\{0\}$.\\
@@ -505,51 +366,91 @@ The \textit{{\color{blue} integer ring}} is $(\mathbb{Z}, +, \times )$ with $ 1 
 $n \mathbb{Z} = \{ns | s \in \mathbb{Z}\} $ is a subring of $\mathbb{Z}$.\\
 $(\mathbb{Z} / n \mathbb{Z}, +, \times) $ is a commutative ring with $ 1 $ for $ n \geq 2 $.\\
 \end{remark}
-\>
+
 
 \begin{remark}
-The $2$-dimensional vector space $\mathbb{Q}[\sqrt{D}] = \mathbb{Q} + \mathbb{Q}\sqrt{D} = \{a+b\sqrt{D}|a, b \in \mathbb{Q} \}$ with $\mathbb{Q}$-basis $\{1, \sqrt{D} \}$ is a \textit{{\color{blue} Quadratic Field}}.\\
-Define $\mathbb{Q}(\sqrt{D}) = \{ \frac{ a+b\sqrt{D} }{ c+d\sqrt{D} } | a, b, c, d \in \mathbb{Q}, c + d\sqrt{D} \neq 0 \} $. Then $\mathbb{Q}(\sqrt{D}) = \mathbb{Q}[\sqrt{D}]$.\\
-More generally, for a field $F$, $\mathbb{Q}(F) = \{\frac{\alpha}{\beta} = \alpha \beta \textsuperscript{-1} | \alpha \beta , \in F, \beta \neq 0\} = F$.\\
+The $2$-dimensional vector space 
+\begin{equation}
+\mathbb{Q}[\sqrt{D}] = \mathbb{Q} + \mathbb{Q}\sqrt{D} = \{a+b\sqrt{D}|a, b \in \mathbb{Q} \}
+\nonumber
+\end{equation}
+with $\mathbb{Q}$-basis $\{1, \sqrt{D} \}$ is a \textit{{\color{blue} Quadratic Field}}.\\
+Define $\mathbb{Q}(\sqrt{D}) = \{ \frac{ a+b\sqrt{D} }{ c+d\sqrt{D} } | a, b, c, d \in \mathbb{Q}, c + d\sqrt{D} \neq 0 \} $. \\
+Then $\mathbb{Q}(\sqrt{D}) = \mathbb{Q}[\sqrt{D}]$.\\
+More generally, for a field $F$, 
+\begin{equation}
+\mathbb{Q}(F) = \{\frac{\alpha}{\beta} = \alpha \beta \textsuperscript{-1} |\ \alpha \beta , \in F, \beta \neq 0\} = F
+\nonumber
+\end{equation}
 \end{remark}
-\>
+
 
 \begin{remark}
 Let $H=\mathbb{R} + \mathbb{R} i + \mathbb{R} j + \mathbb{R} k = \{a+bi+cj+dk|a,b,c,d \in \mathbb{R}\}$ be the $4$-dimensional vector space over $\mathbb{R}$ with $\mathbb{R}$-basis $(1, i, j, k)$.\\
-The multiplication is extended linearly by distributive law: $i^2 = j^2 = k^2 = -1$, $ij=k=-ji$,$jk=i=-kj$, $ki=j=-ik$. Then $H$ is a \textit{{\color{blue} Real Quaternion Ring}}.\\
-$H_\mathbb{Q}=\mathbb{Q}+\mathbb{Q}i+\mathbb{Q}j+\mathbb{Q}k=\{a+bi+cj+dk|a, b, c, d\in \mathbb{Q}\}$ is the \textit{{\color{blue} Rational Hamilton Quaternion Ring}}.\\
+The multiplication is extended linearly by distributive law: 
+\begin{align}
+i^2 = j^2 = k^2 = -1 \nonumber \\
+ij=k=-ji \nonumber \\
+jk=i=-kj \nonumber \\
+ki=j=-ik \nonumber
+\end{align}
+Then $H$ is a \textit{{\color{blue} Real Quaternion Ring}}.\\
+The \textit{{\color{blue} Rational Hamilton Quaternion Ring}} is:
+\begin{equation}
+H_\mathbb{Q}=\mathbb{Q}+\mathbb{Q}i+\mathbb{Q}j+\mathbb{Q}k=\{a+bi+cj+dk|\ a, b, c, d\in \mathbb{Q}\} \nonumber
+\end{equation}
 \end{remark}
-\>
+
 
 \begin{remark}
-Let $\mathbb{R}V[x]=\{f:\mathbb{R}\rightarrow\mathbb{R}\}$ be the set of all real-valued functions. Let $x\mapsto c(x) = c$ be a constant function.\\
-For $f, g \in \mathbb{R}V[x]$, the natural addition is $x\mapsto (f+g)(x) = f(x)+g(x)$.\\
-The multiplication (not composition) is $x\mapsto (fg)(x)=f(x)g(x)$.\\
-The $(\mathbb{R}V[x], +, \times)$ is a commutative \textit{{\color{blue} (real valued-function) ring}} with multiplicative identity $1$ being the constant function $1$.\\
+Let $\mathbb{R}V[x]=\{f:\mathbb{R}\rightarrow\mathbb{R}\}$ be the set of all real-valued functions.\\
+Let $x\mapsto c(x) = c$ be a constant function.\\
+For $f, g \in \mathbb{R}V[x]$, the natural addition is
+\begin{equation}
+x\mapsto (f+g)(x) = f(x)+g(x) \nonumber
+\end{equation}
+The multiplication (not composition) is 
+\begin{equation}
+x\mapsto (fg)(x)=f(x)g(x) \nonumber
+\end{equation}
+$(\mathbb{R}V[x], +, \times)$ is a commutative \textit{{\color{blue} (real valued-function) ring}} with multiplicative identity $1$ being the constant function $1$.\\
 \end{remark}
-\>
+
 
 \begin{definition}
 Let $R$ be a ring with $1 \neq 0$. An element $u \in R$ is a \textit{{\color{blue} unit}} if it has a multiplicative identity inverse $u'$ such that $uu'=1=u'u$.\\
-The \textit{{\color{blue} set of all units}} of $R$ are $U(R)=\{u\in R | u \ is \ a \ unit\}$.\\
+The \textit{{\color{blue} set of all units}} of $R$ are 
+\begin{equation}
+U(R)=\{u\in R | u \ is \ a \ unit\} \nonumber
+\end{equation}
 The \textit{{\color{blue} multiplicative group of units of the ring}} $R$ is $(U(R), \times)$.\\
 \end{definition}
-\>
+
 
 \begin{remark}
-More generally, let $X$ be a set and $R$ be a ring. Let $X \textsubscript{to} R := \{f: X \rightarrow R\}$ be the set of all maps between $X$ and $R$. Then for $f, g \in X \textsubscript{to} R $, there are natural addition $f+g$ and multiplication $fg$ ($x\mapsto f(x)g(x)$) as in previous remark.\\
+More generally, let $X$ be a set and $R$ be a ring. Let $X \textsubscript{to} R := \{f: X \rightarrow R\}$ be the set of all maps between $X$ and $R$. Then for $f, g \in X \textsubscript{to} R $, there are natural addition $f+g$ and multiplication $fg$ ($x\mapsto f(x)g(x)$).\\
 Then $(X \textsubscript{to} R, +, \times)$ is a ring, called the \textit{{\color{blue} $R$-Valued Function Ring}}.\\
 If $R$ has $1$ then so does $X \textsubscript{to} R$. If $R$ is commutative then so does $X \textsubscript{to} R$.\\
-Every $c\in R$ defines a constant function (an element in $X \textsubscript{to} R$, $c:X\rightarrow R$; $x \mapsto c(x)=c$.\\
+Every $c\in R$ defines a constant function (an element in $X \textsubscript{to} R$)
+\begin{align}
+c:X &\rightarrow R \nonumber \\
+x &\mapsto c(x)=c \nonumber
+\end{align}
 Identify $R$ with the subset of $X \textsubscript{to} R$ of constant function. Then $R$ is a subring of $X \textsubscript{to} R$.\\
 \end{remark}
-\>
+
 
 \begin{remark}
-Let $n \geq 2$. Then $U(\mathbb{Z}/n\mathbb{Z})$ is a commutative multiplicative group of order $\left| U(\mathbb{Z}/n\mathbb{Z}) \right| = \varphi (n)$.
-Hence $\varphi (n)$ is the \textit{{\color{blue} Euler's $\varphi$-function}}, $\varphi (n)=\left|\{1 \leq s \leq n | gcd(s, n) = 1\}\right|$.\\
+Let $n \geq 2$. Then $U(\mathbb{Z}/n\mathbb{Z})$ is a commutative multiplicative group of order 
+\begin{equation}
+\left| U(\mathbb{Z}/n\mathbb{Z}) \right| = \varphi (n) \nonumber
+\end{equation}
+Hence $\varphi (n)$ is the \textit{{\color{blue} Euler's $\varphi$-function}}, 
+\begin{equation}
+\varphi (n)=\left|\{1 \leq s \leq n | gcd(s, n) = 1\}\right| \nonumber
+\end{equation}
 \end{remark}
-\>
+
 
 \begin{definition}
 An \textit{{\color{blue} Integral Domain}} is a commutative ring with $1\neq 0$ such that $\forall a, b, \in R, \ ab = 0 \Rightarrow a=0 \ or \ b=0$,
@@ -557,124 +458,143 @@ or equivalently, $\forall a, b \in R, \ a \neq 0, \ b \neq 0 \Rightarrow ab \neq
 $\mathbb{Z}$ is an integral domain.\\
 Every field is an integral domain.\\
 \end{definition}
-\>
+
 
 \begin{definition}
 Let $R$ be a ring. A nonzero element $a \in R$ is a 	\textit{{\color{blue} zero divisor}} if there is a nonzero $b\in R$ such that either $ab=0$ or $ba=0$.\\
 A commutative ring $R$ with $1$ is an integral domain if and only if $R$ as no zero divisors.\\
 \end{definition}
-\>
+
 
 \begin{proposition}
-Let $R$ be w ring with $1 \neq 0$. Then $R$ is an integral domain if and only if the cancellation law holds: $\forall a, b, c \in R, \ c \neq 0, \ ca=cb \Rightarrow a=b$.\\	
+Let $R$ be a ring with $1 \neq 0$. $R$ is an integral domain if and only if cancellation law holds: 
+\begin{equation}
+\forall a, b, c \in R, \ c \neq 0, \ ca=cb \Rightarrow a=b \nonumber
+\end{equation}
 \end{proposition}
-\>
+
 
 \begin{corollary}
 Let $R$ be a finite integral domain, i.e., $R$ is an integral domain with the cardinality $\left| R \right| < \infty$. Then $R$ is a field.\\
 \end{corollary}
-\>
+
 
 \begin{proposition}
 Let $n \geq 2$. Then the following are equivalent:
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $\mathbb{Z}/n\mathbb{Z}$ is a field
 \item $\mathbb{Z}/n\mathbb{Z}$ is an integral domain
 \item $n$ is a prime
 \end{enumerate}
 \end{proposition}
-\>
+
 
 \begin{definition}
 Let $R$ be a ring. A nonempty subset $S \subseteq R$ is a \textit{{\color{blue} subring}} of $R$ if:
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $(S, +)$ is an additive subgroup of $(R, +)$ and
 \item $S$ is closed under multiplication
 \end{enumerate}
-$\mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C} $
+\begin{equation}
+\mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C} \nonumber
+\end{equation}
 \end{definition}
-\>
+
 
 \begin{proposition}
-\textit{{\color{blue} (Subring Criterion)}} Let $R$ be a ring and $S \subseteq R$ a nonempty subset. Then the following are equivalent:
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\textit{{\color{blue} (Subring Criterion)}} Let $R$ be a ring and $S \subseteq R$ a nonempty subset. \\
+Then the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
 \item $S$ is a subring of $R$
-\item $S$ is closed under subtracting and multiplication: $a,b\in S \Rightarrow ab\in S$; $a-b = a + (-b) \in S$
+\item $S$ is closed under subtracting and multiplication:
+\begin{align}
+a,b\in S &\Rightarrow ab\in S \nonumber \\
+a-b &= a + (-b) \in S \nonumber
+\end{align}
 \end{enumerate}
 \end{proposition}
-\>
+
 
 \begin{remark}
 Being a subring is a transitive condition. If $R$ is a subring of $S$ and $S$ is a subring of $T$, then $R$ is a subring of $T$.\\
 If both $S_i$ are subring of $R$ and $S_1 \subseteq S_2$, then $S_1$ is a subring of $S_2$.\\
 \end{remark}
-\>
+
 
 \begin{remark}
 \textit{{\color{blue} (Subring without 1)}} If $R$ is a ring with $1 = 1_R$ then a subring $S \subseteq R$ may not contain $1$, i.e., $m\mathbb{Z} = {ms|s\in \mathbb{Z}, \left| m \right| \geq 2}$ is a subring of $\mathbb{Z}$ which does not contain $1$.
 \end{remark}
-\>
+
 
 \begin{remark}
 \textit{{\color{blue} (Intersection of subrings)}} Let $R_\alpha$ ($\alpha \in \Sigma$) be a (not necessarily finite or countable) collection of subrings of a ring $R$. Then the intersection $\bigcap\limits_{\alpha \in \Sigma} R_\alpha$ is a subring of $R$.\\
 Generally, the union of subrings may not be a subring.\\
 \end{remark}
-\>
+
 
 \begin{remark}
 \textit{{\color{blue} (Union of ascending subrings)}} Let $R_1 \subseteq R_2 \subseteq \cdots $ be an ascending chain of subrings $R_i$ of a ring $R$.
 Then the union $\bigcup\limits_{i=1}^{\infty} R_\alpha$ is a subring of $R$.\\
 \end{remark}
-\>
+
 
 \begin{remark}
 \textit{{\color{blue} (Addition of subrings)}} Let $R$ be a ring and let $R_i$ be subrings of $R$.\\
 Then the addition $R_1 + \cdots + R_n$ is closed under subtraction, but may not be closed under multiplication, hence may not be a subring of $R$.\\
 \end{remark}
-\>
+
 
 \begin{remark}
 \textit{{\color{blue} (Integral domain is a subring of a field)}}\\
 Let $F$ be a field. Let $R \subseteq F$ be a subring such that $1 \in R$. Then $R$ is an integral domain.\\
 Every integral domain $R$ is a subring of some field $\mathbb{Q}(R)$ (the fractional field of $R$).\\
 \end{remark}
-\>
+
 
 \begin{remark}
 \textit{{\color{blue} (Product of Rings)}} let $n \geq 1$ and let $R_i = (R_i, +, \times)$ ($i=1, \ldots, n$) be rings.\\
-Then the direct product is a ring, $R = R_1 \times \cdots \times R_n$. (The direct product is $(a_1, \ldots, a_n) \times (a'_1, \ldots, a'_n) = (a_1 a'_1, \ldots, a_n a'_n)$.\\
-The unit subgroups has the relation $U(R) = U(R_1)\times \cdots \times U(R_n)$\\
+Then the direct product is a ring, 
+\begin{align}
+R &= R_1 \times \cdots \times R_n \nonumber \\
+(a_1, \ldots, a_n) &\times (a'_1, \ldots, a'_n) = (a_1 a'_1, \ldots, a_n a'_n) \nonumber
+\end{align}
+The unit subgroups has the relation 
+\begin{equation}
+U(R) = U(R_1)\times \cdots \times U(R_n) \nonumber
+\end{equation}
 \end{remark}
-\>
 
-\section{Examples of Rings}
+
+\subsection{Examples of Rings}
 
 \begin{definition}
-The \textit{{\color{blue} (polynomial ring $R[x] over a ring R$)}} is $(R[x], +, \times)$,\\
-where $R[x] = \{\sum_{j=0}^{d} b_j x_j | d \geq 0, \ b_j \in \mathbb{R} \}$.\\
+The \textit{{\color{blue} polynomial ring $R[x]$ over a ring $R$}} is $(R[x], +, \times)$,  where 
+\begin{equation}
+R[x] = \{\sum_{j=0}^{d} b_j x_j | d \geq 0, \ b_j \in \mathbb{R} \} \nonumber
+\end{equation}
 There are natural addition and multiplication operations for polynomials.\\
 \end{definition}
-\>
+
 
 \begin{remark}
 Let $R$ be a commutative ring with $1$. Let $S:= R[x]$ be the polynomial ring over $R$.
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $R$ is a subring of $S$ which consists of constant polynomial functions.
 \item $0_S = 0_R$
 \item $S$ contains $1=1_S$, and $1_S = 1_R$.
 \end{enumerate}
 \end{remark}
-\>
+
 
 \begin{proposition}
 \textit{{\color{blue} (Polynomial ring over integral domain)}} Let $R$ be an integral domain. Let $f(x), g(x) \in R[x]$. Then
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $deg(f(x)g(x)) = deg(f(x))+deg(g(x))$
 \item $U(R[x]) = U(R)$. Namely, $g(x)$ is a unit of $R[x]$ if and only if $g=a_0 \in R$ (constant polynomial) with $a_0$ a unit in $R$.
 \item $R[x]$ is an integral domain
 \end{enumerate}
 \end{proposition}
-\>
+
 
 \begin{remark}
 The {{\color{blue} matrix ring of $n \times n$ square matrices with entries in the ring $R$}} is defined as $(M_n(R), +, \times)$, where\\
@@ -689,159 +609,182 @@ $A=(a_{ij}) = Diag[a_{11}, \ldots, a_{nn}]$ is a diagonal matrix if $a_{ij} = 0$
 $A=(a_{ij}) = Diag(a_1, \ldots, a_n)$ is a scalar matrix if $a_{ii} = a \in R \ \forall i$, and $a_{ij} = 0$ ($i \neq j$).\\
 $A=(a_{ij})$ is an upper triangular matrix if $a_{ij}=0$ ($i < j$). The lower triangular matrix is defined similarly.\\
 \end{remark}
-\>
+
 
 \begin{remark}
 Let $R$ be a ring and $S = M_n(R)$ the matrix ring with entries in $R$. Then
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $0_S=(a_{ij})$ where $a_{ij} = 0$ (the zero matrix)
 \item If $R$ has $1 = 1_R$, then $S$ also has $1 = 1_S$ with $1_S = Diag[1_R, \ldots, 1_R]$
 \item The set $S_{c_n}(R) = \{Diag[a, \ldots, a] | a_i \in R\}$ of all scalar matrices in $M_n(R)$ is a subring of $M_n(R)$. There is a natural ring isomorphism $R \cong S_{c_n}(R)$.
-\item The set $D_n(R) = \{Diag[]a_1, \ldots, a_n | a_i \in R\}$ of all diagonal matrices in $M_n(R)$ is a subring of $M_n(R)$. There is a natural ring isomorphism $D_n(R) \cong R^n := R \times \cdots \times R $ ($n$ times).
+\item The set $D_n(R) = \{Diag[a_1, \ldots, a_n] | a_i \in R\}$ of all diagonal matrices in $M_n(R)$ is a subring of $M_n(R)$. There is a natural ring isomorphism $D_n(R) \cong R^n := R \times \cdots \times R $ ($n$ times).
 \item The set $UT_n(R):= \{(a_{ij} | (a_{ij} \in R, (a_{ij} = 0 (\forall \ i > j))\}$ of all upper triangular matrices in $M_n(R)$ is a subring of $M_n(R)$. Similarly, the set $LT_n(R)$ of all lower triangular matrices in $M_n(R)$ is a subring of $M_n(R)$.
 \item If $R$ is a subring of $R$, then $M_n(T)$ is a subring of $M_n(R)$
 \item Even if $R$ is commutative, $M_n(R)$ may not be commutative when $n \geq 2$.
 \item If $n \geq 2$, then $M_n(R)$ is not an integral domain (even when $R$ is a field).
 \end{enumerate}
 \end{remark}
-\>
+
 
 \begin{definition}
 Let $R$ be a ring with $1$. Set $GL_n(R) := U(M_n(R))$ the set of all units in $M_n(R)$. Then $GL_n(R)$ is a multiplicative group called the \textit{{\color{blue} general linear group of degree $n$ over $R$}}.
 \end{definition}
-\>
+
 
 \begin{definition}
-Let $R$ be a commutative ring with $1$. Define determinant $det(A) = \left| A \right|$, Let $SL_n(R) := \{A \in M_n(R) | det(A) = 1\}$ be the set of all matrices in $M_n(R)$ with determinants equal to $1$. Then $SL_n(R)$ is a multiplicative subgroup of $GL_n(R)$ called the \textit{{\color{blue} special linear group of degree $n$ over $R$}}.
+Let $R$ be a commutative ring with $1$. Define determinant $det(A) = \left| A \right|$, Let $SL_n(R) := \{A \in M_n(R) | det(A) = 1\}$ be the set of all matrices in $M_n(R)$ with determinants equal to $1$. \\
+Then $SL_n(R)$ is a multiplicative subgroup of $GL_n(R)$ called the \textit{{\color{blue} special linear group of degree $n$ over $R$}}.
 \end{definition}
-\>
+
 
 \begin{definition}
 \textit{{\color{blue} (Group Rings $R[G]$)}}\\
 Let $R$	be a commutative ring with $1 \neq 0$. Let $G = \{g_1, \ldots, g_n\}$ be a finite multiplicative group of order $n$.\\
-Then $R[G]$ is a \textit{{\color{blue} group ring}}, where $R[G] = Rg_1 + \cdots + Rg_n = \{a_1 g_1 + \cdots + a_n g_n | a_i \in R\}$.\\
-Natural addition is defined as $(\sum_{i=1}^{n} a_i g_i)+ (\sum_{i=1}^{n} b_i g_i) = (\sum_{i=1}^{n} (a_i + b_i) g_i)$.\\
-Multiplication is defined as $(\sum_{i=1}^{n} a_i g_i) \times (\sum_{j=1}^{n} b_j g_j) := (\sum_{k=1}^{n} c_k g_k)$ where $c_k=\sum_{g_i g_j = g_k} a_i b_j$ with the sum running $\forall (i, j)$ with $g_i g_j = g_k$.\\
+Then $R[G]$ is a \textit{{\color{blue} group ring}}, where 
+\begin{equation}
+R[G] = Rg_1 + \cdots + Rg_n = \{a_1 g_1 + \cdots + a_n g_n | a_i \in R\} \nonumber	
+\end{equation}
+Natural addition is defined as 
+\begin{equation}
+(\sum_{i=1}^{n} a_i g_i)+ (\sum_{i=1}^{n} b_i g_i) := (\sum_{i=1}^{n} (a_i + b_i) g_i) \nonumber
+\end{equation}
+Multiplication is defined as 
+\begin{equation}
+(\sum_{i=1}^{n} a_i g_i) \times (\sum_{j=1}^{n} b_j g_j) := (\sum_{k=1}^{n} c_k g_k) \nonumber
+\end{equation}
+where $c_k=\sum_{g_i g_j = g_k} a_i b_j$ with the sum running $\forall (i, j)$ with $g_i g_j = g_k$.\\
 \end{definition}
-\>
+
 
 \begin{remark}
 Let $R$ be a commutative ring with $1 \neq 0$, $G$ a multiplicative group, and $R[G]$ the group ring. Then
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $R[G]$ is a commutative ring if and only if $G$ is commutative (=abelian) group
 \item $R[G]$ has the multiplicative identity $1=1_R e_G$
 \end{enumerate}
 \end{remark}
-\>
+
 
 \begin{remark}
 Let $R[G]$ be a group ring.
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
-\item There is a natural injective ring homomorphism $R \rightarrow R[G]$; $r \mapsto r e_G$. Identify $R$ with the image $R e_G$ of this injective homomorphism.
+\begin{enumerate}[label=(\roman*)]
+\item There is a natural injective ring homomorphism 
+\begin{align}
+R &\rightarrow R[G] \nonumber \\
+r &\mapsto r e_G \nonumber
+\end{align}
+Identify $R$ with the image $R e_G$ of this injective homomorphism.
 \item For every $g \in G$, the element $1_R g$ is a unit in $R[G]$
-\item There is a natural injective group homomorphism $G \rightarrow U(G[R])$; $g \mapsto 1_R g$. Identify $G$ with the image $1_R G$ of this injective homomorphism.
+\item There is a natural injective group homomorphism 
+\begin{align}
+G &\rightarrow U(G[R]) \nonumber \\
+g &\mapsto 1_R g \nonumber
+\end{align}
+Identify $G$ with the image $1_R G$ of this injective homomorphism.
 \item If $S$ is a subring of $R$, then $S[G]$ is a subring of $R[G]$. If $H$ is a subgroup of $G$, then $R[H]$ is a subring of $R[G]$.
 \item $T = \{\sum_{i=1}^{n} a_i g_i \in R[G] | \sum_{i=1}^{n} a_i = 0\}$ is a subring of $R[G]$ (an ideal of $R[G]$)
 \end{enumerate}
 \end{remark}
-\>
+
 
 \begin{remark}
 When $R$ is a division ring or field, then $R[G]$ (as an additive group) is a vector space over $R$ of dimension equal to $\left| G \right|$ with basis $\{g_1, \ldots, g_n\} = G$.
 Hence $R[G] = Rg_1 + \cdots + Rg_n = Rg_1 \oplus \cdots \oplus Rg_n$, the direct sum of $1$-dimensional vector subspaces $Rg_i$ over $R$.\\
 \end{remark}
-\>
 
-\section{Ring Homomorphisms}
+
+\subsection{Ring Homomorphisms}
 
 \begin{definition}
 Let $R, S$ be rings. A map $\varphi: R \rightarrow S$ is a \textit{{\color{blue} ring homomorphism}} if it respects the additive and multiplicative structures.\\
-$\varphi(a+b) = \varphi(a) + \varphi(b) \ \forall a, b \in R$\\
-$\varphi(ab) = \varphi(a)\varphi(b) \ \forall a, b \in R$\\
+\begin{align}
+\varphi(a+b) &= \varphi(a) + \varphi(b) \ \forall a, b \in R \nonumber \\
+\varphi(ab) &= \varphi(a)\varphi(b) \ \forall a, b \in R \nonumber
+\end{align}
 \end{definition}
-\>
+
 
 \begin{definition}
 Let $R, S$ be rings. A map $\varphi: R \rightarrow S$ is a \textit{{\color{blue} ring isomorphism}} if it is a ring homomorphism and bijective.
 This is denoted $\varphi: R \xrightarrow{\sim} S$. Rings $R$ and $S$ is \textit{{\color{blue} isomorphic}}, denoted $R \cong S$ or $R \simeq S$.
 \end{definition}
-\>
+
 
 \begin{definition}
 The \textit{{\color{blue} kernel}} of a ring homomorphism $\varphi$ is defined as $ker \ \varphi = \varphi^{-1}(0_S) = \{a \in R | \varphi(a) = 0_S\} $.
 \end{definition}
-\>
+
 
 \begin{remark}
 \textit{{\color{blue} (Examples of homomorphism)}}\\
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item Let $R, S$ be rings. The map $R \rightarrow S$, $a \mapsto 0$ is a \textit{{\color{blue} zero or trivial map / homomorphism}}.
-\item Suppose $R_1$ is a subring of a ring $R$. The map $\iota: R_1 \rightarrow R$, $a \mapsto a$ is a \textit{{\color{blue} inclusion homomorphism}}.\\
-\item Let $n \in \mathbb{Z}$. The quotient map $\mathbb{Z} \rightarrow \mathbb{Z}/n\mathbb{Z}$, $s \mapsto \bar{s} = [s]_n $ is a \textit{{\color{blue} quotient homomorphism}} between additive groups $(\mathbb{Z}, +)$ and $(\mathbb(Z)/n\mathbb(Z), +)$.
+\item Suppose $R_1$ is a subring of a ring $R$. The map $\iota: R_1 \rightarrow R$, $a \mapsto a$ is a \textit{{\color{blue} inclusion homomorphism}}.
+\item Let $n \in \mathbb{Z}$. The quotient map $\mathbb{Z} \rightarrow \mathbb{Z}/n\mathbb{Z}$, $s \mapsto \overline{s} = [s]_n $ is a \textit{{\color{blue} quotient homomorphism}} between additive groups $(\mathbb{Z}, +)$ and $(\mathbb(Z)/n\mathbb(Z), +)$.
 \item Let $X$ be a set, $R$ a ring, and $X_{to}R = \{f: X \rightarrow R\}$ the ring of all maps from $X$ to $R$. Fix an element $c\in R$. Then $E_c: X_{to}R \rightarrow R$; $f \mapsto E_c(f) := f(c)$ is a \textit{{\color{blue} function evaluation map}}, called the \textit{{\color{blue} Evaluation at $c$}}.
 \end{enumerate}
 \end{remark}
-\>
+
 
 \begin{proposition}
 Let $R, S$ be rings and $\varphi: R \rightarrow S$ be a ring homomorphism. Let $R_1 \subseteq R$ be a subring. Then
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item The $\varphi$-image $\varphi(R_1) = {b \in S | b = \varphi(a) \ for \ some \ a \in R_1}$ is a subring of $S$.
 \item $ker \ \varphi$ is a subring of $R$ such that $\forall a \in R, \ \forall k \in ker \ \varphi \Rightarrow ak \in ker \ \varphi$. In other words, $ker \ \varphi$ is a subring of $R$, $R(ker \ \varphi) \subseteq ker \ \varphi$ and $(ker \ \varphi)R \subseteq ker \ \varphi$.
 \end{enumerate}
 \end{proposition}
-\>
+
 
 \begin{definition}
 Let $R$ be a ring, $I \subseteq R$ a subset and $r \in R$. The subset $I \subseteq R$ is a \textit{{\color{blue} left-ideal}} of $R$ if:
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $I$ is a subring of $R$; and
 \item $I$ is closed under left multiplication by elements from $R$: $rI \subseteq I$ ($\forall r \in R$), i.e., $RI \subseteq I$.
 \end{enumerate}
 \end{definition}
-\>
+
 
 \begin{definition}
 Let $R$ be a ring, $I \subseteq R$ a subset and $r \in R$. The subset $I \subseteq R$ is a \textit{{\color{blue} right-ideal}} of $R$ if:
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $I$ is a subring of $R$; and
 \item $I$ is closed under right multiplication by elements from $R$: $Ir \subseteq I$ ($\forall r \in R$), i.e., $IR \subseteq I$.
 \end{enumerate}
 \end{definition}
-\>
+
 
 \begin{definition}
 Let $R$ be a ring, $I \subseteq R$ a subset and $r \in R$. The subset $I \subseteq R$ is a \textit{{\color{blue} (two-sided) ideal}} of $R$ if is both a left-ideal and right-ideal. In other words, $RI \subseteq I$ and $IR \subseteq I$.
 \end{definition}
-\>
+
 
 \begin{proposition}
 \textit{{\color{blue} (Ideal Criterion)}} Let $R$ be a ring and $I$ a nonempty subset of $R$. The following are equivalent:
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $I$ is a two-sided ideal of $R$;
 \item $\forall r \in R$, $\forall a, b \in R \Rightarrow ra, ar, a-b \in I$
 \item (If R is commutative) $\forall r \in R$, $\forall a, b \in R \Rightarrow ra, a-b \in I$
 \item (If R is commutative with 1) $\forall r \in R$, $\forall a, b \in R \Rightarrow a+rb \in I$
 \end{enumerate}
 \end{proposition}
-\>
+
 
 \begin{proposition}
 Let $R_\alpha$ ($\alpha \in \sum$) be a family of subrings of a ring $R$. Let $J_\alpha$ be a left (resp. 2-sided) ideal of $R_\alpha$.\\
 Then the intersection $\bigcap\limits_{\alpha \in \sum}J_\alpha$ is a left (resp. 2-sided) ideal of the subring $\bigcap\limits_{\alpha \in \sum}R_\alpha$.\\
 \end{proposition}
-\>
+
 
 \begin{corollary}
 Let $J_\alpha$ ($\alpha \in \sum$) be a family of left (resp. 2-sided) ideals of a ring $R$. Then the intersection $\bigcap\limits_{\alpha \in \sum}J_\alpha$ is also a left (resp. 2-sided) ideal of $R$.\\
 \end{corollary}
-\>
+
 
 \begin{proposition}
 Let $J_\alpha$ ($\alpha \in \sum$) be a finite family of left (resp. 2-sided) ideals of a ring $R$. Then the addition $\sum_{\alpha \in \sum} J_\alpha$ is also a left (resp. 2-sided ideal) of $R$.\\
 More generally, if $J_\alpha$ ($\alpha \in \sum$) is an infinite (countable or uncountable) family of left (resp. 2-sided) ideals of a ring $R$, then the subset $\{\sum x_\alpha | x_\alpha \in J_\alpha, x_\alpha \neq 0 \ for \ only \ finitely \ many \ \alpha\}$ is also a left (resp. 2-sided) ideal of $R$.\\
 \end{proposition}
-\>
+
 
 \begin{definition}
 Let $X$ be a subset of a ring $R$. Let $J_\alpha$ ($\alpha \in \sum$) be all the ideals of $R$ with $J_\alpha \supseteq X$.\\
@@ -849,31 +792,31 @@ Then the intersection $\bigcap\limits_{\alpha \in \sum}J_\alpha$ is the \textit{
 This $(X)$ is the smallest among all ideals of $R$ containing $X$.\\
 If $X=\{r_1, \ldots, r_n\}$, then write $(X)=(r_1, \ldots, r_n)$.\\
 \end{definition}
-\>
+
 
 \begin{definition}
 For $r \in R$, the ideal $(r)$ generated by a single element $r$ is the \textit{{\color{blue} principal ideal of ring $R$}}.\\
 \end{definition}
-\>
+
 
 \begin{definition}
 Let $R$ be a ring. An ideal $I$ is \textit{{\color{blue} finitely generated}} if $I=(r_1, \ldots, r_n)$ for some $r_i \in R$.\\
 \end{definition}
-\>
+
 
 \begin{proposition}
 Let $R$ be a ring; $X, Y, X_i$ the subsets of $R$; and $r_j \in R$.
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item Let $J$ be an ideal of $R$. Then $(X) \subseteq J$ if and only if $X \subseteq J$.
 \item The equality of ideals holds: $(X_1 \cup \cdots \cup X_n) = (X_1) + \cdots + (X_n)$.
 \item In particular, $(r_1, \ldots, r_n) = (r_1) + \cdots + (r_n)$.
 \end{enumerate}
 \end{proposition}
-\>
+
 
 \begin{proposition}
 Let $R$ be a ring. Let $B\subseteq R$ and $a, a_1, \ldots, a_n \in R$.
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $RB = \left\{\sum_{i=1}^{s} r_i b_i | r_i \in R, b_i \in B, s \geq 1 \right\}$ is a left-ideal of $R$, but may not be a 2-sided ideal.
 \item More generally, $R\{a_1, \ldots, a_n\} = Ra_1 + \cdots + Ra_n = \left\{\sum_{i=1}^{n} r_i a_i | r_i \in R \right\}$ are left-ideals of $R$, but they may not be 2-sided ideals.
 \item The ideal $(a)$ generated by $a$ is given by $(a)=\mathbb{Z}a + aR + Ra + RaR$. An arbitrary element of $(a)$ is of the form $ma + ar + r'a + \sum_{i=1}^{n} r_i a r'_i$ where $m\in \mathbb{Z}; r, r', r_i, r'_i \in R; n \geq 1$.
@@ -881,94 +824,94 @@ Let $R$ be a ring. Let $B\subseteq R$ and $a, a_1, \ldots, a_n \in R$.
 \item If $R$ is commutative and contains $1$, then $(a)=aR=Ra={ra|r\in R}$. An arbitrary element of $(a)$ is of the form $ra$ where $r \in R$.
 \end{enumerate}
 \end{proposition}
-\>
+
 
 \begin{proposition}
 Let $R$ be a ring with $1 \neq 0$ and $I$ an ideal of $R$. Then the following are equivalent:
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $I = R$
 \item $1 \in I$
 \item $I$ contains a unit.	
 \end{enumerate}
 \end{proposition}
-\>
+
 
 \begin{proposition}
 Suppose $R$ is a ring with $1$. Let $X \subseteq R$ be a subset, and $b_1, \ldots, b_n \in R$. Then
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item the ideal generated by $X$ is $(X)=RXR=\left\{ \sum_{i=1}^{s} r_i a_i r'_i | a_i \in X; r_i, r'_i \in R; s \geq 1\right\}$, the smallest among all ideals of $R$ containing $X$.
 \item the ideal generated by $\{b_1, \ldots, b_n\}$ is given by $(b_1, \ldots, b_n) = (b_1) + \cdots + (b_n) = Rb_1R + \cdots + Rb_nR$, the smallest among all ideals of $R$ containing $\{b_1, \ldots, b_n\}$.
 \end{enumerate}
 \end{proposition}
-\>
+
 
 \begin{proposition}
 Let $J_\alpha$ ($\alpha \in \sum$) be a family of left (resp. 2-sided) ideals of a ring $R$.\\
 Then the inclusion is $R(\bigcup\limits_{\alpha \in \sum}J_{\alpha}) \subseteq \left\{\sum_{\alpha \in \sum} a_{\alpha} | a_{\alpha} \in J_\alpha; a_{\alpha} \neq 0 \ for \ only \ finitely \ many \alpha \right\}$, where the RHS is a left (resp. 2-sided) ideal of $R$, and the smallest among those of $R$ containing all $J_\alpha$, where LHS = RHS when $R$ contains $1$.\\
 If $R$ contains $1$ and $\sum$ is finite, then $R(\bigcup\limits_{\alpha \in \sum}J_{\alpha}) = \sum_{\alpha \in \sum} J_{\alpha}$.\\
 \end{proposition}
-\>
+
 
 \begin{proposition}
 Let $J, J_1, \ldots, J_n$ be ideals of a ring.\\
 Then $J_1 \cdots J_n = \left\{ \sum_{l=1}^{k} a_1(l) \cdots a_n(l) | a_i(l) \in J_i, k \geq 1 \right\}$ and it is an ideal of $R$.\\
 in particular, $J^n = J \cdots J = \left\{ \sum_{l=1}^{k} a_1(l) \cdots a_n(l) | a_i(l) \in J, k \geq 1 \right\}$ and it is an ideal of $R$.\\
 \end{proposition}
-\>
+
 
 \begin{proposition}
 Let $R = R_1 \times \cdots \times R_n$ be a direct product of rings.\\
 Then $S_i = \{0_{R_1}\} \times \cdots \times \{0_{R_{i-1}}\} \times R_i \times \{0_{R_{i+1}}\} \times \cdots \times \{0_{R_n}\}$ is an ideal (2-sided) of $R$.\\
 Furthermore, $R = \sum_{i=1}^{n} S_i$.\\ 
 \end{proposition}
-\>
+
 
 \begin{proposition}
 Let $\varphi: R \rightarrow S$ be a ring homomorphism.\\
 Then $ker \ \varphi$ is an ideal of $R$.\\
 \end{proposition}
-\>
+
 
 \begin{definition}
-Let $R$ e a ring and $I \subseteq R$ an ideal. Then $(I, +)$ is a normal subgroup of additive group $(R, +)$. The \textit{{\color{blue} quotient additive group}} is $R/I = \{\bar{r} = r + I | r \in R\}$, with well-defined addition $\bar{r} + \bar{s} := \bar{r+s}$.\\
+Let $R$ e a ring and $I \subseteq R$ an ideal. Then $(I, +)$ is a normal subgroup of additive group $(R, +)$. The \textit{{\color{blue} quotient additive group}} is $R/I = \{\overline{r} = r + I | r \in R\}$, with well-defined addition $\overline{r} + \overline{s} := \overline{r+s}$.\\
 \end{definition}
-\>
+
 
 \begin{theorem}
 Let $R$ be a ring and $I \subseteq R$ an ideal. Then
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
-\item for cosets $\bar{r}, \bar{s} \in R/I$, the multiplication $\bar{r} \times \bar{S} := \bar{rs}$ is a well-defined binary operation on $R/I$, i.e., this multiplication does not depend on the choice of representatives $r, s$ of the cosets.
-\item $(R/I, +, \times)$ is a ring with $0_{R/I} = \bar{0_R}$.
-\item $\bar{r} = 0_{R/I}$ ($=\bar{0_R}$) if and only if $r \in I$.
+\begin{enumerate}[label=(\roman*)]
+\item for cosets $\overline{r}, \overline{s} \in R/I$, the multiplication $\overline{r} \times \overline{S} := \overline{rs}$ is a well-defined binary operation on $R/I$, i.e., this multiplication does not depend on the choice of representatives $r, s$ of the cosets.
+\item $(R/I, +, \times)$ is a ring with $0_{R/I} = \overline{0_R}$.
+\item $\overline{r} = 0_{R/I}$ ($=\overline{0_R}$) if and only if $r \in I$.
 \end{enumerate}
 \end{theorem}
-\>
+
 
 \begin{definition}
 Let $R$ be a ring and $I \subseteq R$ an ideal.\\
 Then the ring $(R/I, +, \times)$ is the \textit{{\color{blue} quotient ring}} of $R$ by $I$.\\
 \end{definition}
-\>
+
 
 \begin{remark}
 Let $R$ be a ring and $(I, +)$ a subgroup of the additive group $(R, +)$.\\
 Then $I$ is an ideal of $R$ is and only if the multiplication $\times$ on the additive quotient group $(R/I, +)$ is well-defined so that $(R/I, +, \times)$ is a ring.\\	
 \end{remark}
-\>
+
 
 \begin{definition}
 Let $R$ be a ring, $I \subseteq R$ an ideal, and $R/I$ the quotient ring.\\
-The \textit{{\color{blue} surjective quotient map}} $\gamma: R \rightarrow R/I$; $r \mapsto \bar{r} = r + I$ from the additive group $(R, +)$ to the additive group $(R/I, +)$ is a ring homomorphism such that $ker \ \gamma = I$.\\
+The \textit{{\color{blue} surjective quotient map}} $\gamma: R \rightarrow R/I$; $r \mapsto \overline{r} = r + I$ from the additive group $(R, +)$ to the additive group $(R/I, +)$ is a ring homomorphism such that $ker \ \gamma = I$.\\
 The \textit{{\color{blue} quotient ring homomorphism}} refers to $\gamma$.\\
 \end{definition}
-\>
+
 
 \begin{remark}
 \textit{{\color{blue} (Equivalence concepts of kernel and ideal)}}\\
 The kernel of every ring homomorphism is an ideal.\\
 Every ideal is equal to the kernel of some (surjective) homomorphism.\\
 \end{remark}
-\>
+
 
 \begin{definition}
 Let $R$ be a commutative ring and $I$ an ideal.\\
@@ -976,20 +919,20 @@ An element $a \in R$ is 	\textit{{\color{blue} nilpotent}} if $a^n = 0$ for some
 The set of all nilpotent elements of $R$ is the 	\textit{{\color{blue} nilradical of $R$}}, $nil(R) := \{a \in R | a^n = 0, \ for \ some \ n \geq 1 \}$.\\
 In fact, $nil(R)$ is an ideal of $R$, and $nil(R/nil(R)) = 0$.\\
 \end{definition}
-\>
+
 
 \begin{definition}
 Let $R$ be a commutative ring and $I$ an ideal.\\
 The set of \textit{{\color{blue} radical of $I$}} is $rad(I) = \{ r \in R | r^n \in I, \ for \ some \ n \geq 1\}$.\\
 In fact, $rad(I)$ is an ideal of $R$ containing $I$ such that $rad(I)/I = nil(R/I)$.\\
 \end{definition}
-\>
+
 
 \begin{definition}
 Let $R$ be a commutative ring and $J$ an ideal.\\
 $J$ is a radical if $rad(J) = J$. Every prime idea of $R$ is ideal.\\
 \end{definition}
-\>
+
 
 \begin{definition}
 Let $R$ be a commutative ring and $I$ an ideal.
@@ -999,64 +942,88 @@ In fact, $Jac(I)$ is an ideal of $R$ containing the radical $rad(I)$ of $I$.\\
 $Jac(0)$ is the \textit{{\color{blue} Jacobson radical of $R$}}.\\
 Thus $Jac(I)$ is the pre-image of $Jac(0_{R/I})$ via $R \rightarrow R/I$.\\
 \end{definition}
-\>
+
 
 \begin{remark}
 Let $R$ be a commutative ring and $I$ an ideal. Then $nil(R/I^n) \supseteq I/I^n$, and $rad(I^n) \supseteq I$ (the inclusions might be strict).
 \end{remark}
-\>
+
 
 \begin{remark}
 For the polynomial ring $F[x]$ over field $F$, if $I=(x)$ is the principal ideal generated by $x$, then $I^n = (x^n)$. Hence $nil(F[x]/I^n)=I/I^n$	and $rad(I^n) = I$.
 \end{remark}
-\>
+
 
 \begin{remark}
 The Jacobson radical of $\mathbb{Z}/12\mathbb{Z}$ is $6\mathbb{Z}/12\mathbb{Z}$, included in the intersection (of two maximal ideals) $(2\mathbb{Z}/12\mathbb{Z}) \cap (3\mathbb{Z}/12\mathbb{Z})$.\\
 The Jacobson radical of the polynomial ring $F[x]$ over field $F$ is $0$, which is contained in the intersection (of two maximal ideals) $(x) \cap (x-1)$.\\
 \end{remark}
-\>
 
-\section{Ring Isomorphisms}
+
+\subsection{Ring Isomorphisms}
 
 \begin{definition}
-\textit{{\color{blue} (First Isomorphism Theorem)}}\\
-Let $\varphi: R \rightarrow S$ be a ring homomorphism, $\gamma: R \rightarrow R/ker \ \varphi$ the (surjectve) quotient ring homomorphism, and $\overline{\varphi}: R/ker \ \varphi \ \xrightarrow{\sim} \ \varphi(R)$; $\overline{r} \mapsto \overline{\varphi}(\overline{r}) := \varphi(r)$ a (well-defined) ring homomorphism..\\
-Then $\varphi = \overline{\varphi} \circ \gamma$.\\
+\textit{{\color{blue} (First Isomorphism Theorem)}} Let 
+\begin{align}
+\varphi: R &\rightarrow S \nonumber \\
+\intertext{be a ring homomorphism, }
+\gamma: R &\rightarrow R/ker \ \varphi \nonumber \\
+\intertext{the (surjectve) quotient ring homomorphism, and }
+\overline{\varphi}: R/ker \ \varphi \ &\xrightarrow{\sim} \ \varphi(R) \nonumber \\
+\overline{r} \mapsto &\overline{\varphi}(\overline{r}) := \varphi(r) \nonumber \\
+\intertext{a (well-defined) ring homomorphism. Then}
+\varphi &= \overline{\varphi} \circ \gamma \nonumber
+\end{align}
 \begin{equation}\label{diagram}
 \begin{tikzcd}
 R \arrow{rr}{\varphi} \arrow[swap]{dr}{\gamma} & & \varphi(R) \\[10pt]
     & R/ker \ \varphi \arrow[swap]{ur}{\overline{\varphi}}
-\end{tikzcd}
+\end{tikzcd} \nonumber
 \end{equation}	
 \end{definition}
-\>
+
 
 \begin{remark}
-Let $R, S$ be a commutative ring with $1$ and $\varphi: R \rightarrow S$ a ring homomorphism. Then $\varphi$ induces a ring homomorphism $\tilde{\varphi}: R[x] \rightarrow S[x]$; $f(x)=\sum a_i x^i \mapsto \widetilde{\varphi}(f(x)) = \sum \varphi(a_i) x_i$.\\
-Furthermore, if $J=ker \ \varphi$, then $ker \ \widetilde{\varphi} = J[x] = \left\{\sum_{i=1}^{n} a_i x^i | a_i \in J, n \geq 1 \right\}$	is the polynomial ring with coefficients in $J$.
+Let $R, S$ be a commutative ring with $1$ and $\varphi: R \rightarrow S$ a ring homomorphism.\\
+Then $\varphi$ induces a ring homomorphism 
+\begin{align}
+\tilde{\varphi}: R[x] &\rightarrow S[x] \nonumber \\
+f(x)=\sum a_i x^i &\mapsto \widetilde{\varphi}(f(x)) = \sum \varphi(a_i) x_i \nonumber
+\end{align}
+Furthermore, if $J=ker \ \varphi$, then 
+\begin{equation}
+ker \ \widetilde{\varphi} = J[x] = \left\{\sum_{i=1}^{n} a_i x^i | a_i \in J, n \geq 1 \right\} \nonumber
+\end{equation}
+is the polynomial ring with coefficients in $J$.
 Finally, $J[x] = J R[x]$ and $J[x]$ is the ideal of $R[x]$ generated by $J$, i.e., $J[x] = (J)$.\\
 \end{remark}
-\>
+
 
 \begin{remark}
 Let $R$ be a commutative ring with $1$ and $I$ an ideal of $R$.\\
 Then there is an isomorphism $R[x]/I[x] \cong (R/I)[x]$.\\	
 \end{remark}
-\>
+
 
 \begin{remark}
-If $\varphi: R \rightarrow S$ is a ring homomorphism, then it induces a homomorphism (between matrix rings):\\
-$\varphi_n: M_n(R) \rightarrow M_n(S)$; $A = (r_{ij}) \mapsto \varphi_n(A) := (\varphi(r_{ij}))$.\\
+If $\varphi: R \rightarrow S$ is a ring homomorphism, then it induces a homomorphism (between matrix rings):
+\begin{align}
+\varphi_n: M_n(R) &\rightarrow M_n(S) \nonumber \\
+A = (r_{ij}) &\mapsto \varphi_n(A) := (\varphi(r_{ij})) \nonumber
+\end{align}
 \end{remark}
-\>
+
 
 \begin{remark}
 Let $G={g_1, \l , g_n}$ be a multiplicative group of order $\left| G \right| = n$, $R$ a ring, \\
 and $R[G]=Rg_1 + \cdots + Rg_n$ the group ring.\\
-Then the map $Tr: R[G] \rightarrow R$; $\sum_{i=1}^{n} r_i g_i \mapsto \sum_{i=1}^{n} r_i$ is a ring isomorphism.\\
+Then the map 
+\begin{align}
+Tr: R[G] &\rightarrow R \nonumber \\
+\sum_{i=1}^{n} r_i g_i &\mapsto \sum_{i=1}^{n} r_i \nonumber
+\end{align}
 \end{remark}
-\>
+
 
 \begin{remark}
 \textit{{\color{blue} (One-sided Ideals)}}\\
@@ -1064,75 +1031,218 @@ Let $n \geq 2$ and $M_n(R)$ a matrix ring over a ring $R$. Let $L_k = \{A = (a_{
 Then $L_k$ is a left ideal of $M_n(R)$, but not a right ideal of $M_n(R)$ when $R$ contains $1_R$.\\
 Similarly, let $R_k = \{A = (a_{ij}) \in M_n(R) | a_{ij} = 0, \forall i \neq k\}$.\\
 Then $R_k$ is a right ideal of $M_n(R)$, but not a left ideal of $M_n(R)$ when $R$ contains $1_R$.\\
-\>
+
 More generally, let $1 \leq k_1 < \cdots < k_r \leq n$ with $r < n$.\\
 Let $L_{k_1, \ldots, k_r} = \{A = (a_{ij}) \in M_n(R) | a_{ij} = 0, \forall j \notin \{k_1, \ldots, k_r\}\}$.\\
 Then $L_{k_1, \ldots, k_r}$ is a left ideal of $M_n(R)$, but not a right ideal of $M_n(R)$ when $R$ contains $1_R$.\\
 Let $R_{k_1, \ldots, k_r} = \{A = (a_{ij}) \in M_n(R) | a_{ij} = 0, \forall i \notin \{k_1, \ldots, k_r\}\}$.\\
 Then $R_{k_1, \ldots, k_r}$ is a right ideal of $M_n(R)$, but not a left ideal of $M_n(R)$ when $R$ contains $1_R$.\\
 \end{remark}
-\>
+
 
 \begin{definition}
 \textit{{\color{blue} (Second Isomorphism Theorem)}}\\
 Let $R$ be a ring, $R_1 \subseteq R$ a subring, and $J \subseteq R$ an ideal. Then:
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $R_1 + J$ is a subring of $R$
 \item $R_1 \cap J$ is an ideal of $R$
-\item There is an isomorphism $\varphi: R_1/(R_1 \cap J) \xrightarrow{\sim} (R_1 + J)/J$; $\overline{r} = r + (R_1 \cap J) \mapsto \varphi(\overline(r)) := \overline{r} = r+J$.\\
+\item There is an isomorphism 
+\begin{align}
+\varphi: R_1/(R_1 \cap J) &\xrightarrow{\sim} (R_1 + J)/J \nonumber \\
+\overline{r} = r + (R_1 \cap J) &\mapsto \varphi(\overline(r)) := \overline{r} = r+J \nonumber
+\end{align}
 \end{enumerate}
 \end{definition}
-\>
+
 
 \begin{definition}
 \textit{{\color{blue} (Third Isomorphism Theorem)}}\\
 Let $R$ be a ring, and $I \subseteq J$ ideals of $R$. Then: 
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
+\begin{enumerate}[label=(\roman*)]
 \item $J/I$ is an ideal of the quotient ring $R/I$
-\item There is an isomorphism $\varphi: R/J \xrightarrow{\sim} (R/I)/(J/I)$; $\overline{r}=r+J \mapsto \overline{r} + J/I = (r+I) + J/I$
+\item There is an isomorphism
+\begin{align}
+\varphi: R/J &\xrightarrow{\sim} (R/I)/(J/I) \nonumber \\
+\overline{r}=r+J &\mapsto \overline{r} + J/I = (r+I) + J/I \nonumber
+\end{align}
 \end{enumerate}
 \end{definition}
-\>
+
 
 \begin{definition}
 \textit{{\color{blue} (Fourth Isomorphism Theorem)}}/Correspondence Theorem for Rings\\
 Let $R$ be a ring, $I \subseteq R$ an ideal, and $\gamma: R \rightarrow R/I$ the (surjective) quotient ring homomorphism.\\
-Let $\sum_1$ be the set of subrings of $R$ containing $I = ker \ \gamma$, and $\sum_2$ be the set of subrings of $R/I$. Then:
-\begin{enumerate}[label=(\roman*),leftmargin=0pt, itemindent=4em, align=left]
-\item if $R_1 \in \sum_1$, then $\gamma(R_1) = R_1/I \in \sum_2$. Conversely, if $R'_1 \in \sum_2$, then $R'_1 = R_1/I$ with $R_1:=\gamma^{-1}(R'_1) = \{r\in R | \gamma(r) \in R'_1\} \in \sum_1$.
-\item The map $f: \sum_1 \rightarrow \sum_2$; $R_1 \mapsto R_1/I$ is a well-defined bijection.
-\item $J_1 \in \sum_1$ is an ideal of $R$ if and only if $J_1/I$ is an ideal of $R/I$. If this is the case, then $R/J_1 \cong (R/I)/(J_1/I)$
-\item For $R_i \in \sum_1$, $R_1 \subseteq R_2$ holds if and only if $R_1/I \subseteq R_2/I$ holds.
+Let $\sum \textsubscript{1}$ be the set of subrings of $R$ containing $I = ker \ \gamma$, and $\sum \textsubscript{2}$ be the set of subrings of $R/I$. Then:
+\begin{enumerate}[label=(\roman*)]
+\item if $R_1 \in \sum \textsubscript{1}$, then $\gamma(R_1) = R_1/I \in \sum \textsubscript{2}$. \\
+Conversely, if $R'_1 \in \sum_2$, then $R'_1 = R_1/I$ with $R_1:=\gamma^{-1}(R'_1) = \{r\in R | \gamma(r) \in R'_1\} \in \sum \textsubscript{1}$.
+\item The map 
+\begin{align}
+f: \sum \textsubscript{1} &\rightarrow \sum \textsubscript{2} \nonumber \\
+R_1 &\mapsto R_1/I \nonumber
+\end{align}
+is a well-defined bijection.
+\item $J_1 \in \sum \textsubscript{1}$ is an ideal of $R$ if and only if $J_1/I$ is an ideal of $R/I$. If this is the case, then 
+\begin{equation}
+R/J_1 \cong (R/I)/(J_1/I) \nonumber
+\end{equation} 
+\item For $R_i \in \sum \textsubscript{1}$, $R_1 \subseteq R_2$ holds if and only if $R_1/I \subseteq R_2/I$ holds.
 \end{enumerate}
 \end{definition}
-\>
 
-\section{Ideals, Rings of Fractions, Local Rings}
 
-\section{Euclidean Domains, PID, UFD}
+\subsection{Ideals, Rings of Fractions, Local Rings}
 
-\end{fullwidth}
+\begin{proposition}
+Let $R$ be a ring with $1 \neq 0$. Let $I \subseteq R$ be an ideal. Then $I=R$ is and only if $I$ contains a unit, if and only if $1 \in I$.
+\end{proposition}
+
+
+\begin{proposition}
+Let $R$ be a commutative ring with $1 \neq 0$. Then $R$ is a field if and only if $R$ has only two ideals: $0$ and $R$.
+\end{proposition}
+
+
+\begin{corollary}
+If $R$ is a field with $1 \neq 0$, then every nonzero ring homomorphism $f: R \rightarrow S$ is an injection.
+\end{corollary}
+
+
+\begin{definition}
+An ideal $M$ of a ring $S$ with $1 \neq 0$ is a \textit{{\color{blue} maximal ideal}} if:
+\begin{enumerate}[label=(\roman*)]
+\item $M \neq S$; and
+\item for every ideal $J$ of $S$ with $M \subseteq J \subseteq S$, that $J=M$ or $J=S$.
+\end{enumerate}
+\end{definition}
+
+
+\begin{proposition}
+If $J$ is a proper ideal of $R$ (commutative with $1$), i.e, $J \subset R$, then $J \subseteq M$ for some maximal ideal $M$ of $R$.
+\end{proposition}
+
+
+\begin{corollary}
+Apply $J=0$ to above. If $R$ is a commutative ring with 	$1 \neq 0$, then $R$
+ has a maximal ideal.
+\end{corollary}
+
+
+\begin{proposition}
+Assume the ring $R$ is commutative with $1$	and $M \subseteq R$ an ideal, then the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $M$ is a maximal ideal
+\item The quotient ring $R/M$ is a field
+\end{enumerate}
+\end{proposition}
+
+
+\begin{definition}
+Assume the ring $R$ is commutative with $1$. An ideal $P$ is a prime ideal if:
+\begin{enumerate}[label=(\roman*)]
+\item $P \neq R$; and
+\item $ab \in P \Rightarrow a \in P, \ or \ b \in P$
+\end{enumerate}
+\end{definition}
+
+
+\begin{proposition}
+Assume $R$ is commutative with $1$ and $P \subseteq R$ an ideal. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $P$ is a prime ideal
+\item The quotient ring $R/P$ is an integral domain
+\end{enumerate}
+\end{proposition}
+
+
+\begin{corollary}
+Assume the ring $R$ is commutative with $1$. Then every maximal ideal is a prime ideal.	
+\end{corollary}
+
+
+\begin{proposition}
+Let $R$ be a commutative ring with $1$ and $I$ an ideal of $R$. Then:
+\begin{enumerate}[label=(\roman*)]
+\item $I[x] = \{\sum a_i x^i \in R[x] | a_i \in I \}$ is the ideal of $R[x]$ generated by $I$, i.e., $(I) = I[x]$. Furthermore, $I[x] = I \ R[x]$
+\item $I$ is a prime ideal of $R$ if and only if $I[x]$ is a prime ideal of $R[x]$
+\end{enumerate}
+\end{proposition}
+
+
+\begin{example}
+Consider the polynomial ring $\mathbb{Z}[x]$.
+The principal idea $(x)$ is a prime ideal of $\mathbb{Z}[x]$ but it nos not a maximal ideal as $\mathbb{Z}[x]/(x) \cong \mathbb{Z}$.
+\end{example}
+
+
+\begin{example}
+Consider the polynomial ring $\mathbb{Z}[x]$.
+For every prime number $p$, the ideal $(p,x)=\mathbb{Z}[x]p + \mathbb{Z}[x]x$ generated by $p$ and $x$ is a maximal idea.\\
+This is because $\mathbb{Z}[x] \rightarrow \mathbb{Z}[x] \rightarrow \mathbb{Z}/p\mathbb{Z}$ ($f(x) \mapsto \f(0) \mapsto \overline{f(0)} = f(0) + p\mathbb{Z}$) induces $\mathbb{Z}[x]/(p,x) \cong \mathbb{Z}/p\mathbb{Z}$.
+\end{example}
+
+
+\begin{example}
+Consider the polynomial ring $F[x]$ over a field $F$. The principal ideal $(x)$ is a maximal ideal of $F[x]$.
+This is because of isomorphism (via evaluation map $f(x) \mapsto f(0)$): $F[x]/(x) \cong F$.
+\end{example}
+
+
+\begin{example}
+Consider the polynomial ring $F[x,y]$ in two variables $x,y$ over a field $F$. The principal ideal $(x)$ is a prime ideal of $F[x,y]$, but it is not a maximal ideal of $F[x,y]$. This is because of the isomorphism (via evaluation map $f(x,y) \mapsto f(0,y)$): $F[x,y]/(x) \cong F[y]$
+\end{example}
+
+
+\begin{proposition}
+\textit{{\color{blue} (Inverse of a prime ideal)}}\\
+Let $\varphi: R \rightarrow S$ be a ring isomorphism of commutative rings. Then
+\begin{enumerate}[label=(\roman*)]
+\item If $P \subseteq S$ is a prime ideal, then $\varphi^{-1}(P)$ is either a prime ideal of $R$ or equal to $R$ (this latter case will not happen when $\varphi$ is onto, or when $1_R \in R and \varphi(1_R) = 1_S$. In particular, if $\varphi : R \rightarrow S$ is the inclusion map, then either $P \subseteq R$ (hence $P \bigcap R = R$), or $P \bigcap R$ is a prime ideal of the subring $R$.
+\item If both $R$ and $S$ contain 1, $\varphi$ is surjective and $M$ is a maximal ideal of $S$, then $\varphi^{-1}(M)$ is a prime ideal of $R$.
+\end{enumerate}
+\end{proposition}
+
+
+\begin{theorem}
+Let $R$ be a commutative ring and let $D$ be a set with $\emptyset \neq D \subseteq R \textbackslash \{0\}$ which does not contain any zero divisors and is closed under multiplication (i.e., $a, b \in D \Rightarrow ab \in D$). Then there is a commutative ring with $Q = D^{-1}R$ with $1$ such that:
+\begin{enumerate}[label=(\roman*)]
+\item $Q$ contains $R$ as a subring
+\item Every element of $D$ is a unit in $Q$.
+\item Every element of $Q$ is the form $r d^{-1}$ for some $r \in R$ and $d \in D$.
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+The ring $Q = D^{-1}R$ is the \textit{{\color{blue} ring of fractions of $D$ with respect to $R$}}.
+\end{definition}
+
+\begin{definition}
+If $R$ is an integral domain and $D = R \textbackslash \{0\}$, then $D ^ {-1}R$ is the \textit{{\color{blue} fractional field of $R$}} and denoted as $Q(R)$.\\
+$Q(R) = D ^{-1}R$.
+\end{definition}
+
+\begin{corollary}
+Suppose $R$ is a nonzero subring of a field $F$. Then the fractional field $Q(R)$ of $R$ is the subfield of $F$ generated by $R$.\\
+Namely, $Q(R) = \{\alpha \in F | \alpha = \frac{r_1}{r_2}, r_i \in R, r_2 \neq 0\}$
+\end{corollary}
+
+\begin{corollary}
+Suppose $R$ is an integral domain and $Q = Q(R)$ its fraction field. If $\sigma: R \rightarrow F$ is an injective ring homomorphism to a field $F$, then $\sigma$ extends to an injective homomorphism.\\
+$\sigma ' : Q(R) \rightarrow E =: \{\alpha \in F | \alpha = \frac{\alpha(r_1)}{\alpha(r_2}, r_i \in R, r_2 \neq 0\} \subseteq F$\\
+Here $E=Q(\alpha(R))$ is the fraction field of the integral domain $\sigma(R)$ and is the subfield of $F$ generated by $\sigma(R)$.
+\end{corollary}
+
+\subsection{Euclidean Domains, PID, UFD}
 
 \newpage
 
-% Chapter 5: Modules
-\chapter{Modules}
-\begin{fullwidth}
-\section{Basic Axioms}
-
-\end{fullwidth}
+\section{Modules}
+\subsection{Basic Axioms}
 
 \newpage
 
-% Chapter 6: Category Theory
-\chapter{Category Theory}
-\begin{fullwidth}
-\section{Basic Axioms}
-
-\end{fullwidth}
-
-\newpage
-
-\printindex
+\section{Category Theory}
+\subsection{Basic Axioms}
 
 \end{document}
+

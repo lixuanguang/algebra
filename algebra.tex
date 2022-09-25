@@ -2323,7 +2323,7 @@ This is denoted $\textnormal{End}_R (M) = \homs_R(M,M)$
 
 \begin{remark}
 Let $\varphi: M \rightarrow N$ be a left $R$-module homomorphism.\\
-Then $\ker \ \varphi$ is a left $R$-submodule of $N$, while the image $\varphi(M)$ is a left $R$-submodule of $N$.\\
+Then $\ker \varphi$ is a left $R$-submodule of $N$, while the image $\varphi(M)$ is a left $R$-submodule of $N$.\\
 Moe generally, for any left $R$-submodule $M_i$ of $M$, the image $\varphi(M_i)$ is a left $R$-submodule of $N$.
 \end{remark}
 
@@ -2368,6 +2368,158 @@ R \times \homs_R(M,N) &\rightarrow \homs_R(M,N) \nonumber \\
 \end{align}
 Hence we get a left $R$-module structure on the additive group $(\homs_R(M,N), +)$.
 \end{proposition}
+
+\begin{proposition}
+Let $R$ be a ring with $1$. Let $M, N, L$ be left $R$-modules.\\
+If $\varphi \in \homs_R(L,M)$ and $\psi \in \homs_R(M,N)$, then the composition is
+\begin{equation}
+\psi \circ \varphi \in \homs_R(L,N) \nonumber
+\end{equation}
+\end{proposition}
+
+\begin{proposition}
+Let $R$ be a ring with $1$. Let $M, N$ be left $R$-modules.\\
+The natural ring structure (with multiplicative identity $1$) is $(\homs_R(M,M), +, \circ)$ on the set $\homs_R(M,M)$, where the addition $+$ is defined above, and $\circ$ is a composition (Note that $\varphi \circ \psi$ is not $\varphi \times \psi$). The identity map
+\begin{align}
+I_M: M &\rightarrow M \nonumber \\
+m &\mapsto I_M(m) := m \nonumber
+\end{align}
+serves as the multiplicative identity of the ring $\homs_R(M,M)$.\\
+The \hlt{Endomorphism ring} of the left $R$-module $M$ is $\textnormal{End}_R(M) = \homs_R(M,M)$.
+\end{proposition}
+
+\begin{proposition}
+Let $R$ be a ring with $1$. Let $M, N$ be left $R$-modules.\\
+Suppose that $R$ is commutative. Then for $\alpha \in R$, the \hlt{scalar map} below belongs to $\homs_R(M,M)$:
+\begin{align}
+\alpha I_M: M &\rightarrow M \nonumber \\
+m &\mapsto \alpha M \nonumber
+\end{align}
+The map below is a ring homomorphism
+\begin{align}
+f: R &\rightarrow \homs_R(M,M) \nonumber \\
+\alpha &\mapsto \alpha I_M \nonumber
+\end{align}
+with $f(R) \subseteq Z(\homs_R(M,M))$ (the centre) with which $\homs_R(M,M)$ becomes an $R$-algebra.
+\end{proposition}
+
+\begin{proposition}
+Let $R$ be a ring, $M$ a left $R$-module, $N$ a left $R$-submodule, and $M/N$ the quotient additive abelian group. The action
+\begin{align}
+R \times (M/N) &\rightarrow M/N \nonumber \\
+(r, \overline{m} = m+N) &\mapsto \overline{rm} \nonumber
+\end{align}
+is well-defined and makes $M/N$ into a left $R$-module, called the \hlt{quotient left $R$-module} of $M$ by $N$.
+\end{proposition}
+
+\begin{proposition}
+Let $R$ be a ring, $M$ a left $R$-module, $N$ a left $R$-submodule, and $M/N$ the quotient additive abelian group. The quotient map
+\begin{align}
+\gamma : M &\rightarrow M/N \nonumber \\
+m &\mapsto \overline{m} = m+N \nonumber
+\end{align}
+is a left $R$-module surjective homomorphism with $\ker \gamma = N$.
+\end{proposition}
+
+\begin{remark}
+Let $N_1, \ldots, N_k$ be left $R$-submodules of a left $R$-module $M$.\\
+Then the addition $N_1 + \cdots + N_k$ is a left $R$-submodule of $M$, and is the smallest among all left $R$-submodules of $M$ containing all $N_i$. The sum is defined as
+\begin{equation}
+N_1 + \cdots + N_k := \{\sum_{i=1}^k n_i \ | \ n_i \in N_i\} \nonumber
+\end{equation}
+\end{remark}
+
+\subsection{Module Isomorphism Theorems}
+
+Assume for this section that ring $R$ has $1$. Modules are assumed to be left $R$-modules.
+
+\begin{theorem}
+\hlt{(First Isomorphism Theorem)}
+Let $M,N$ be left $R$-modules and let $\varphi: M \rightarrow N$ be a left $R$-module homomorphism. Then $\ker \varphi$ is a left $R$-submodule of $M$ and
+\begin{equation}
+M/(\ker \varphi) \cong \varphi(M) \nonumber
+\end{equation}
+\end{theorem}
+
+\begin{theorem}
+\hlt{(Second Isomorphism Theorem)} Let $A, B$ be left $R$-submodules of the left $R$-module $M$. Then
+\begin{equation}
+A/(A \ \cap \ B) \cong (A+B) / B \nonumber
+\end{equation}
+\end{theorem}
+
+\begin{theorem}
+\hlt{(Third Isomorphism Theorem)} Let $M$ be a left $R$-module, and let $A,B$ be left $R$-submodules of $M$ with $A \subseteq B$. Then
+\begin{equation}
+M/B \cong (M/A)/(B/A) \nonumber
+\end{equation}
+\end{theorem}
+
+\begin{theorem}
+\hlt{(Fourth Isomorphism Theorem)}/ Corresponding Theorem for Modules \\
+Let $N$ be a left $R$-submodule of the left $R$-module $M$. There is a bijection between the left $R$-submodules of $M$ which contains $N$ and the left $R$-submodules of $M/N$. The correspondence is given by
+\begin{equation}
+A \leftrightarrow A/N \nonumber
+\end{equation}
+for all $A \supseteq N$. This correspondence commutes with the processes of taking additions and intersections.
+\end{theorem}
+
+\subsection{Module Generation}
+
+\begin{definition}
+Let $M$ be a left $R$-module and let $N_1, \ldots, N_n$ be left $R$-submodules of $M$.\\
+\hlt{Addition} is defined as
+\begin{equation}
+N_1 + \cdots + N_n = \{\sum_{i=1}^n a_i \ | \ a_i \in N_i\} \nonumber
+\end{equation}
+which is a left $R$-submodule of $M$.
+\end{definition}
+
+\begin{definition}
+Let $M$ be a left $R$-module and let $N_1, \ldots, N_n$ be left $R$-submodules of $M$.\\
+For any subset $A \subseteq M$, let
+\begin{equation}
+RA := \{\sum_{i=1}^s r_i a_i \ | \ r_i \in R, \ a_i \in A, \ s \geq 1\} \nonumber
+\end{equation}
+$RA$ is a left $R$-submodule of $M$ and is the smallest among all left $R$-submodules of $M$ containing $A$.\\
+$RA$ is the \hlt{submodule of $M$ generated by $A$}. If $A = \{a_i, \ldots, a_t\}$, then
+\begin{equation}
+RA = Ra_1 + \cdots + Ra_t = \{\sum_{i=1}^t \ | \ r_i \in R\} \nonumber
+\end{equation}
+If $N$ is a left $R$-submodule of $M$ and $N = RA$ for some subset $A \subseteq M$, then $A$ is a \hlt{set of generators} or \hlt{generating set for $N$}. Then $N$ is \hlt{generated by $A$}.
+\end{definition}
+
+\begin{definition}
+Let $M$ be a left $R$-module and let $N_1, \ldots, N_n$ be left $R$-submodules of $M$.\\
+A submodule $N$ of $M$ (possibly $N=M$) is \hlt{finitely generated} if there is some finite subset $A$ of $M$ such that $N=RA$, that is, if $N$ is generated by some finite subset.
+\end{definition}
+
+\begin{definition}
+Let $M$ be a left $R$-module and let $N_1, \ldots, N_n$ be left $R$-submodules of $M$.\\
+A left $R$-submodule $N$ of $M$ (possibly $N=M$) is \hlt{cyclic} if there exists an element $a \in M$ such that $N = Ra$, that is, if $N$ is generated by one element:
+\begin{equation}
+N = Ra = \{ra \ | \ r \in R\} \nonumber
+\end{equation}
+\end{definition}
+
+\begin{definition}
+Let $M_1, \ldots, M_k$ be a finite collection of left $R$-modules. The direct product
+\begin{equation}
+M := M_1 \times \cdots \times M_k := \{(m_1, \ldots, m_k) \ | \ m_i \in M_i\} \nonumber
+\end{equation}	
+has a natural left $R$-module structure. Define the addition
+\begin{align}
++ : M \times M &\rightarrow M \nonumber \\
+(X = (x_1, \ldots, x_k), Y = (y_1, \ldots, y_k)) &\mapsto X + Y := (x_1 + y_1, \ldots, x_k + y_k) \nonumber
+\end{align}
+Define the $R$-action as:
+\begin{align}
+R \times M &\rightarrow M \nonumber \\
+(r, Y=(y_1, \ldots, y_k)) &\mapsto rY := (ry_1, \ldots, ry_k) \nonumber
+\end{align}
+Then $M = M_1 \times \cdots \times M_k$ is a left $R$-module called the \hlt{direct product} of $M_1, \ldots, M_k$. \\
+More generally, the direct product can be defined as $\Pi_{\alpha \in \sum}$, any collection of left $R$-modules $M_{\alpha}$ ($\alpha \in \sum$, where $\sum$ may not be finite or countable).
+\end{definition}
 
 
 \newpage

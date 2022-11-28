@@ -1,0 +1,1723 @@
+\section{Ring Theory}
+
+\subsection{Basic Axioms}
+
+\begin{definition}
+A \hlt{ring} is a nonempty set $ R $ with two binary operations $ + $ (addition) and $ \times $ (multiplication), $ (R, +, \times) $, such that:
+\begin{enumerate}[label=(\roman*)]
+\item $(R, +)$ is an additive abelian group with $0$ as the additive identity
+\item the binary operation $\times$ is associative: 
+\begin{equation}
+(a \times b) \times c = a \times (b \times c), \ \forall a, b, c \in R
+\nonumber
+\end{equation}
+\item left and right distributive laws: 
+\begin{align}
+(a+b) \times c &= (a \times c) + (b \times c) \ \forall a, b, c \in R \nonumber \\
+a \times (b+c) &= (a \times c) + (b \times c), \ \forall a, b, c \in R \nonumber
+\end{align}
+\end{enumerate}
+If in addition, $a \times b = b \times a \ \forall a, b \in R$, then $R$ is a \hlt{commutative ring}.
+\end{definition}
+
+
+\begin{definition}
+The ring $R$ has a \hlt{multiplicative identity} if there is an element $1_R \in R$ such that 
+\begin{equation}
+1_R \times a = a \times 1_R = a, \ \forall a \in R
+\nonumber
+\end{equation}
+The ring $R$ has a \hlt{additive identity} if there is an element $0_R \in R$ such that 
+\begin{equation}
+a-b = a+(-b) = 0_R
+\nonumber
+\end{equation}
+where $-b$ is the \hlt{additive inverse}.
+\end{definition}
+
+
+\begin{definition}
+A \hlt{division ring} $R$ is a ring such that:
+\begin{enumerate}[label=(\roman*)]
+\item $R$ has a multiplicative identity $1_R$;
+\item $1_R \neq 0_R$; and
+\item $\forall$ nonzero element $a \in R \textbackslash \{0\}$ has a unique multiplicative inverse $a \textsuperscript{-1}$ such that
+\begin{equation}
+aa \textsuperscript{-1} = 1 = a \textsuperscript{-1} a
+\nonumber
+\end{equation}
+\end{enumerate}
+\end{definition}
+
+
+\begin{definition}
+A \hlt{field} is a division ring which is commutative.\\
+If $R$ is a division ring (field), then $(R, \times)$ is a (commutative) \hlt{multiplicative group}, $R^\times = R \textbackslash \{0\}$.\\
+\end{definition}
+
+
+\begin{definition}
+Let $F = (F, +, \times) $ be a field. A nonempty subset $E \subseteq F$ is a \hlt{subfield} if:
+\begin{enumerate}[label=(\roman*)]
+\item $(E, +)$ is an additive subgroup of $(F, +)$;
+\item $E$ is closed under multiplication $\times$: $a, b \in E \Rightarrow a \times b \in E$;
+\item $1_F \in E$; and
+\item $a \in E \textbackslash \{0\} \Rightarrow a \textsuperscript{-1} \in E$
+\end{enumerate}
+\end{definition}
+
+
+\begin{remark}
+The \hlt{trivial ring} is $\{0\}$.\\
+The \hlt{integer ring} is $(\mathbb{Z}, +, \times )$ with $ 1 $, but is neither a division ring or field.\\
+$n \mathbb{Z} = \{ns | s \in \mathbb{Z}\} $ is a subring of $\mathbb{Z}$.\\
+$(\mathbb{Z} / n \mathbb{Z}, +, \times) $ is a commutative ring with $ 1 $ for $ n \geq 2 $.\\
+\end{remark}
+
+
+\begin{remark}
+The $2$-dimensional vector space 
+\begin{equation}
+\mathbb{Q}[\sqrt{D}] = \mathbb{Q} + \mathbb{Q}\sqrt{D} = \{a+b\sqrt{D}|a, b \in \mathbb{Q} \}
+\nonumber
+\end{equation}
+with $\mathbb{Q}$-basis $\{1, \sqrt{D} \}$ is a \hlt{Quadratic Field}.\\
+Define $\mathbb{Q}(\sqrt{D}) = \{ \frac{ a+b\sqrt{D} }{ c+d\sqrt{D} } | a, b, c, d \in \mathbb{Q}, c + d\sqrt{D} \neq 0 \} $. \\
+Then $\mathbb{Q}(\sqrt{D}) = \mathbb{Q}[\sqrt{D}]$.\\
+More generally, for a field $F$, 
+\begin{equation}
+\mathbb{Q}(F) = \{\frac{\alpha}{\beta} = \alpha \beta \textsuperscript{-1} |\ \alpha \beta , \in F, \beta \neq 0\} = F
+\nonumber
+\end{equation}
+\end{remark}
+
+
+\begin{remark}
+Let $H=\mathbb{R} + \mathbb{R} i + \mathbb{R} j + \mathbb{R} k = \{a+bi+cj+dk|a,b,c,d \in \mathbb{R}\}$ be the $4$-dimensional vector space over $\mathbb{R}$ with $\mathbb{R}$-basis $(1, i, j, k)$.\\
+The multiplication is extended linearly by distributive law: 
+\begin{align}
+i^2 = j^2 = k^2 = -1 \nonumber \\
+ij=k=-ji \nonumber \\
+jk=i=-kj \nonumber \\
+ki=j=-ik \nonumber
+\end{align}
+Then $H$ is a \hlt{Real Quaternion Ring}.\\
+The \hlt{Rational Hamilton Quaternion Ring} is:
+\begin{equation}
+H_\mathbb{Q}=\mathbb{Q}+\mathbb{Q}i+\mathbb{Q}j+\mathbb{Q}k=\{a+bi+cj+dk|\ a, b, c, d\in \mathbb{Q}\} \nonumber
+\end{equation}
+\end{remark}
+
+
+\begin{remark}
+Let $\mathbb{R}V[x]=\{f:\mathbb{R}\rightarrow\mathbb{R}\}$ be the set of all real-valued functions.\\
+Let $x\mapsto c(x) = c$ be a constant function.\\
+For $f, g \in \mathbb{R}V[x]$, the natural addition is
+\begin{equation}
+x\mapsto (f+g)(x) = f(x)+g(x) \nonumber
+\end{equation}
+The multiplication (not composition) is 
+\begin{equation}
+x\mapsto (fg)(x)=f(x)g(x) \nonumber
+\end{equation}
+$(\mathbb{R}V[x], +, \times)$ is a commutative \hlt{(real valued-function) ring} with multiplicative identity $1$ being the constant function $1$.\\
+\end{remark}
+
+
+\begin{definition}
+Let $R$ be a ring with $1 \neq 0$. An element $u \in R$ is a \hlt{unit} if it has a multiplicative identity inverse $u'$ such that $uu'=1=u'u$.\\
+The \hlt{set of all units} of $R$ are 
+\begin{equation}
+U(R)=\{u\in R | u \ is \ a \ unit\} \nonumber
+\end{equation}
+The \hlt{multiplicative group of units of the ring} $R$ is $(U(R), \times)$.\\
+\end{definition}
+
+
+\begin{remark}
+More generally, let $X$ be a set and $R$ be a ring. Let $X \textsubscript{to} R := \{f: X \rightarrow R\}$ be the set of all maps between $X$ and $R$. Then for $f, g \in X \textsubscript{to} R $, there are natural addition $f+g$ and multiplication $fg$ ($x\mapsto f(x)g(x)$).\\
+Then $(X \textsubscript{to} R, +, \times)$ is a ring, called the \hlt{$R$-Valued Function Ring}.\\
+If $R$ has $1$ then so does $X \textsubscript{to} R$. If $R$ is commutative then so does $X \textsubscript{to} R$.\\
+Every $c\in R$ defines a constant function (an element in $X \textsubscript{to} R$)
+\begin{align}
+c:X &\rightarrow R \nonumber \\
+x &\mapsto c(x)=c \nonumber
+\end{align}
+Identify $R$ with the subset of $X \textsubscript{to} R$ of constant function. Then $R$ is a subring of $X \textsubscript{to} R$.\\
+\end{remark}
+
+
+\begin{remark}
+Let $n \geq 2$. Then $U(\mathbb{Z}/n\mathbb{Z})$ is a commutative multiplicative group of order 
+\begin{equation}
+\left| U(\mathbb{Z}/n\mathbb{Z}) \right| = \varphi (n) \nonumber
+\end{equation}
+Hence $\varphi (n)$ is the \hlt{Euler's $\varphi$-function}, 
+\begin{equation}
+\varphi (n)=\left|\{1 \leq s \leq n | gcd(s, n) = 1\}\right| \nonumber
+\end{equation}
+\end{remark}
+
+
+\begin{definition}
+An \hlt{Integral Domain} is a commutative ring with $1\neq 0$ such that $\forall a, b, \in R, \ ab = 0 \Rightarrow a=0 \ or \ b=0$,
+or equivalently, $\forall a, b \in R, \ a \neq 0, \ b \neq 0 \Rightarrow ab \neq 0$.\\
+$\mathbb{Z}$ is an integral domain.\\
+Every field is an integral domain.\\
+\end{definition}
+
+
+\begin{definition}
+Let $R$ be a ring. A nonzero element $a \in R$ is a 	\hlt{zero divisor} if there is a nonzero $b\in R$ such that either $ab=0$ or $ba=0$.\\
+A commutative ring $R$ with $1$ is an integral domain if and only if $R$ as no zero divisors.\\
+\end{definition}
+
+
+\begin{proposition}
+Let $R$ be a ring with $1 \neq 0$. $R$ is an integral domain if and only if cancellation law holds: 
+\begin{equation}
+\forall a, b, c \in R, \ c \neq 0, \ ca=cb \Rightarrow a=b \nonumber
+\end{equation}
+\end{proposition}
+
+
+\begin{corollary}
+Let $R$ be a finite integral domain, i.e., $R$ is an integral domain with the cardinality $\left| R \right| < \infty$. Then $R$ is a field.\\
+\end{corollary}
+
+
+\begin{proposition}
+Let $n \geq 2$. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $\mathbb{Z}/n\mathbb{Z}$ is a field
+\item $\mathbb{Z}/n\mathbb{Z}$ is an integral domain
+\item $n$ is a prime
+\end{enumerate}
+\end{proposition}
+
+
+\begin{definition}
+Let $R$ be a ring. A nonempty subset $S \subseteq R$ is a \hlt{subring} of $R$ if:
+\begin{enumerate}[label=(\roman*)]
+\item $(S, +)$ is an additive subgroup of $(R, +)$ and
+\item $S$ is closed under multiplication
+\end{enumerate}
+\begin{equation}
+\mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C} \nonumber
+\end{equation}
+\end{definition}
+
+
+\begin{proposition}
+\hlt{(Subring Criterion)} Let $R$ be a ring and $S \subseteq R$ a nonempty subset. \\
+Then the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $S$ is a subring of $R$
+\item $S$ is closed under subtracting and multiplication:
+\begin{align}
+a,b\in S &\Rightarrow ab\in S \nonumber \\
+a-b &= a + (-b) \in S \nonumber
+\end{align}
+\end{enumerate}
+\end{proposition}
+
+
+\begin{remark}
+Being a subring is a transitive condition. If $R$ is a subring of $S$ and $S$ is a subring of $T$, then $R$ is a subring of $T$.\\
+If both $S_i$ are subring of $R$ and $S_1 \subseteq S_2$, then $S_1$ is a subring of $S_2$.\\
+\end{remark}
+
+
+\begin{remark}
+\hlt{(Subring without 1)} If $R$ is a ring with $1 = 1_R$ then a subring $S \subseteq R$ may not contain $1$, i.e., $m\mathbb{Z} = {ms|s\in \mathbb{Z}, \left| m \right| \geq 2}$ is a subring of $\mathbb{Z}$ which does not contain $1$.
+\end{remark}
+
+
+\begin{remark}
+\hlt{(Intersection of subrings)} Let $R_\alpha$ ($\alpha \in \Sigma$) be a (not necessarily finite or countable) collection of subrings of a ring $R$. Then the intersection $\bigcap\limits_{\alpha \in \Sigma} R_\alpha$ is a subring of $R$.\\
+Generally, the union of subrings may not be a subring.\\
+\end{remark}
+
+
+\begin{remark}
+\hlt{(Union of ascending subrings)} Let $R_1 \subseteq R_2 \subseteq \cdots $ be an ascending chain of subrings $R_i$ of a ring $R$.
+Then the union $\bigcup\limits_{i=1}^{\infty} R_\alpha$ is a subring of $R$.\\
+\end{remark}
+
+
+\begin{remark}
+\hlt{(Addition of subrings)} Let $R$ be a ring and let $R_i$ be subrings of $R$.\\
+Then the addition $R_1 + \cdots + R_n$ is closed under subtraction, but may not be closed under multiplication, hence may not be a subring of $R$.\\
+\end{remark}
+
+
+\begin{remark}
+\hlt{(Integral domain is a subring of a field)}\\
+Let $F$ be a field. Let $R \subseteq F$ be a subring such that $1 \in R$. Then $R$ is an integral domain.\\
+Every integral domain $R$ is a subring of some field $\mathbb{Q}(R)$ (the fractional field of $R$).\\
+\end{remark}
+
+
+\begin{remark}
+\hlt{(Product of Rings)} let $n \geq 1$ and let $R_i = (R_i, +, \times)$ ($i=1, \ldots, n$) be rings.\\
+Then the direct product is a ring, 
+\begin{align}
+R &= R_1 \times \cdots \times R_n \nonumber \\
+(a_1, \ldots, a_n) &\times (a'_1, \ldots, a'_n) = (a_1 a'_1, \ldots, a_n a'_n) \nonumber
+\end{align}
+The unit subgroups has the relation 
+\begin{equation}
+U(R) = U(R_1)\times \cdots \times U(R_n) \nonumber
+\end{equation}
+\end{remark}
+
+
+\subsection{Examples of Rings}
+
+\begin{definition}
+The \hlt{polynomial ring $R[x]$ over a ring $R$} is $(R[x], +, \times)$,  where 
+\begin{equation}
+R[x] = \{\sum_{j=0}^{d} b_j x_j | d \geq 0, \ b_j \in \mathbb{R} \} \nonumber
+\end{equation}
+There are natural addition and multiplication operations for polynomials.\\
+\end{definition}
+
+
+\begin{remark}
+Let $R$ be a commutative ring with $1$. Let $S:= R[x]$ be the polynomial ring over $R$.
+\begin{enumerate}[label=(\roman*)]
+\item $R$ is a subring of $S$ which consists of constant polynomial functions.
+\item $0_S = 0_R$
+\item $S$ contains $1=1_S$, and $1_S = 1_R$.
+\end{enumerate}
+\end{remark}
+
+
+\begin{proposition}
+\hlt{(Polynomial ring over integral domain)} Let $R$ be an integral domain. Let $f(x), g(x) \in R[x]$. Then
+\begin{enumerate}[label=(\roman*)]
+\item $\degs(f(x)g(x)) = \degs(f(x)) + \degs(g(x))$
+\item $U(R[x]) = U(R)$. Namely, $g(x)$ is a unit of $R[x]$ if and only if $g=a_0 \in R$ (constant polynomial) with $a_0$ a unit in $R$.
+\item $R[x]$ is an integral domain
+\end{enumerate}
+\end{proposition}
+
+
+\begin{remark}
+The {{\color{blue} matrix ring of $n \times n$ square matrices with entries in the ring $R$}} is defined as $(M_n(R), +, \times)$, where\\
+$M_n(R) = \left\{A=\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn}\\
+\end{pmatrix} | a_{ij} \in R \right\}$\\
+If $A = (a_{ij}), B = (b_{ij}) \in M_n(F)$, then $A+B=(a_{ij} + b_{ij}), AB = (c_{ij})$ where $c_{ij} = \sum_{k=1}^{n} a_{ik} b_{kj}$.\\
+$A=(a_{ij}) = Diag[a_{11}, \ldots, a_{nn}]$ is a diagonal matrix if $a_{ij} = 0$ ($i \neq j$).\\
+$A=(a_{ij}) = Diag(a_1, \ldots, a_n)$ is a scalar matrix if $a_{ii} = a \in R \ \forall i$, and $a_{ij} = 0$ ($i \neq j$).\\
+$A=(a_{ij})$ is an upper triangular matrix if $a_{ij}=0$ ($i < j$). The lower triangular matrix is defined similarly.\\
+\end{remark}
+
+
+\begin{remark}
+Let $R$ be a ring and $S = M_n(R)$ the matrix ring with entries in $R$. Then
+\begin{enumerate}[label=(\roman*)]
+\item $0_S=(a_{ij})$ where $a_{ij} = 0$ (the zero matrix)
+\item If $R$ has $1 = 1_R$, then $S$ also has $1 = 1_S$ with $1_S = Diag[1_R, \ldots, 1_R]$
+\item The set $S_{c_n}(R) = \{Diag[a, \ldots, a] | a_i \in R\}$ of all scalar matrices in $M_n(R)$ is a subring of $M_n(R)$. There is a natural ring isomorphism $R \cong S_{c_n}(R)$.
+\item The set $D_n(R) = \{Diag[a_1, \ldots, a_n] | a_i \in R\}$ of all diagonal matrices in $M_n(R)$ is a subring of $M_n(R)$. There is a natural ring isomorphism $D_n(R) \cong R^n := R \times \cdots \times R $ ($n$ times).
+\item The set $UT_n(R):= \{(a_{ij} | (a_{ij} \in R, (a_{ij} = 0 (\forall \ i > j))\}$ of all upper triangular matrices in $M_n(R)$ is a subring of $M_n(R)$. Similarly, the set $LT_n(R)$ of all lower triangular matrices in $M_n(R)$ is a subring of $M_n(R)$.
+\item If $R$ is a subring of $R$, then $M_n(T)$ is a subring of $M_n(R)$
+\item Even if $R$ is commutative, $M_n(R)$ may not be commutative when $n \geq 2$.
+\item If $n \geq 2$, then $M_n(R)$ is not an integral domain (even when $R$ is a field).
+\end{enumerate}
+\end{remark}
+
+
+\begin{definition}
+Let $R$ be a ring with $1$. Set $GL_n(R) := U(M_n(R))$ the set of all units in $M_n(R)$. Then $GL_n(R)$ is a multiplicative group called the \hlt{general linear group of degree $n$ over $R$}.
+\end{definition}
+
+
+\begin{definition}
+Let $R$ be a commutative ring with $1$. Define determinant $det(A) = \left| A \right|$, Let $SL_n(R) := \{A \in M_n(R) | det(A) = 1\}$ be the set of all matrices in $M_n(R)$ with determinants equal to $1$. \\
+Then $SL_n(R)$ is a multiplicative subgroup of $GL_n(R)$ called the \hlt{special linear group of degree $n$ over $R$}.
+\end{definition}
+
+
+\begin{definition}
+\hlt{(Group Rings $R[G]$)}\\
+Let $R$	be a commutative ring with $1 \neq 0$. Let $G = \{g_1, \ldots, g_n\}$ be a finite multiplicative group of order $n$.\\
+Then $R[G]$ is a \hlt{group ring}, where 
+\begin{equation}
+R[G] = Rg_1 + \cdots + Rg_n = \{a_1 g_1 + \cdots + a_n g_n | a_i \in R\} \nonumber	
+\end{equation}
+Natural addition is defined as 
+\begin{equation}
+(\sum_{i=1}^{n} a_i g_i)+ (\sum_{i=1}^{n} b_i g_i) := (\sum_{i=1}^{n} (a_i + b_i) g_i) \nonumber
+\end{equation}
+Multiplication is defined as 
+\begin{equation}
+(\sum_{i=1}^{n} a_i g_i) \times (\sum_{j=1}^{n} b_j g_j) := (\sum_{k=1}^{n} c_k g_k) \nonumber
+\end{equation}
+where $c_k=\sum_{g_i g_j = g_k} a_i b_j$ with the sum running $\forall (i, j)$ with $g_i g_j = g_k$.\\
+\end{definition}
+
+
+\begin{remark}
+Let $R$ be a commutative ring with $1 \neq 0$, $G$ a multiplicative group, and $R[G]$ the group ring. Then
+\begin{enumerate}[label=(\roman*)]
+\item $R[G]$ is a commutative ring if and only if $G$ is commutative (=abelian) group
+\item $R[G]$ has the multiplicative identity $1=1_R e_G$
+\end{enumerate}
+\end{remark}
+
+
+\begin{remark}
+Let $R[G]$ be a group ring.
+\begin{enumerate}[label=(\roman*)]
+\item There is a natural injective ring homomorphism 
+\begin{align}
+R &\rightarrow R[G] \nonumber \\
+r &\mapsto r e_G \nonumber
+\end{align}
+Identify $R$ with the image $R e_G$ of this injective homomorphism.
+\item For every $g \in G$, the element $1_R g$ is a unit in $R[G]$
+\item There is a natural injective group homomorphism 
+\begin{align}
+G &\rightarrow U(G[R]) \nonumber \\
+g &\mapsto 1_R g \nonumber
+\end{align}
+Identify $G$ with the image $1_R G$ of this injective homomorphism.
+\item If $S$ is a subring of $R$, then $S[G]$ is a subring of $R[G]$. If $H$ is a subgroup of $G$, then $R[H]$ is a subring of $R[G]$.
+\item $T = \{\sum_{i=1}^{n} a_i g_i \in R[G] | \sum_{i=1}^{n} a_i = 0\}$ is a subring of $R[G]$ (an ideal of $R[G]$)
+\end{enumerate}
+\end{remark}
+
+
+\begin{remark}
+When $R$ is a division ring or field, then $R[G]$ (as an additive group) is a vector space over $R$ of dimension equal to $\left| G \right|$ with basis $\{g_1, \ldots, g_n\} = G$.
+Hence $R[G] = Rg_1 + \cdots + Rg_n = Rg_1 \oplus \cdots \oplus Rg_n$, the direct sum of $1$-dimensional vector subspaces $Rg_i$ over $R$.\\
+\end{remark}
+
+
+\subsection{Ring Homomorphisms}
+
+\begin{definition}
+Let $R, S$ be rings. A map $\varphi: R \rightarrow S$ is a \hlt{ring homomorphism} if it respects the additive and multiplicative structures.\\
+\begin{align}
+\varphi(a+b) &= \varphi(a) + \varphi(b) \ \forall a, b \in R \nonumber \\
+\varphi(ab) &= \varphi(a)\varphi(b) \ \forall a, b \in R \nonumber
+\end{align}
+\end{definition}
+
+
+\begin{definition}
+Let $R, S$ be rings. A map $\varphi: R \rightarrow S$ is a \hlt{ring isomorphism} if it is a ring homomorphism and bijective.
+This is denoted $\varphi: R \isomorp S$. Rings $R$ and $S$ is \hlt{isomorphic}, denoted $R \cong S$ or $R \simeq S$.
+\end{definition}
+
+
+\begin{definition}
+The \hlt{kernel} of a ring homomorphism $\varphi$ is defined as $ker \ \varphi = \varphi^{-1}(0_S) = \{a \in R | \varphi(a) = 0_S\} $.
+\end{definition}
+
+
+\begin{remark}
+\hlt{(Examples of homomorphism)}
+\begin{enumerate}[label=(\roman*)]
+\item Let $R, S$ be rings. The map $R \rightarrow S$, $a \mapsto 0$ is a \hlt{zero or trivial map / homomorphism}.
+\item Suppose $R_1$ is a subring of a ring $R$. The map $\iota: R_1 \rightarrow R$, $a \mapsto a$ is a \hlt{inclusion homomorphism}.
+\item Let $n \in \mathbb{Z}$. The quotient map 
+\begin{align}
+\mathbb{Z} &\rightarrow \mathbb{Z}/n\mathbb{Z} \nonumber \\
+s &\mapsto \overline{s} = [s]_n \nonumber
+\end{align} 
+is a \hlt{quotient homomorphism} between additive groups $(\mathbb{Z}, +)$ and $(\mathbb(Z)/n\mathbb(Z), +)$.
+\item Let $X$ be a set, $R$ a ring, and $X_{to}R = \{f: X \rightarrow R\}$ the ring of all maps from $X$ to $R$.\\
+Fix an element $c\in R$. Then 
+\begin{align}
+E_c: X_{to}R &\rightarrow R \nonumber \\
+f &\mapsto E_c(f) := f(c) \nonumber
+\end{align}
+is a \hlt{function evaluation map}, called the \hlt{Evaluation at $c$}.
+\end{enumerate}
+\end{remark}
+
+
+\begin{proposition}
+Let $R, S$ be rings and $\varphi: R \rightarrow S$ be a ring homomorphism. Let $R_1 \subseteq R$ be a subring. Then
+\begin{enumerate}[label=(\roman*)]
+\item The $\varphi$-image $\varphi(R_1) = \{b \in S | b = \varphi(a) \ for \ some \ a \in R_1\}$ is a subring of $S$.
+\item $ker \ \varphi$ is a subring of $R$ such that $\forall a \in R, \ \forall k \in ker \ \varphi \Rightarrow ak \in ker \ \varphi$. In other words, $ker \ \varphi$ is a subring of $R$, $R(ker \ \varphi) \subseteq ker \ \varphi$ and $(ker \ \varphi)R \subseteq ker \ \varphi$.
+\end{enumerate}
+\end{proposition}
+
+
+\begin{definition}
+Let $R$ be a ring, $I \subseteq R$ a subset and $r \in R$. The subset $I \subseteq R$ is a \hlt{left-ideal} of $R$ if:
+\begin{enumerate}[label=(\roman*)]
+\item $I$ is a subring of $R$; and
+\item $I$ is closed under left multiplication by elements from $R$: $rI \subseteq I$ ($\forall r \in R$), i.e., $RI \subseteq I$.
+\end{enumerate}
+\end{definition}
+
+
+\begin{definition}
+Let $R$ be a ring, $I \subseteq R$ a subset and $r \in R$. The subset $I \subseteq R$ is a \hlt{right-ideal} of $R$ if:
+\begin{enumerate}[label=(\roman*)]
+\item $I$ is a subring of $R$; and
+\item $I$ is closed under right multiplication by elements from $R$: $Ir \subseteq I$ ($\forall r \in R$), i.e., $IR \subseteq I$.
+\end{enumerate}
+\end{definition}
+
+
+\begin{definition}
+Let $R$ be a ring, $I \subseteq R$ a subset and $r \in R$. The subset $I \subseteq R$ is a \hlt{(two-sided) ideal} of $R$ if is both a left-ideal and right-ideal. In other words, $RI \subseteq I$ and $IR \subseteq I$.
+\end{definition}
+
+
+\begin{proposition}
+\hlt{(Ideal Criterion)} Let $R$ be a ring and $I$ a nonempty subset of $R$.\\
+The following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $I$ is a two-sided ideal of $R$;
+\item $\forall r \in R$, $\forall a, b \in R \Rightarrow ra, ar, a-b \in I$
+\item (If R is commutative) $\forall r \in R$, $\forall a, b \in R \Rightarrow ra, a-b \in I$
+\item (If R is commutative with 1) $\forall r \in R$, $\forall a, b \in R \Rightarrow a+rb \in I$
+\end{enumerate}
+\end{proposition}
+
+
+\begin{proposition}
+Let $R_\alpha$ ($\alpha \in \sum$) be a family of subrings of a ring $R$.\\
+Let $J_\alpha$ be a left (resp. 2-sided) ideal of $R_\alpha$.\\
+Then the intersection $\bigcap\limits_{\alpha \in \sum}J_\alpha$ is a left (resp. 2-sided) ideal of the subring $\bigcap\limits_{\alpha \in \sum}R_\alpha$.\\
+\end{proposition}
+
+
+\begin{corollary}
+Let $J_\alpha$ ($\alpha \in \sum$) be a family of left (resp. 2-sided) ideals of a ring $R$.\\
+Then the intersection $\bigcap\limits_{\alpha \in \sum}J_\alpha$ is also a left (resp. 2-sided) ideal of $R$.\\
+\end{corollary}
+
+
+\begin{proposition}
+Let $J_\alpha$ ($\alpha \in \sum$) be a finite family of left (resp. 2-sided) ideals of a ring $R$.\\
+Then the addition $\sum_{\alpha \in \sum} J_\alpha$ is also a left (resp. 2-sided ideal) of $R$.\\
+More generally, if $J_\alpha$ ($\alpha \in \sum$) is an infinite (countable or uncountable) family of left (resp. 2-sided) ideals of a ring $R$, then the subset
+\begin{equation}
+\{\sum x_\alpha | x_\alpha \in J_\alpha, x_\alpha \neq 0 \ for \ only \ finitely \ many \ \alpha\} \nonumber
+\end{equation}
+is also a left (resp. 2-sided) ideal of $R$.\\
+\end{proposition}
+
+
+\begin{definition}
+Let $X$ be a subset of a ring $R$. Let $J_\alpha$ ($\alpha \in \sum$) be all the ideals of $R$ with $J_\alpha \supseteq X$.\\
+Then the intersection $\bigcap\limits_{\alpha \in \sum}J_\alpha$ is the \hlt{ideal generated by $X$}, denoted $(X)$.\\
+This $(X)$ is the smallest among all ideals of $R$ containing $X$.\\
+If $X=\{r_1, \ldots, r_n\}$, then write $(X)=(r_1, \ldots, r_n)$.\\
+\end{definition}
+
+
+\begin{definition}
+For $r \in R$, the ideal $(r)$ generated by a single element $r$ is the \hlt{principal ideal of ring $R$}.\\
+\end{definition}
+
+
+\begin{definition}
+Let $R$ be a ring. An ideal $I$ is \hlt{finitely generated} if $I=(r_1, \ldots, r_n)$ for some $r_i \in R$.\\
+\end{definition}
+
+
+\begin{proposition}
+Let $R$ be a ring; $X, Y, X_i$ the subsets of $R$; and $r_j \in R$.
+\begin{enumerate}[label=(\roman*)]
+\item Let $J$ be an ideal of $R$. Then $(X) \subseteq J$ if and only if $X \subseteq J$.
+\item The equality of ideals holds: $(X_1 \cup \cdots \cup X_n) = (X_1) + \cdots + (X_n)$.
+\item In particular, $(r_1, \ldots, r_n) = (r_1) + \cdots + (r_n)$.
+\end{enumerate}
+\end{proposition}
+
+
+\begin{proposition}
+Let $R$ be a ring. Let $B\subseteq R$ and $a, a_1, \ldots, a_n \in R$.
+\begin{enumerate}[label=(\roman*)]
+\item $RB = \left\{\sum_{i=1}^{s} r_i b_i | r_i \in R, b_i \in B, s \geq 1 \right\}$ is a left-ideal of $R$, but may not be a 2-sided ideal.
+\item More generally,
+\begin{equation}
+R\{a_1, \ldots, a_n\} = Ra_1 + \cdots + Ra_n = \left\{\sum_{i=1}^{n} r_i a_i | r_i \in R \right\} \nonumber	
+\end{equation} 
+are left-ideals of $R$, but they may not be 2-sided ideals.
+\item The ideal $(a)$ generated by $a$ is given by
+\begin{equation}
+(a)=\mathbb{Z}a + aR + Ra + RaR \nonumber
+\end{equation}
+An arbitrary element of $(a)$ is of the form
+\begin{equation}
+ma + ar + r'a + \sum_{i=1}^{n} r_i a r'_i \nonumber
+\end{equation}
+where $m\in \mathbb{Z}; r, r', r_i, r'_i \in R; n \geq 1$.
+\item If $R$ contains $1$, then $(a)=RaR$, and an arbitrary element of $(a)$ is of the form 
+\begin{equation}
+\sum_{i=1}^{n} r_i a r'_i \nonumber
+\end{equation} 
+where $r_i, r'_i \in R; n \geq 1$.
+\item If $R$ is commutative and contains $1$, then
+\begin{equation}
+(a)=aR=Ra={ra|r\in R} \nonumber
+\end{equation} 
+An arbitrary element of $(a)$ is of the form $ra$ where $r \in R$.
+\end{enumerate}
+\end{proposition}
+
+
+\begin{proposition}
+Let $R$ be a ring with $1 \neq 0$ and $I$ an ideal of $R$. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $I = R$
+\item $1 \in I$
+\item $I$ contains a unit.	
+\end{enumerate}
+\end{proposition}
+
+
+\begin{proposition}
+Suppose $R$ is a ring with $1$. Let $X \subseteq R$ be a subset, and $b_1, \ldots, b_n \in R$. Then
+\begin{enumerate}[label=(\roman*)]
+\item the ideal generated by $X$ is
+\begin{equation}
+(X)=RXR=\left\{ \sum_{i=1}^{s} r_i a_i r'_i | a_i \in X; r_i, r'_i \in R; s \geq 1\right\} \nonumber
+\end{equation} 
+the smallest among all ideals of $R$ containing $X$.
+\item the ideal generated by $\{b_1, \ldots, b_n\}$ is given by 
+\begin{equation}
+(b_1, \ldots, b_n) = (b_1) + \cdots + (b_n) = Rb_1R + \cdots + Rb_nR \nonumber
+\end{equation}
+the smallest among all ideals of $R$ containing $\{b_1, \ldots, b_n\}$.
+\end{enumerate}
+\end{proposition}
+
+
+\begin{proposition}
+Let $J_\alpha$ ($\alpha \in \sum$) be a family of left (resp. 2-sided) ideals of a ring $R$.\\
+Then the inclusion is
+\begin{equation}
+R(\bigcup\limits_{\alpha \in \sum}J_{\alpha}) \subseteq \left\{\sum_{\alpha \in \sum} a_{\alpha} | a_{\alpha} \in J_\alpha; a_{\alpha} \neq 0 \ for \ only \ finitely \ many \alpha \right\} \nonumber
+\end{equation}
+where the RHS is a left (resp. 2-sided) ideal of $R$, and the smallest among those of $R$ containing all $J_\alpha$, where LHS = RHS when $R$ contains $1$.\\
+If $R$ contains $1$ and $\sum$ is finite, then
+\begin{equation}
+R(\bigcup\limits_{\alpha \in \sum}J_{\alpha}) = \sum_{\alpha \in \sum} J_{\alpha} \nonumber
+\end{equation}
+\end{proposition}
+
+
+\begin{proposition}
+Let $J, J_1, \ldots, J_n$ be ideals of a ring. Then
+\begin{equation}
+J_1 \cdots J_n = \left\{ \sum_{l=1}^{k} a_1(l) \cdots a_n(l) | a_i(l) \in J_i, k \geq 1 \right\} \nonumber
+\end{equation}
+and it is an ideal of $R$. In particular, 
+\begin{equation}
+J^n = J \cdots J = \left\{ \sum_{l=1}^{k} a_1(l) \cdots a_n(l) | a_i(l) \in J, k \geq 1 \right\} \nonumber
+\end{equation}
+and it is an ideal of $R$.\\
+\end{proposition}
+
+
+\begin{proposition}
+Let $R = R_1 \times \cdots \times R_n$ be a direct product of rings.\\
+Then 
+\begin{equation}
+S_i = \{0_{R_1}\} \times \cdots \times \{0_{R_{i-1}}\} \times R_i \times \{0_{R_{i+1}}\} \times \cdots \times \{0_{R_n}\} \nonumber
+\end{equation}
+is an ideal (2-sided) of $R$. Furthermore,
+\begin{equation}
+R = \sum_{i=1}^{n} S_i \nonumber
+\end{equation}
+\end{proposition}
+
+
+\begin{proposition}
+Let $\varphi: R \rightarrow S$ be a ring homomorphism.\\
+Then $ker \ \varphi$ is an ideal of $R$.\\
+\end{proposition}
+
+
+\begin{definition}
+Let $R$ e a ring and $I \subseteq R$ an ideal.\\
+Then $(I, +)$ is a normal subgroup of additive group $(R, +)$. The \hlt{quotient additive group} is
+\begin{equation}
+R/I = \{\overline{r} = r + I | r \in R\} \nonumber
+\end{equation}
+with well-defined addition $\overline{r} + \overline{s} := \overline{r+s}$.\\
+\end{definition}
+
+
+\begin{theorem}
+Let $R$ be a ring and $I \subseteq R$ an ideal. Then
+\begin{enumerate}[label=(\roman*)]
+\item for cosets $\overline{r}, \overline{s} \in R/I$, the multiplication $\overline{r} \times \overline{S} := \overline{rs}$ is a well-defined binary operation on $R/I$, i.e., this multiplication does not depend on the choice of representatives $r, s$ of the cosets.
+\item $(R/I, +, \times)$ is a ring with $0_{R/I} = \overline{0_R}$.
+\item $\overline{r} = 0_{R/I}$ ($=\overline{0_R}$) if and only if $r \in I$.
+\end{enumerate}
+\end{theorem}
+
+
+\begin{definition}
+Let $R$ be a ring and $I \subseteq R$ an ideal.\\
+Then the ring $(R/I, +, \times)$ is the \hlt{quotient ring} of $R$ by $I$.\\
+\end{definition}
+
+
+\begin{remark}
+Let $R$ be a ring and $(I, +)$ a subgroup of the additive group $(R, +)$.\\
+Then $I$ is an ideal of $R$ is and only if the multiplication $\times$ on the additive quotient group $(R/I, +)$ is well-defined so that $(R/I, +, \times)$ is a ring.\\	
+\end{remark}
+
+
+\begin{definition}
+Let $R$ be a ring, $I \subseteq R$ an ideal, and $R/I$ the quotient ring.\\
+The \hlt{surjective quotient map} 
+\begin{align}
+\gamma: R &\rightarrow R/I \nonumber \\
+r &\mapsto \overline{r} = r + I \nonumber
+\end{align}
+from the additive group $(R, +)$ to the additive group $(R/I, +)$ is a ring homomorphism such that $ker \ \gamma = I$.\\
+The \hlt{quotient ring homomorphism} refers to $\gamma$.\\
+\end{definition}
+
+
+\begin{remark}
+\hlt{(Equivalence concepts of kernel and ideal)}\\
+The kernel of every ring homomorphism is an ideal.\\
+Every ideal is equal to the kernel of some (surjective) homomorphism.\\
+\end{remark}
+
+
+\begin{definition}
+Let $R$ be a commutative ring and $I$ an ideal.\\
+An element $a \in R$ is 	\hlt{nilpotent} if $a^n = 0$ for some $n \geq 1$ (depending on $a$).\\
+The set of all nilpotent elements of $R$ is the 	\hlt{nilradical of $R$}, 
+\begin{equation}
+nil(R) := \{a \in R | a^n = 0, \ for \ some \ n \geq 1 \} \nonumber	
+\end{equation}
+In fact, $nil(R)$ is an ideal of $R$, and $nil(R/nil(R)) = 0$.\\
+\end{definition}
+
+
+\begin{definition}
+Let $R$ be a commutative ring and $I$ an ideal.\\
+The set of \hlt{radical of $I$} is 
+\begin{equation}
+rad(I) = \{ r \in R | r^n \in I, \ for \ some \ n \geq 1\} \nonumber
+\end{equation}
+In fact, $rad(I)$ is an ideal of $R$ containing $I$ such that $rad(I)/I = nil(R/I)$.\\
+\end{definition}
+
+
+\begin{definition}
+Let $R$ be a commutative ring and $J$ an ideal.\\
+$J$ is a radical if $rad(J) = J$. Every prime idea of $R$ is ideal.\\
+\end{definition}
+
+
+\begin{definition}
+Let $R$ be a commutative ring and $I$ an ideal.
+When $R$ contains $1$ and $I \subset R$, define 
+\begin{equation}
+Jac(I) = \bigcap_{M: max, M \supseteq I} M \nonumber
+\end{equation}
+where $M$ runs in the set of all maximal ideals of $R$ containing $I$.\\
+In fact, $Jac(I)$ is an ideal of $R$ containing the radical $rad(I)$ of $I$.\\
+$Jac(0)$ is the \hlt{Jacobson radical of $R$}.\\
+Thus $Jac(I)$ is the pre-image of $Jac(0_{R/I})$ via $R \rightarrow R/I$.\\
+\end{definition}
+
+
+\begin{remark}
+Let $R$ be a commutative ring and $I$ an ideal. Then $nil(R/I^n) \supseteq I/I^n$, and $rad(I^n) \supseteq I$ (the inclusions might be strict).
+\end{remark}
+
+
+\begin{remark}
+For the polynomial ring $F[x]$ over field $F$, if $I=(x)$ is the principal ideal generated by $x$, then $I^n = (x^n)$. Hence $nil(F[x]/I^n)=I/I^n$	and $rad(I^n) = I$.
+\end{remark}
+
+
+\begin{remark}
+The Jacobson radical of $\mathbb{Z}/12\mathbb{Z}$ is $6\mathbb{Z}/12\mathbb{Z}$, included in the intersection (of two maximal ideals) 
+\begin{equation}
+(2\mathbb{Z}/12\mathbb{Z}) \cap (3\mathbb{Z}/12\mathbb{Z}) \nonumber
+\end{equation}
+The Jacobson radical of the polynomial ring $F[x]$ over field $F$ is $0$, which is contained in the intersection (of two maximal ideals) $(x) \cap (x-1)$.\\
+\end{remark}
+
+
+\subsection{Ring Isomorphisms}
+
+\begin{definition}
+\hlt{(First Isomorphism Theorem)} Let below be a ring homomorphism:
+\begin{align}
+\varphi: R &\rightarrow S \nonumber \\
+\intertext{the (surjectve) quotient ring homomorphism:}
+\gamma: R &\rightarrow R/ker \ \varphi \nonumber \\
+\intertext{and a (well-defined) ring homomorphism:}
+\overline{\varphi}: R/ker \ \varphi &\isomorp \varphi(R) \nonumber \\
+\overline{r} &\mapsto \overline{\varphi}(\overline{r}) := \varphi(r) \nonumber
+\end{align}
+Then $\varphi = \overline{\varphi} \circ \gamma$.
+\begin{equation}\label{diagram}
+\begin{tikzcd}
+R \arrow{rr}{\varphi} \arrow[swap]{dr}{\gamma} & & \varphi(R) \\[10pt]
+    & R/ker \ \varphi \arrow[swap]{ur}{\overline{\varphi}}
+\end{tikzcd} \nonumber
+\end{equation}	
+\end{definition}
+
+
+\begin{remark}
+Let $R, S$ be a commutative ring with $1$ and $\varphi: R \rightarrow S$ a ring homomorphism.\\
+Then $\varphi$ induces a ring homomorphism 
+\begin{align}
+\tilde{\varphi}: R[x] &\rightarrow S[x] \nonumber \\
+f(x)=\sum a_i x^i &\mapsto \widetilde{\varphi}(f(x)) = \sum \varphi(a_i) x_i \nonumber
+\end{align}
+Furthermore, if $J=ker \ \varphi$, then 
+\begin{equation}
+ker \ \widetilde{\varphi} = J[x] = \left\{\sum_{i=1}^{n} a_i x^i | a_i \in J, n \geq 1 \right\} \nonumber
+\end{equation}
+is the polynomial ring with coefficients in $J$. \\
+Finally, $J[x] = J R[x]$ and $J[x]$ is the ideal of $R[x]$ generated by $J$, i.e., $J[x] = (J)$.\\
+\end{remark}
+
+
+\begin{remark}
+Let $R$ be a commutative ring with $1$ and $I$ an ideal of $R$.\\
+Then there is an isomorphism $R[x]/I[x] \cong (R/I)[x]$.\\	
+\end{remark}
+
+
+\begin{remark}
+If $\varphi: R \rightarrow S$ is a ring homomorphism, it induces a homomorphism (between matrix rings):
+\begin{align}
+\varphi_n: M_n(R) &\rightarrow M_n(S) \nonumber \\
+A = (r_{ij}) &\mapsto \varphi_n(A) := (\varphi(r_{ij})) \nonumber
+\end{align}
+\end{remark}
+
+
+\begin{remark}
+Let $G={g_1, \l , g_n}$ be a multiplicative group of order $\left| G \right| = n$, $R$ a ring, \\
+and $R[G]=Rg_1 + \cdots + Rg_n$ the group ring. Then the map 
+\begin{align}
+Tr: R[G] &\rightarrow R \nonumber \\
+\sum_{i=1}^{n} r_i g_i &\mapsto \sum_{i=1}^{n} r_i \nonumber
+\end{align}
+\end{remark}
+
+
+\begin{remark}
+\hlt{(One-sided Ideals)}\\
+Let $n \geq 2$ and $M_n(R)$ a matrix ring over a ring $R$. Let $L_k = \{A = (a_{ij}) \in M_n(R) | a_{ij} = 0, \forall j \neq k\}$.\\
+Then $L_k$ is a left ideal of $M_n(R)$, but not a right ideal of $M_n(R)$ when $R$ contains $1_R$.\\
+Similarly, let $R_k = \{A = (a_{ij}) \in M_n(R) | a_{ij} = 0, \forall i \neq k\}$.\\
+Then $R_k$ is a right ideal of $M_n(R)$, but not a left ideal of $M_n(R)$ when $R$ contains $1_R$.\\
+More generally, let $1 \leq k_1 < \cdots < k_r \leq n$ with $r < n$.\\
+Let $L_{k_1, \ldots, k_r} = \{A = (a_{ij}) \in M_n(R) | a_{ij} = 0, \forall j \notin \{k_1, \ldots, k_r\}\}$.\\
+Then $L_{k_1, \ldots, k_r}$ is a left ideal of $M_n(R)$, but not a right ideal of $M_n(R)$ when $R$ contains $1_R$.\\
+Let $R_{k_1, \ldots, k_r} = \{A = (a_{ij}) \in M_n(R) | a_{ij} = 0, \forall i \notin \{k_1, \ldots, k_r\}\}$.\\
+Then $R_{k_1, \ldots, k_r}$ is a right ideal of $M_n(R)$, but not a left ideal of $M_n(R)$ when $R$ contains $1_R$.\\
+\end{remark}
+
+
+\begin{definition}
+\hlt{(Second Isomorphism Theorem)} Let $R$ be a ring, $R_1 \subseteq R$ subring, and $J \subseteq R$ ideal. Then:
+\begin{enumerate}[label=(\roman*)]
+\item $R_1 + J$ is a subring of $R$
+\item $R_1 \cap J$ is an ideal of $R$
+\item There is an isomorphism 
+\begin{align}
+\varphi: R_1/(R_1 \cap J) &\isomorp (R_1 + J)/J \nonumber \\
+\overline{r} = r + (R_1 \cap J) &\mapsto \varphi(\overline(r)) := \overline{r} = r+J \nonumber
+\end{align}
+\end{enumerate}
+\end{definition}
+
+
+\begin{definition}
+\hlt{(Third Isomorphism Theorem)} Let $R$ be a ring, and $I \subseteq J$ ideals of $R$. Then: 
+\begin{enumerate}[label=(\roman*)]
+\item $J/I$ is an ideal of the quotient ring $R/I$
+\item There is an isomorphism
+\begin{align}
+\varphi: R/J &\isomorp (R/I)/(J/I) \nonumber \\
+\overline{r}=r+J &\mapsto \overline{r} + J/I = (r+I) + J/I \nonumber
+\end{align}
+\end{enumerate}
+\end{definition}
+
+
+\begin{definition}
+\hlt{(Fourth Isomorphism Theorem)} Correspondence Theorem for Rings\\
+Let $R$ be a ring, $I \subseteq R$ an ideal, and $\gamma: R \rightarrow R/I$ the (surjective) quotient ring homomorphism.\\
+Let $\sum \textsubscript{1}$ be the set of subrings of $R$ containing $I = ker \ \gamma$, and $\sum \textsubscript{2}$ be the set of subrings of $R/I$. Then:
+\begin{enumerate}[label=(\roman*)]
+\item if $R_1 \in \sum \textsubscript{1}$, then $\gamma(R_1) = R_1/I \in \sum \textsubscript{2}$. Conversely, if $R'_1 \in \sum_2$, then  $R'_1 = R_1/I$ with
+\begin{equation}
+R_1:=\gamma^{-1}(R'_1) = \{r\in R | \gamma(r) \in R'_1\} \in \sum \textsubscript{1} \nonumber
+\end{equation}
+\item The map below is a well-defined bijection:
+\begin{align}
+f: \sum \textsubscript{1} &\rightarrow \sum \textsubscript{2} \nonumber \\
+R_1 &\mapsto R_1/I \nonumber
+\end{align}
+\item $J_1 \in \sum \textsubscript{1}$ is an ideal of $R$ if and only if $J_1/I$ is an ideal of $R/I$. If this is the case, then 
+\begin{equation}
+R/J_1 \cong (R/I)/(J_1/I) \nonumber
+\end{equation} 
+\item For $R_i \in \sum \textsubscript{1}$, $R_1 \subseteq R_2$ holds if and only if $R_1/I \subseteq R_2/I$ holds.
+\end{enumerate}
+\end{definition}
+
+\subsection{Ideals, Rings of Fractions, Local Rings}
+
+\begin{proposition}
+Let $R$ be a ring with $1 \neq 0$. Let $I \subseteq R$ be an ideal.\\
+Then $I=R$ is and only if $I$ contains a unit, if and only if $1 \in I$.
+\end{proposition}
+
+\begin{proposition}
+Let $R$ be a commutative ring with $1 \neq 0$.\\
+Then $R$ is a field if and only if $R$ has only two ideals: $0$ and $R$.
+\end{proposition}
+
+\begin{corollary}
+If $R$ is a field with $1 \neq 0$, then every nonzero ring homomorphism $f: R \rightarrow S$ is an injection.
+\end{corollary}
+
+\begin{definition}
+An ideal $M$ of a ring $S$ with $1 \neq 0$ is a \hlt{maximal ideal} if:
+\begin{enumerate}[label=(\roman*)]
+\item $M \neq S$; and
+\item for every ideal $J$ of $S$ with $M \subseteq J \subseteq S$, that $J=M$ or $J=S$.
+\end{enumerate}
+\end{definition}
+
+
+\begin{proposition}
+If $J$ is a proper ideal of $R$ (commutative with $1$), i.e, $J \subset R$, then $J \subseteq M$ for some maximal ideal $M$ of $R$.
+\end{proposition}
+
+
+\begin{corollary}
+Apply $J=0$ to above. If $R$ is a commutative ring with 	$1 \neq 0$, then $R$ has a maximal ideal.
+\end{corollary}
+
+
+\begin{proposition}
+Assume the ring $R$ is commutative with $1$	and $M \subseteq R$ an ideal, then these are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $M$ is a maximal ideal
+\item The quotient ring $R/M$ is a field
+\end{enumerate}
+\end{proposition}
+
+
+\begin{definition}
+Assume the ring $R$ is commutative with $1$. An ideal $P$ is a prime ideal if:
+\begin{enumerate}[label=(\roman*)]
+\item $P \neq R$; and
+\item $ab \in P \Rightarrow a \in P, \ or \ b \in P$
+\end{enumerate}
+\end{definition}
+
+
+\begin{proposition}
+Assume $R$ is commutative with $1$ and $P \subseteq R$ an ideal. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $P$ is a prime ideal
+\item The quotient ring $R/P$ is an integral domain
+\end{enumerate}
+\end{proposition}
+
+
+\begin{corollary}
+Assume the ring $R$ is commutative with $1$. Then every maximal ideal is a prime ideal.	
+\end{corollary}
+
+
+\begin{proposition}
+Let $R$ be a commutative ring with $1$ and $I$ an ideal of $R$. Then:
+\begin{enumerate}[label=(\roman*)]
+\item The ideal of $R[x]$ generated by $I$ is
+\begin{equation}
+I[x] = \{\sum a_i x^i \in R[x] | a_i \in I \} \nonumber
+\end{equation}
+i.e., $(I) = I[x]$. Furthermore, $I[x] = I \ R[x]$
+\item $I$ is a prime ideal of $R$ if and only if $I[x]$ is a prime ideal of $R[x]$
+\end{enumerate}
+\end{proposition}
+
+
+\begin{example}
+Consider the polynomial ring $\mathbb{Z}[x]$.
+The principal idea $(x)$ is a prime ideal of $\mathbb{Z}[x]$ but it nos not a maximal ideal as $\mathbb{Z}[x]/(x) \cong \mathbb{Z}$.
+\end{example}
+
+
+\begin{example}
+Consider the polynomial ring $\mathbb{Z}[x]$.
+For every prime number $p$, the ideal $(p,x)=\mathbb{Z}[x]p + \mathbb{Z}[x]x$ generated by $p$ and $x$ is a maximal idea. This is because 
+\begin{align}
+\mathbb{Z}[x] &\rightarrow \mathbb{Z}[x] \rightarrow \mathbb{Z}/p\mathbb{Z} \nonumber \\
+f(x) &\mapsto \f(0) \mapsto \overline{f(0)} = f(0) + p\mathbb{Z} \nonumber
+\end{align}
+induces $\mathbb{Z}[x]/(p,x) \cong \mathbb{Z}/p\mathbb{Z}$.
+\end{example}
+
+
+\begin{example}
+Consider the polynomial ring $F[x]$ over a field $F$. The principal ideal $(x)$ is a maximal ideal of $F[x]$.
+This is because of isomorphism (via evaluation map $f(x) \mapsto f(0)$): $F[x]/(x) \cong F$.
+\end{example}
+
+
+\begin{example}
+Consider the polynomial ring $F[x,y]$ in two variables $x,y$ over a field $F$. The principal ideal $(x)$ is a prime ideal of $F[x,y]$, but it is not a maximal ideal of $F[x,y]$.\\
+This is because of the isomorphism (via evaluation map $f(x,y) \mapsto f(0,y)$): $F[x,y]/(x) \cong F[y]$
+\end{example}
+
+
+\begin{proposition}
+\hlt{(Inverse of a prime ideal)}\\
+Let $\varphi: R \rightarrow S$ be a ring isomorphism of commutative rings. Then
+\begin{enumerate}[label=(\roman*)]
+\item If $P \subseteq S$ is a prime ideal, then $\varphi^{-1}(P)$ is either a prime ideal of $R$ or equal to $R$ (this latter case will not happen when $\varphi$ is onto, or when $1_R \in R and \varphi(1_R) = 1_S$. In particular, if $\varphi : R \rightarrow S$ is the inclusion map, then either $P \subseteq R$ (hence $P \bigcap R = R$), or $P \bigcap R$ is a prime ideal of the subring $R$.
+\item If both $R$ and $S$ contain 1, $\varphi$ is surjective and $M$ is a maximal ideal of $S$, then $\varphi^{-1}(M)$ is a prime ideal of $R$.
+\end{enumerate}
+\end{proposition}
+
+
+\begin{theorem}
+Let $R$ be a commutative ring and let $D$ be a set with $\emptyset \neq D \subseteq R \textbackslash \{0\}$ which does not contain any zero divisors and is closed under multiplication (i.e., $a, b \in D \Rightarrow ab \in D$). Then there is a commutative ring with $Q = D^{-1}R$ with $1$ such that:
+\begin{enumerate}[label=(\roman*)]
+\item $Q$ contains $R$ as a subring
+\item Every element of $D$ is a unit in $Q$.
+\item Every element of $Q$ is the form $r d^{-1}$ for some $r \in R$ and $d \in D$.
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+The ring $Q = D^{-1}R$ is the \hlt{ring of fractions of $D$ with respect to $R$}.
+\end{definition}
+
+\begin{definition}
+If $R$ is an integral domain and $D = R \textbackslash \{0\}$, then $D ^ {-1}R$ is the \hlt{fractional field of $R$} and denoted as $Q(R)$.
+\begin{equation}
+Q(R) = D ^{-1}R \nonumber
+\end{equation}
+\end{definition}
+
+\begin{corollary}
+Suppose $R$ is a nonzero subring of a field $F$. Then the fractional field $Q(R)$ of $R$ is the subfield of $F$ generated by $R$. Namely, 
+\begin{equation}
+Q(R) = \{\alpha \in F | \alpha = \frac{r_1}{r_2}, r_i \in R, r_2 \neq 0\} \nonumber
+\end{equation}
+\end{corollary}
+
+\begin{corollary}
+Suppose $R$ is an integral domain and $Q = Q(R)$ its fraction field. If $\sigma: R \rightarrow F$ is an injective ring homomorphism to a field $F$, then $\sigma$ extends to an injective homomorphism.
+\begin{equation}
+\sigma ' : Q(R) \rightarrow E =: \{\alpha \in F | \alpha = \frac{\alpha(r_1)}{\alpha(r_2)}, r_i \in R, r_2 \neq 0\} \subseteq F \nonumber
+\end{equation}
+Here $E=Q(\alpha(R))$ is the fraction field of the integral domain $\sigma(R)$ and is the subfield of $F$ generated by $\sigma(R)$.
+\end{corollary}
+
+\begin{definition}
+A commutative ring $R$ with $1 \neq 0$ is a \hlt{local ring} if it has a unique maximal ideal (say $M$).
+\end{definition}
+
+\begin{definition}
+Let $R$ be an integral domain and $P$ a prime ideal.\\
+Then $D =:R \textbackslash P$ satisfies the condition of Theorem 4.5.17.\\
+The \hlt{localisation of $R$ at $P$} is denoted $R_P := D^{-1}R$.\\
+Then $PR_P = \{a/d \ | \ a\in P, d \notin P\}$ is the only maximal ideal in $R_P$ so that $R_P$ is a local ring. Note that $d \in D$ if and only if $d \notin P$.
+\end{definition}
+
+\begin{definition}
+Let $R$ be an integral domain. if $n 1_R = 1_R + \cdots + 1_R$ ($n$ times) is equal to $0_R$ for some $n \geq 1$, let $p \geq 1$ be the minimum of such integer with $p1_R = 0$.\\
+Then the \hlt{characteristic of $R$} is defined as $char \ R := p$, a prime number.\\
+If no such $n \geq 1$ exists, then set $char \ R := 0$.\\
+Hence either $char \ R = p$ is prime and $R$ contains a subring isomorphic to $\Z /(p)$ (a field), or $char \ R = 0$ and $R$ contains a subring isomorphic to $\Z$.
+\end{definition}
+
+\begin{definition}
+Let $R$ be an integral domain. When $R=F$ is a field, either $F$ contains a subfield $F_0$ isomorphic to $\Z /(p)$, or $F$ contains a subfield $F_0$ isomorphic to $\Q = \Q (\Z)$.\\
+Such a subfield $F_0$ is the \hlt{prime subfield} of $F$.
+\end{definition}
+
+\begin{remark}
+Every subfield $F$ of $\R$ or $\C$ has characteristic equal to $0$ and contains the prime field $\Q$.\\
+Indeed, $F$ contains $\Q (\Z 1_F) \cong \Q (\Z) = \Q$.
+\end{remark}
+
+\begin{proposition}
+Let $F$ be a field of characteristic $p>0$, e.g., $F = \Z / (p)$.\\
+The $(x+y)^p = x^p + y^p$ holds for any $x, y \in F$.\\
+This is by binomial expansion of left hand side and nothing that $p=0$ in $F$.
+\end{proposition}
+
+\begin{definition}
+Let $R$ be a commutative ring with $1 \neq 0$.\\
+Two ideals $I, J$ of $R$ is \hlt{comaximal} if $I+J = R$.	
+\end{definition}
+
+\begin{theorem}
+\hlt{(Chinese Remainder Theorem)} Let $J_1, \ldots, J_n$ be ideals of $R$. Then
+\begin{enumerate}[label=(\roman*)]
+\item The map
+\begin{align}
+	\varphi : R &\rightarrow (R/J_1) \times \cdots \times (R/J_n) \nonumber\\
+	r &\mapsto (\overline{r} = r+J_1, \ldots, \overline{r}=r+J_n) \nonumber
+\end{align}
+is a ring homomorphism with
+\begin{equation}
+	ker \ \varphi = J_1 \cap \cdots \cap J_n \nonumber
+\end{equation}
+\item Suppose that $J_i$, $J_j$ are comaximal for all $i \neq j$. Then $\varphi$ is surjective and
+\begin{equation}
+	J_1 \cap \cdots \cap J_n = J_1 \cdots J_n \nonumber
+\end{equation}
+Hence we have the isomorphism:
+\begin{equation}
+	\overline{\varphi}: R/(J_1 \cdots J_n) \rightarrow R/(J_1) \times \cdots \times R/(J_n) \nonumber
+\end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+let $n \geq 2$ be an integer.
+\begin{enumerate}[label=(\roman*)]
+\item Factorise $n$ as a product, $n = p_1^{r_1} \cdots p_t^{r_t}$ of powers of distinct primes. Then there is an isomorphism
+\begin{align}
+r: \Z /n\Z  &\isomorp (\Z/p_1^{r_1}\Z) \times \cdots \times (\Z/p_t^{r_t}\Z) \nonumber\\
+\overline{s} &\mapsto (\overline{s}, \ldots, \overline{s}) \nonumber
+\end{align}
+\item In particular, $\tau$ induces isomorphism of multiplicative unit groups:
+\begin{equation}
+	U(\Z/n\Z) \cong U(\Z/p_1^{r_1}\Z) \times \cdots \times U(\Z/p_t^{r_t}\Z) \nonumber
+\end{equation}
+Hence Euler's $\varphi$-functions satisfy
+\begin{equation}
+	\varphi(n) = \varphi(p_1^{r_1}) \cdots \varphi(p_t^{r_t}) = (p^{r_1} - p^{r_1 -1}) \cdots (p^{r_t} - p^{r_t -1}) \nonumber
+\end{equation}
+\end{enumerate}
+\end{corollary}
+
+\subsection{Euclidean Domains, PID, UFD}
+
+\begin{definition}
+An integral domain is said to be a \hlt{(Euclidean Domain)} (or possesses a \hlt{(Euclidean / Division Domain}) if there is a function
+\begin{equation}
+	N:R \textbackslash \{0\} \rightarrow \Z_{\geq 0} \nonumber
+\end{equation}
+on $R$ such that for any two elements $a, b \in R$ with $b \neq 0$, there exist element $q \in R$ such that
+\begin{equation}
+	a=qb+r \nonumber
+\end{equation}
+where $r=0$ or $N(r)<N(b)$.\\
+The \hlt{norm function} is $N$, and the \hlt{norm of $a$} is defined as $N(a)$.
+\end{definition}
+
+\begin{remark}
+For $a,b$ in Euclidean domain $R$ with $b \neq 0$, apply Division Algorithm:
+\begin{align}
+	a &= q_0 b + r_0 \nonumber \\
+	b &= q_1 r_0 + r_1 \nonumber \\
+	r_0 &= q_2 r_1 + r_2 \nonumber \\
+	&\cdots \nonumber \\
+	r_{n-2} &= q_n r_{n-1} + r_n \nonumber \\
+	r_{n-1} &= q_{n+1} r_n \nonumber
+\end{align}
+where $r_n$ is the last nonzero remainder. Such an $r_n$ exists since
+\begin{equation}
+N(b) > N(r_0) > N(r_1) > \cdots > N(r_n) \nonumber
+\end{equation}
+is a strictly decreasing sequence of nonnegative integers
+\end{remark}
+
+\begin{example}
+Every field $F$ is a Euclidean domain with respect to any function $N: F \rightarrow \Z_{\geq 0}$
+\end{example}
+
+\begin{example}
+The integer ring $\Z$ is a Euclidean domain with the modules as the norm function:
+\begin{equation}
+N(s) :\ \abs{s}, s \in \Z \nonumber
+\end{equation}	
+\end{example}
+
+\begin{example}
+The polynomial ring $F[x]$ over a field $F$ is a Euclidean domain where
+\begin{equation}
+N(f) :\ \degs \ f, \forall f \in F[x] \textbackslash \{0\} \nonumber
+\end{equation}	
+\end{example}
+
+\begin{example}
+The \hlt{Gaussian Integer} ring
+\begin{equation}
+\Z [i] := \Z + \Z i = \{a+bi\ |\ a,b \in \Z \} \subset \C \nonumber
+\end{equation}	
+is a Euclidean domain where the norm function is the square of the usual modules of $\C$:
+\begin{equation}
+N(a+bi) := \abs{a+bi}^2 = (a+bi)(a-bi) = a^2 + b^2, \ \forall \ a+bi \in \Z [i] \textbackslash \{0\} \nonumber
+\end{equation}
+\end{example}
+
+\begin{example}
+The \hlt{Eisenstein Integer} ring is a Euclidean domain:
+\begin{equation}
+\Z [\zeta_3] = \Z + \Z \zeta_3 \nonumber
+\end{equation}
+where $\zeta_3 = (-1 + \sqrt{-3}) /2 $ is a primitive cube root of unity: $\zeta_3^n = 1$ if and only if $3 | n$.\\
+The norm function is the square of the usual modulus:
+\begin{equation}
+N(a+b\zeta_3) = \abs{a+b\zeta_3}^2 = (a+b\zeta_3)(a-b\zeta_3) = a^2 - ab + b^2 \nonumber
+\end{equation}
+\end{example}
+
+\begin{definition}
+An integral domain $R$ is a \hlt{Principal Ideal Domain (PID)} if every ideal $I \subseteq R$ is a principal: $I=(a)$ for some $a \in I$.
+\end{definition}
+
+\begin{proposition}
+A Euclidean domain $R$ is a PID.
+\end{proposition}
+
+\begin{example}
+Consider the polynomial ring $\Z [x]$. The ideal $(2,x) = 2\Z [x] + x \Z [x]$ is not principal.\\
+Hence $\Z [x]$ is neither a PID, nor a Euclidean domain.
+\end{example}
+
+\begin{example}
+The quadratic integer ring $\Z [\sqrt{-5}]$ is not a PID.\\
+Indeed, the ideal $I = (3, 2+\sqrt{-5})$ is not a principal.\\
+Alternatively, show that $3$ is an irreducible element but not a prime element in the quadratic integer ring. 
+\end{example}
+
+\begin{definition}
+Let $a, b \in R$ with $b \neq 0$.
+\begin{enumerate}[label=(\roman*)]
+\item $a$ is a \hlt{multiple} of $b$ if $a=bc$ for some $c \in R$.\\
+In this case, $b$ is said to divide $a$,or to be a \hlt{divisor of $a$}, written $b|a$.
+\item $d \in R$ is the \hlt{greatest common divisor of $a$ and $b$}, denoted as $d = \gcds(a,b)$ if
+\begin{enumerate}[label=\alph*.]
+\item $d|a$, and $d|b$; and
+\item $d'|a$, and $d'|b \Rightarrow d'|d$.
+\item Inductively, for $a_i \in R \textbackslash \{0\}$ ($1\leq i \leq n$), define their greatest common divisor as:
+\begin{equation}
+\gcds(a_1, \ldots, a_n) := \gcds(\gcds(a_1, \leq, a_{n-1}), a_n) \nonumber
+\end{equation}
+This is a multi-symmetric function in $a_1, \leq, a_n$.
+\end{enumerate}
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+Assume $R$ is commutative and has $1$.\\
+Let $a, b$ be nonzero elements in $R$ such that $(a, b) = (d)$ for some $d \in R$.\\
+Then $d$ is a greatest common divisor of $a$ and $b$, i.e., $d = \gcds(a,b)$
+\end{proposition}
+
+\begin{proposition}
+Suppose $R$ is an integral domain.
+\begin{enumerate}[label=(\roman*)]
+\item Let $d, d' \in R$. Then $(d) = (d') \Leftrightarrow d' = ud$ for some unit $u$.
+\item Let $d$ be a greatest common divisor of $a$ and $b$. Then $d'$ is another greatest common divisor of $a$ and $b$ is and only if $d' = ud$ for some unit $u$.
+\end{enumerate}
+\end{proposition}
+
+\begin{theorem}
+Suppose $R$ is a Euclidean domain. Let $a, b$ be nonzero elements in $R$.\\
+Let $d = r_n$ be the last nonzero remainder in the Division Algorithm. Then
+\begin{enumerate}[label=(\roman*)]
+\item $d=\gcds(a,b)$.
+\item $(d) = (a,b)$. In particular, $d=ax + by$ for some $x,y \in R$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proposition}
+Assume that $R$ is a PID. Let $a, b$ be nonzero elements.\\
+Let $d \in R$ such that $(d) = (a_1, \ldots, a_n)$. Then
+\begin{enumerate}[label=(\roman*)]
+\item $d=\gcds(a_1, \ldots, a_n)$.
+\item $d=a_1 x_1 + \cdots + a_n x_n$ for some $x_i \in R$
+\item Such $d$ above is unique up to multiplication by a unit of $R$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+Assume that $R$ is a PID.\\
+Then every nonzero prime ideal $P$ of $R$ is a maximal ideal of $R$.	
+\end{proposition}
+
+\begin{corollary}
+Let $R$ be a commutative ring with $1$ such that the polynomial ring $R[x]$ is a PID.\\
+Then $R$ is a field.
+\end{corollary}
+
+\begin{definition}
+Assume $R$ is an integral domain. An element $r \in R$ is \hlt{irreducible} in $R$ if:
+\begin{enumerate}[label=(\roman*)]
+\item $r \neq 0$,
+\item $r$ is not a unit, and
+\item $r = ab \Rightarrow a$ or $b$ is a unit in $R$	
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Assume $R$ is an integral domain. An element $r \in R \textbackslash \{0\}$ is \hlt{reducible} in $R$ if $r=ab$ where neither $a$ nor $b$ is a unit of $R$.
+\end{definition}
+
+\begin{definition}
+Assume $R$ is an integral domain. A nonzero element $p \in R$ is \hlt{prime} in $R$ if the ideal $(p)$ is a prime ideal, or equivalently if $p$ is a non-unit and $p|ab \Rightarrow p|a$, or $p|b$.
+\end{definition}
+
+\begin{definition}
+Assume $R$ is an integral domain.\\
+Elements $a, b \in R$ is \hlt{associate} in $R$ if $a=ub$ for some unit $u \in R$.
+\end{definition}
+
+\begin{proposition}
+Let $R$ be an integral domain and $a,b$ nonzero elements of $R$.	
+\begin{enumerate}[label=(\roman*)]
+\item If $a|b$ and $b|a$, then $a$ and $b$ are associate in $R$.
+\item Suppose $a=bc$. Then $a$ and $b$ are associate in $R$ if and only if $c$ is a unit.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+Assume $R$ is an integral domain. Then a prime element is always irreducible.	
+\end{proposition}
+
+\begin{proposition}
+Assume that $R$ is PID. Let $p \in R \textbackslash \{0\}$. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $(p)$ is a maximal ideal
+\item $p$ is a prime element, i.e., $(p)$ is a prime ideal
+\item $p$ is an irreducible element
+\end{enumerate}
+\end{proposition}
+
+\begin{definition}
+An integral domain $R$ is a \hlt{Unique Factorisation Domain (UFD)} if every element $r \in R \textbackslash \{0\}$ which is not a unit, satisfies:
+\begin{enumerate}[label=(\roman*)]
+\item \hlt{(Factorisation)} $r=p_1 \cdots p_n$ where $p_i$'s are irreducible (but not necessarily distinct), and
+\item \hlt{uniqueness} The factorisation in (i) is unique up to associates if $r=q_1 \cdots q_m$ is another factorisation, with $q_i$ irreducible. Then $m=n$, and after relabelling $q_i = u_i p_i$ for some units $u_i$ (i.e., $q_i$ is associate to $p_i$).
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+For $r$ in Definition 4.6.26(i) above, we can write $r=u p_i^{s_1} \cdots p_c^{s_c}$ where $p_i$ are irreducible, $s_i \geq 0$, $u$ is a unit, and $p_i$ and $p_j$ are not associate for all $i \neq j$.\\
+If $r'=v p_i^{t_1} \cdots p_c^{t_c}$ is as in Definition 4.6.26(i) and $r'$ is associate to $r$ (but with $s_i \geq 0$, $t_i \geq 0$, and with $v$ a unit), then $s_i = t_i$ for all $i$.
+\end{proposition}
+
+\begin{proposition}
+Assume that $R$ is a UFD. Then $p \in R$ is irreducible if and only if it is prime.	
+\end{proposition}
+
+\begin{proposition}
+Assume that $R$ is a UFD and $a,b$ are nonzero elements. Then
+\begin{enumerate}[label=(\roman*)]
+\item $\gcds(a,b)$ exists.
+\item Precisly, factorise
+\begin{align}
+a&=u p_1^{e_1} \cdots p_n^{e_n} \nonumber \\
+b&=v p_1^{f_1} \cdots p_n^{f_n} \nonumber
+\end{align}
+where $p_i$'s are irreducible, $u$ and $v$ are units, and $e_i \geq 0$, $f_i \geq 0$. Then
+\begin{equation}
+\gcds(a,b) = p_1^{\mins(e_1, f_1)} \cdots p_n^{\mins(e_n, f_n)} \nonumber
+\end{equation}
+Here, set $\gcds(a,b) =1$ if $\mins(e_i, f_i) = 0$ ($\forall i$).
+\item For $a,b$ in (ii), $a|b$ if and only if $e_i \leq f_i$ for all $i=1, \leq, n$.
+\end{enumerate}
+\end{proposition}
+
+\begin{definition}
+Suppose $R$ is a PID. Then $R$ satisfies \hlt{ACC = Ascending Chain Condition} (or \hlt{Noetherian} condition): every increasing sequence of ideals $I_1 \subseteq I_2 \subseteq I_3 \subseteq \cdots$ must stabilise, \\
+i.e., $I_N = I_{N+1} = I_{N+2} = \cdots$ for some $N \geq 1$.
+\end{definition}
+
+\begin{proposition}
+Euclidean Domain $\Rightarrow$ PID $\Rightarrow$ UFD
+\end{proposition}
+
+\begin{corollary}
+\hlt{(Fundamental Theorem of Arithmetic)} The integer ring $\Z$ is UFD.
+\end{corollary}
+
+\begin{definition}
+Let $R$ be a commutative ring with $1$ and let $a,b \in R$ be nonzero elements.\\
+A \hlt{least common multiple (lcm)} of $a$ and $b$, denoted \lcms(a, b), is an element $c$ or $R$ such that:
+\begin{enumerate}[label=(\roman*)]
+\item $a|b$, $b|c$, and
+\item $a|c'$, $b|c' \Rightarrow c|c'$ 
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+Assume that $R$ is a UFD and $a,b$ are nonzero elements. Then
+\begin{enumerate}[label=(\roman*)]
+\item \lcms(a,b) exists.
+\item Precisely, factorise
+\begin{align}
+a &= u p_1^{e_1} \cdots p_n^{e_n} \nonumber \\
+b &= v p_1^{f_1} \cdots p_n^{f_n} \nonumber
+\end{align}
+where $p_i$'s are prime, $u$ and $v$ are units, and $e_i \geq 0$, $f_i \geq 0$. Then
+\begin{equation}
+\lcms(a,b) = p_1^{\maxs(e_1, f_1)} \cdots p_n^{\maxs(e_n, f_n)} \nonumber
+\end{equation}
+Here, set $\lcms(a,b) = 1$ if $\maxs(e_i, f_i) = 0$ ($\forall i$)
+\end{enumerate}
+\end{proposition}
+
+\subsection{Polynomial rings}
+
+Assume for this section that $R$ is a commutative ring with $1 \neq 0$
+\begin{definition}
+A \hlt{polynomial of degree $n \geq 0$, in one variable $x$ and with coefficients $a_i \in R$ with leading coefficient $a_n \neq 0$} is defined as:
+\begin{equation}
+g(x) = \sum_{i=0}^{n} a_i x^i = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0 \nonumber
+\end{equation}
+By convention, for zero polynomial $0$, define its degree as $\degs \ 0 = - \infty$.
+If $g(x)$ has no positive-degree term, i.e., if $g(x) = a_0$ with $a_0 \in R$, then this $g(x)$ is a \hlt{constant polynomial}.
+\end{definition}
+
+\begin{remark}
+Let the following be the set of all polynomials in one variable $x$ and with coefficients in $R$:
+\begin{equation}
+R[x] := \{\sum_{j=0}^{d} b_j x^j \ | \ d \geq 0, b_j \in R\} \nonumber
+\end{equation}
+There are natural addition and multiplication operations for polynomials
+\begin{equation}
+g(x) = \sum_{i=0}^{r} a_i x^i, \ h(x) = \sum_{i=0}^{s} a_i x^i \nonumber
+\end{equation}
+defined as
+\begin{enumerate}[label=(\roman*)]
+\item $g(x) + h(x) = \sum_{i \geq 0} (a_i + b_i)x^i$
+\item $g(x)h(x) = \sum_{k \geq 0} c_k x^k$, where $c_k = \sum_{i+j = k} a_i b_j = a_k b_0 + a_{k-1} b_1 + \cdots + a_1 b_{k-1} + a_0 b_k$ such that $(R[x], +, \times)$ is a ring called the \hlt{polynomial ring with coefficients in $R$}.
+\end{enumerate}
+\end{remark}
+
+\begin{proposition}
+Assume that $R$ is an integral domain. then
+\begin{enumerate}[label=(\roman*)]
+\item For any $f(x)$, $g(x) \in R[x]$, we have $\degs(fg) = \degs \ f + \degs \ g$.
+\item The units of $R[x]$ are just the units of $R$. Namely, $U(R[x]) = U(R)$.
+\item $R[x]$ is an integral domain.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+Let $I$ be an ideal of $R$, let $(I) = I[x]$ ($=I\ R[x]$) be the ideal of $R[x]$ generated by $I$. Then:
+\begin{enumerate}[label=(\roman*)]
+\item $R[x] / I[x] \cong (R/I) [x]$
+\item If $I$ is a prime ideal of $R$, then $I[x]$ is a prime ideal of $R[x]$.
+\end{enumerate}
+\end{proposition}
+
+\begin{example}
+If $I=(a)=aR$ is a principal ideal of $R$, then $aR[x]$ is the ideal of $R[x]$ generated by $aR$, i.e., $aR[x] = I[x]$. Thus $R[x]/aR[x]=R[x]/I[x] \cong (R/I)[x] = (R/aR) [x]$	
+\end{example}
+
+\begin{example}
+Consider the integer ring $\Z$ and its ideal $n\Z$. We have $\Z[x]/n\Z[x] \cong (\Z/n\Z)[x]$.\\
+Hence if $n=p$ is a prime number, then $p\Z[x]$ is a prime ideal of $\Z[x]$.\\
+So $p$ is a prime element of $\Z$ and also of $\Z[x]$
+\end{example}
+
+\begin{definition}
+The polynomial ring $R[x_1, \ldots, x_n]$ in $n$ variables $x_1, \ldots, x_n$ can be inductively defined as:
+\begin{equation}
+R[x_1, x_2] = (R[x_1])[x_2], \ldots, R[x_1, \ldots, x_n] = (R[x_1, \ldots, x_{n-1}])[x_n] \nonumber
+\end{equation}
+In a slightly more concrete formulation, a nonzero polynomial in $R[x_1, \ldots, x_n]$ is the finite sum of nonzero monomial terms, i.e., a finite sum of elements of the form $ax_1^{d_1} \cdots x_n^{d_n}$ where $a\in R$ (the coefficient of the term), and the $d_i$ are nonnegative integers.\\
+A monic term $x_1^{d_1} \cdots x_n^{d_n}$ is a \hlt{monomial} and is the monomial part of the term $ax_1^{d_1} \cdots x_n^{d_n}$.\\
+The exponent $d_i$ is the \hlt{degree in $x_i$} of the term.\\
+The sum $d=d_1 + d_2 + \cdots + d_n$ is the \hlt{degree of the term}.\\
+The ordered $n$-tuple $(d_1, d_2, \ldots, d_n)$ is the \hlt{multidegree of the term}.\\
+The \hlt{degree of a nonzero polynomial} is the largest degree of any of its monomial terms.\\
+If $f$ is a nonzero polynomial in $n$ variables, the sum of all the monomial terms in $f$ of degree $k$ is the \hlt{homogeneous component} of $f$ of degree $k$. If $f$ has degree $d$ then $f$ may be written uniquely as the sum $f = f_0 + f_1 + \cdots + f_d$ where $f_k$ is the homogeneous component of $f$ of degree $k$, for $0 \leq k \leq d$ (where some $f_k$ may be zero).
+\end{definition}
+
+\begin{theorem}
+Let $F$ be a field. Then the polynomial ring $F[x]$ is a Euclidean domain with the norm function $N:F[x] \rightarrow \Z_{\geq 0}$ given as $N(f) = \degs \ f$.
+\end{theorem}
+
+\begin{corollary}
+The polynomial ring $F[x]$ over a field $F$ is a PID and also UFD.
+\end{corollary}
+
+\begin{lemma}
+\begin{enumerate}[label=(\roman*)]
+\item We have equality for sets of units: $U(R[x]) = U(R)$.
+\item Let $r \in R \textbackslash \{0\}$. Then $r$ is irreducible as element of $R$ if and only if $r$ is irreducible as an element of $R[x]$.
+\end{enumerate}
+\end{lemma}
+
+\begin{definition}
+Let $R$ be a UFD with $F=Q(R)$ its fraction field.
+\begin{enumerate}[label=(\roman*)]
+\item Let $f(x) \in R[x]$ be a nonconstant polynomial. Write $f(x) = c(f)f_1 (x)$ so that $c(f) \in R \textbackslash \{0\}$ and gcd of cofficients of $f_1(x)$ is 1.\\
+This $c(f)$ is unique up to a unit factor of $R$ and is the \hlt{content} of $f$.\\
+The \hlt{primitive polynomial} is $f(x) \in R[x]$ if its content $c(f)$ is a unit in $R$. Then $c(f)=1$ in this case.\\
+In the above notation, the content $c(f_1) = 1$ and $f_1$ is a primitive polynomial.
+\item In general, when $g(x) \in F(x)$ is a nonconstant polynomial, write $g(x)=c(g)g_1(x)$ such that $c(g) \in F^{\times}$ and $g_1(x) \in R[x]$ is a primitive polynomial.\\
+This $c(g)$ is unique up to a unit factor of $R$ ad is the \hlt{content} of $g$.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+Let $R$ be a UFD and $F=Q(R)$ its fraction field.
+\begin{enumerate}[label=(\roman*)]
+\item For nonconstant $g(x) \in F[x]$ as above, write $g(x)=c(g)g_1(x)$ with $c(g)\ in F$ the content of $g(x)$, and $g_1(x) \in R[x]$ a primitive polynomial.\\
+Then $g(x) \in R[x]$ if and only if the content $c(g) \in R$
+\item If $f(x) \in R[x]$ is irreducible as an element and $\degs \ f \geq 1$, then $f(x)$ is primitive.
+\end{enumerate}
+\end{remark}
+
+\begin{proposition}
+\hlt{(Gauss Lemma 1)} Let $R$ be a UFD and $f(x), g(x) \in R[x]$ primitive polynomials.\\
+Then $f(x)g(x) \in R[x]$ is still a primitive polynomial.
+\end{proposition}
+
+\begin{corollary}
+\hlt{(Contents Relation)} Let $R$ be a UFD with $F=Q(R)$ its fraction field, and $f(x), g(x) \in F[x]$ nonconstant polynomials. Then there is contents relation: $c(fg) = c(f)c(g)$.
+\end{corollary}
+
+\begin{proposition}
+\hlt{(Gauss Lemma 2)} Assume $R$ is UFD with $F=Q(R)$ its fraction field, and $f(x) \in R[x]$.\\
+If $f(x)$ is reducible in $F[x]$ then $f(x)$ is reducible in $R[x]$.\\
+More precisely, if 
+\begin{equation}
+f(x)=g(x)h(x) \nonumber
+\end{equation}
+for some nonconstant polynomials $g(x), h(x) \in F[x]$, and $g(x)=c(g)g_1(x)$, $h(x)=c(h)h_1(x)$,\\
+then $c(g)c(h)=c(f) \in R$ and 
+\begin{equation}
+f(x)=c(f)g_1(x)h_1(x) \nonumber
+\end{equation}
+is the factorisation in $R[x]$ with $g_1, h_1, g_1 h_1 \in R[x]$ all primitive polynomials.
+\end{proposition}
+
+\begin{proposition}
+\hlt{(Gauss Lemma 3)} Let $R$ be a UFD with $F$ its fraction field and let $p(x) \in R[x]$. Then:
+\begin{enumerate}[label=(\roman*)]
+\item Suppose $p(x)$ is a primitive polynomial.\\
+Then $p(x)$ is irreducible in $R[x]$ if and only if it is irreducible in $F[x]$.
+\item Suppose $p(x)$ is a monic polynomial.\\
+Then $p(x)$ is irreducible in $R[x]$ if and only if it is irreducible in $F[x]$.
+\end{enumerate}
+\end{proposition}
+
+\begin{theorem}
+The ring $R$ is a UFD if and only if the polynomial ring $R[x]$ is a UFD.
+\end{theorem}
+
+\begin{corollary}
+Assume that $R$ is a UFD. Then polynomial ring $R[x_1, \ldots, x_n]$ is also a UFD for any $n \geq 1$.
+\end{corollary}
+
+\begin{proposition}
+Let $F$ be a field and $f \in F[x]$. Then $f$ has a factor of degree $1$ in $F[x]$ if and only if $f$ has a root in $F$ (i.e., there is an $\alpha \in F$ such that $f(\alpha) = 0$).
+\end{proposition}
+
+\begin{proposition}
+\hlt{(Irreducibility criterion in small degree)}\\
+Let $F$ be a field. Suppose $f \in F[x]$	 has $\degs \ f = 2$ or $3$. \\
+Then $f$ is reducible in $F[x]$ if and only if $f$ has a root in $F$.
+\end{proposition}
+
+\begin{proposition}
+Assume $f(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_0 \in F[x]$ has $\degs \ f = n$.\\
+Assume $r/s$ (with $r, s \in \Z$ co-prime) is a rational root of $f(x)$. Then:
+\begin{equation}
+r|a_0,\ s|a_n \nonumber
+\end{equation}	
+In particular, if $f(x) \in \Z[x]$ is a monic polynomial and $f(d) \neq 0$ for all integers $d$ dividing the constant term of $f(x)$, then $f(x)$ has no roots in $\Q$.
+\end{proposition}
+
+\begin{proposition}
+\hlt{(Irreducibility criterion, modulo ideal)}\\
+Let $R$ be an integral domain, $I \subset R$ a proper ideal and $f(x) \in R[x]$ a nonconstant monic polynomial.\\
+Suppose that the image of $f(x)$ in $(R/I)[x]$ cannot be factored in $(R/I)[x]$ into two polynomials of smaller positive degrees. Then $f(x)$ is irreducible in $R[x]$.
+\end{proposition}
+
+\begin{proposition}
+\hlt{(Eisenstein's Criterion)}\\
+Let $R$ be an integral domain, $P \subset R$ a prime ideal, and
+\begin{equation}
+f(x) = x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0 \nonumber
+\end{equation}
+a polynomial in $R[x]$ (with $n \geq 2$). Suppose
+\begin{equation}
+a_i \in P(0\leq i \leq n-1),\ a_0 \notin P^2 \nonumber
+\end{equation}
+Then $f(x)$ is irreducible in $R[x]$.
+\end{proposition}
+
+\begin{proposition}
+\hlt{(Eisenstein's Criterion over UFD)}\\
+Let $R$ be a UFD with $F=Q(R)$ its fraction field, $P$ a prime ideal of $R$ and
+\begin{equation}
+f(x) = x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0 \nonumber
+\end{equation}
+in $R[x]$ with $n \geq 2$ such that 
+\begin{equation}
+a_n \notin,\ a_i \in P(0\leq i \leq n-1),\ a_0 \notin P^2 \nonumber
+\end{equation}
+Then $f(x)$ is irreducible in $R[x]$, and also in $F[x]$ by Gauss lemma.
+\end{proposition}
+
+\begin{proposition}
+\hlt{(Eisenstein's Criterion for $\Z [x]$)}\\
+Let $p$ be a prime in $\Z$ and let
+\begin{equation}
+f(x) = x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0 \nonumber
+\end{equation}
+a polynomial in $\Z [x]$ (with $n \geq 2$). Suppose
+\begin{equation}
+p|a_i (0 \leq i \leq n-1), \ p^2 \not| a_0 \nonumber
+\end{equation}
+Then $f(x)$ is irreducible in $\Z [x]$ and $\Q [x]$.
+\end{proposition}
+
+\begin{proposition}
+Let $F[x]$ be the polynomial ring over a field $F$ and $f(x)$ a nonconstant polynomial.\\
+Then the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $(f)$ is a maximal ideal of $F[x]$
+\item $(f)$ is a prime ideal of $F[x]$
+\item The quotient ring $F[x]/(f)$ is a field
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+Let $F[x]$ be polynomial ring over a field $F$ and $g(x)$ a nonconstant polynomial such that:
+\begin{equation}
+cg(x) = f_1 (x)^{n_1} \cdots f_k (x)^{n_k} \nonumber
+\end{equation}
+where $c$ is nonzero constant, the $f_i$ are distinct monic irreducible polynomials in $F[x]$ and $n_i \geq 1$. Then
+\begin{equation}
+F[x]/(g) \cong (F[x]/(f_1^{n_1})) \times \cdots \times (F[x]/(f_k^{n_k})) \nonumber
+\end{equation}
+\end{proposition}
+
+\begin{definition}
+Let $F[x]$ be the polynomial ring over a field $F$ and $f(x)$ a nonconstant polynomial.\\
+Note that $\alpha \in F$ is a root of $f(x)$ (i.e., $f(\alpha) = 0$) if and only if $(x-a) | f(x)$.\\
+Then $\alpha \in F$ is a root of $f(x)$ of \hlt{multiplicity $m$} if
+\begin{equation}
+(x-a)^m | f(x), \ but \ (x-a)^{m+1} \not| f(x) \nonumber
+\end{equation}
+\end{definition}
+
+\begin{proposition}
+Let $F[x]$ be the polynomial ring over a field $F$ and $f(x)$ a nonconstant polynomial such that $\alpha_i \in F$ ($1 \leq i \leq k$) are all the distinct roots of $f(x)$ of multiplicity $m_i \geq 1$. Then
+\begin{equation}
+f(x) = (x-\alpha_1)^{m_1} \cdots (x-\alpha_k)^{m_k} q(x) \nonumber
+\end{equation}
+for some $q(x) \in F[x]$. In particular, $\sum_{i=1}^{k} m_i \leq \degs \ f(x)$, and $f(x)$ has at most $\degs \ f(x)$ of roots in $F$, even counted with multiplicity.
+\end{proposition}
+
+\begin{remark}
+The \hlt{fundamental theorem of algebra} from Gauss states: every complex polynomial
+\begin{equation}
+f(x) = c(x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0) \nonumber
+\end{equation}
+of $\degs \ n \geq 1$ has at least one complex root $\alpha_1$. \\
+Thus $f(x) = (x-\alpha_1)q(x)$ for some complex polynomial $q(x) \in \C[x]$.\\
+Applying it $n$ times, $f(x)$ can be factorised as product of linear ones:
+\begin{equation}
+f(x) = c(x-\alpha_1)\cdots (x-\alpha_n) \nonumber
+\end{equation}
+where $\alpha_1, \ldots, \alpha_n$ are all the roots of $f(x)$ with multiplicity counted.\\
+Conversely, if
+\begin{equation}
+g(x) = c(x^n + b_{n-1} x^{n-1} + \cdots + b_1 x + b_0) \nonumber
+\end{equation}	
+is a $\degs \ n$ complex polynomial, and $\beta_1, \ldots, \beta_n$ are all of the roots of $g(x)$ (with multiplicity counted), then $g(x)$ can be recovereed from its roots:
+\begin{equation}
+g(x) = c(x-\beta_1)\cdots (x-\beta_n) \nonumber
+\end{equation}
+\end{remark}
+
+\begin{remark}
+Let $p \in \Z$ be a prime number. Let $f(x) = x^p - a$ with $a \neq 0$.\\
+In the complex field $\C$, $f(x)$ has exactly $p$ distinct roots.\\
+Indeed, let $\alpha$ be one complex root of $f(x)$ (exist by Fundamental Theorem of Algebra). Then below are all the $p$ distinct roots of $f(x)$:
+\begin{equation}
+x_k = \alpha \ \exps(2k \pi i / p) = \cos(2k \pi / p) + i \sin(2k \pi / p) \ (0\leq k < n) \nonumber
+\end{equation}
+Indeed, for any $n \geq 1$, the $\exps(2k \pi i / p) \ (0\leq k < n)$ are all the $n$ distinct roots of the polynomial $x^n - 1$.\\
+The monic polynomial $f(x)$ of degree $p$ can be recovered from its $p$ roots:
+\begin{equation}
+f(x) = x^p - a = (x-x_0) \cdots (x-x_p) \nonumber
+\end{equation}
+\end{remark}
+
+\begin{remark}
+Let $p \in \Z$ be a prime number. Let $f(x) = x^p - a$ with $a \neq 0$.\\
+If $F$ is a field of characteristic $p$, say over some field of $\Z /(p)$, and $a \in F$, then whenever $\beta \in F$ is a root of $f(x)$ (so that $0=f(\beta) = \beta^p - a$) it is a multiple root of multiplicity $p$. Indeed,
+\begin{equation}
+f(x) = x^p - a = x^p + (-1)^p a = x^p + (-\beta)^p = (x-\beta)^p \nonumber
+\end{equation}
+\end{remark}
+
+\begin{proposition}
+Let $F$ be a field, and $G \subseteq (F \textbackslash \{0\}, \times)$ a finite multiplicative subgroup. Then $G$ is cyclic.
+\end{proposition}
+
+\begin{proposition}
+If $F$ is a finite field, then $F\textbackslash \{0\}$ is a cyclic multiplicative group.
+\end{proposition}
+
+\begin{corollary}
+Let $p$ be a prime.\\
+Then $U(\Z /(p)) = \Z/(p) \textbackslash \{[0]_p\}$ is a cyclic multiplicative group of order $p-1$.
+\end{corollary}
+
+\begin{remark}
+Let $F$ be a field, $a,b \in F$ with $a \neq 0$. Let $f(x) \in F(x)$ be a nonconstant polynomial. Then:\\
+\begin{align}
+\varphi: F &\rightarrow F \nonumber \\
+x &\mapsto ax + b \nonumber
+\end{align}
+is a bijection with its inverse given by
+\begin{align}
+\psi: F &\rightarrow F \nonumber \\
+x &\mapsto (x-b)/a \nonumber
+\end{align}
+Thus $f(x)$ is irreducible in $F[x]$ if and only if $g(x) := f(ax+b)$ is irreducible.
+\end{remark}
+
+\begin{remark}
+Let $F$ be a field, $a,b \in F$ with $a \neq 0$. Let $f(x) \in F(x)$ be a nonconstant polynomial.\\
+Suppose $\degs \ f(x) = n \geq 1$ and let $h(x) = x^n f(x^{-1})$ which is the \hlt{reverse of $f(x)$}, and which is a polynomial in $F[x]$ with $\degs \ h(x) \leq n$. Then $f(x)$ can be recovered from its inverse via:
+\begin{equation}
+f(x) = x^n h(x^{-1}) \nonumber
+\end{equation}
+Further, $f(x)$ is irreducible in $F[x]$ if and only if its inverse $h(x)$ is irreducible.
+\end{remark}
+
+\begin{example}
+Let $p \in \Z$ be a prime number. Then the \hlt{cyclotomic polynomial} below is irreducible over $\Q$:
+\begin{equation}
+\Phi_p (x) = (x^p - 1)/(x-1) = x^{p-1} + x^{p-2} + \cdots + x + 1 \nonumber
+\end{equation}
+\end{example}

@@ -1,0 +1,840 @@
+\section{Modules and Vector Spaces}
+\label{sect:modandvec}
+
+\subsection{Basic Axioms}
+
+\begin{definition}
+Let $R$ be a ring. A \hlt{left $R$-module} or a \hlt{left module over $R$} is a nonempty set $M$ with:
+\begin{enumerate}[label=(\roman*)]
+\item a binary operation $+$ so that $(M, +)$ is an abelian additive group, and
+\item a (left) action of $R$ on $M$, i.e., a map
+\begin{align}
+R \times M &\rightarrow M \nonumber \\
+(r, m) &\mapsto rm \nonumber
+\end{align}
+that satisfies:
+\begin{enumerate}[label=\alph*.]
+\item \hlt{(Distributive Law)} $\forall r,s \in R$, $\forall m,n \in M$
+\begin{align}
+(r+s)m &= rm + sm \nonumber \\
+r(m+n) &= rm + rn \nonumber
+\end{align}
+\item \hlt{(Associative Law)} $\forall r,s \in R$, $\forall m \in M$,
+\begin{equation}
+(rs)m = r(sm) \nonumber
+\end{equation}
+If the ring $R$ has $1_r$, the additional axiom is imposed
+\item \hlt{(Trivial Action by $1_R$)}
+\begin{equation}
+1_R m = m, \forall m \in M \nonumber
+\end{equation}
+\end{enumerate}
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+\hlt{(Unital Module)}
+\begin{enumerate}[label=(\roman*)]
+\item The right $R$-module can be defined similarly
+\item A left $R$-module is \hlt{unital} if $R$ has $1$ and Definition 5.1.1(2c) holds.
+\item When $R$ is commutative, a left $R$-module $M$ can eb made into a right $R$-module by defining:
+\begin{equation}
+mr := rm, \ \forall r \in R, m \in M \nonumber
+\end{equation} 
+\item When $R$ is a field (or division ring), a left module over $R$ is just a vector space over $R$
+\end{enumerate}
+\end{remark}
+
+From here onwards, whenever $R$ has 1, every left $R$-module is assumed to be unital.
+
+\begin{example}
+Every additive abelian group $M$ is a natural $\Z$-module:
+\begin{align}
+Z \times M &\rightarrow M \nonumber \\
+(n,m) &\mapsto nm \nonumber
+\end{align}
+Here $0_\Z m := 0_M$, $nm := m + \cdots + m$ ($n$ times) when integer $n > 0$, and $nm := -((-n)m)$ when integer $n >0$. \\
+Thus $\Z$-modules are just (additive) abelian groups.
+\end{example}
+
+\begin{example}
+\hlt{(Ring as a module over itself)}\\
+Let $R$ be a ring. Then $M=R$ is naturally a left $R$-module via the natural multiplication:
+\begin{align}
+R \times M &\rightarrow M \nonumber \\
+(r,m) &\mapsto rm \nonumber
+\end{align}
+Left $R$-submodules of $M=R$ are just left ideals of $R$.\\
+Assuming $R$ is commutative, $M=R$ is naturally a right $R$-module.
+\end{example}
+
+\begin{definition}
+Let $R$ be a ring and $M$ a left $R$-module.\\
+A nonempty subset $N \subseteq M$ is a \hlt{left $R$-submodule of $M$} if:
+\begin{enumerate}[label=(\roman*)]
+\item $(N, +)$ is a subgroup of the additive group $(M, +)$, and
+\item $N$ is closed under the action of $R$:
+\begin{equation}
+r \in R,\ n \in N \Rightarrow rn \in N \nonumber
+\end{equation}
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+A left $R$-submodule $N$ of $M$ is just a subset of $M$ which itself is a left $R$-module under the addition $+ N \times N \rightarrow N$ and the action $R \times N \rightarrow N$ as the restrictions of the addition $+: M \times M \rightarrow M$ and the action $R \times M \rightarrow M$, respectively.
+\end{remark}
+
+\begin{remark}
+When $R$ is a field (or division ring), a left $R$-submodule is just an $R$-subspace.	
+\end{remark}
+
+\begin{example}
+Let $R$ be a ring, $I \subseteq R$ a left ideal of $R$, and $M$ a left $R$-module. Then define:
+\begin{equation}
+IM := \{ \sum_{i=1}^s a_i m_i \ | \ a_i \in I, \ m_i \in M, \ s \geq 1\} \nonumber
+\end{equation}
+which is a left $R$-submodule of $M$.
+\end{example}
+
+\begin{example}
+\hlt{(Free module $R^n$)} Let $R$ be a ring with $1$. Let
+\begin{equation}
+R^n := \{(a_1, \ldots, a_n) \ | \ a_i \in R\} \nonumber
+\end{equation}
+Define addition to be
+\begin{align}
++: R^n \times R^n &\rightarrow R^n \nonumber \\
+(X=(x_1, \ldots, x_n), Y = (y_1, \ldots, y_n)) &\mapsto X+Y := (x_1 + y+1, \ldots, x_n + y_n) \nonumber
+\end{align}
+Define the $R$-action as
+\begin{align}
+R \times R^n &\rightarrow R^n \nonumber \\
+(r, Y = (y_1, \ldots y_n)) &\mapsto rY := (r_y1, \ldots, ry_n) \nonumber
+\end{align}
+Then $R^n$ is a left $R$-module called the \hlt{free left module of rank $n$ over $R$}.
+\end{example}
+
+\begin{example}
+Let $R^n$ be the free left $R$-module of rank $n$ over $R$.
+\begin{enumerate}[label=(\roman*)]
+\item Let $I_1, \ldots, I_n$ be left ideals of $R$. Then
+\begin{equation}
+I_1 \times \cdots \times I_n := \{(a_1, \ldots, a_n) \ | \ a_i \in I\} \nonumber
+\end{equation}
+is a left $R$-submodule of $R^n$.
+\item This is a left $R$-submodule of $R^n$:
+\begin{equation}
+\{(x_1, \ldots, x_n) \ | \ x_i \in R, \ \sum_{i=1}^n x_i = 0\} \nonumber
+\end{equation}
+\end{enumerate}
+\end{example}
+
+\begin{definition}
+\hlt{($F[x]$-modules)} Let $F$ be a field and $V$ a vector space over $F$.\\
+Fix a linear transformation $T: V \rightarrow V$. Then $V$ has a natural $F[x]$-module structure, depending on $T$.\\
+Note that for linear transformations $T_i: V \rightarrow V$ ($i = 1, 2, \ldots$) and scalars $\alpha_i \in F$, the \hlt{linear combination}
+\begin{align}
+\alpha_1 T_1 + \alpha_2 T_2 : V &\rightarrow V \nonumber \\
+v &\mapsto (\alpha_1 T_1 + \alpha_2 T_2)(v) := \alpha_1 T_1 (v) + \alpha_2 T_2 (v) \nonumber
+\end{align}
+is a well defined linear transformation. Inductively, $\alpha_1 T_1 + \ldots + \alpha_k T_k$ is a well defined linear transformation.\\
+For a polynomial $f(x) = \sum_{i=0}^n a_i x^i \in F[x]$, define
+\begin{equation}
+f(T) = \sum_{i=0}^n a_i T^i = a_0 I_v + a_1 T + \cdots + a_n T^n \nonumber
+\end{equation}
+The \hlt{identity map} is as follows:
+\begin{align}
+T^0 = I_V: V &\rightarrow V \nonumber \\
+v &\mapsto I_V(v) := v \nonumber
+\end{align}
+The compositions are then linear transformations: 
+\begin{align}
+T^2 &:= T \circ T \nonumber \\
+T^3 &:= T \circ T \circ T \nonumber \\
+&\ldots \nonumber \\
+T^n &:= T \circ \cdots \circ T (n \ \textnormal{times}) \nonumber
+\end{align}
+Define the action:
+\begin{align}
+F[x] \times V &\rightarrow V \nonumber \\
+(f(x), v) &\mapsto f(x)v := f(T)(v) \nonumber
+\end{align}
+This action makes $V$ a left $F[x]$-module, depending on linear transformation $T:V \rightarrow V$.\\
+Hence given a vector space $V$ over $F$, there may be different left $F[x]$-module structures.
+If $W \subseteq V$ is a \hlt{$T$-invariance subspace}, i.e. $T(W) \subseteq W$, then $W$ is a left $F[x]$-submodule of $V$ since
+\begin{equation}
+f(x)(w) = f(T)(w) \in W, \ \forall f(x) \in F[x], \ \forall w \in W \nonumber
+\end{equation}
+\end{definition}
+
+\begin{proposition}
+\hlt{(Submodule Criterion)}
+Let $R$ be a ring with $1$ and $M$ a left $R$-module.\\
+let $N \subseteq M$ be a nonempty subset. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $N$ is a left $R$-submodule of $M$.
+\item $\forall r \in R$, $\forall x, y \in N \Rightarrow x+ry \in N$	
+\end{enumerate}
+\end{proposition}
+
+\begin{definition}
+An element $m$ of a left $R$-module is a \hlt{torsion element} if $rm=0$ for some nonzero $r \in R$.
+\begin{equation}
+\tors(M) := \{m \in M \ | \ rm=0 \textnormal{ for some nonzero } r \in R\} \nonumber
+\end{equation}
+is the set of all torsion elements in $M$.
+\end{definition}
+
+\begin{proposition}
+If $R$ is an integral domain, then \tors(M) is a $R$-submodule of $M$ called the \hlt{torsion submodule of $M$}.
+\end{proposition}
+
+\begin{definition}
+Le $R$ be a ring. The \hlt{centre $Z(R)$ of the ring $R$} is defined and denoted
+\begin{equation}
+Z(R) := \{z \in R \ | \ zr = rz, \ \forall r \in R\} \nonumber
+\end{equation}
+\end{definition}
+
+\begin{remark}
+The centre $Z(R)$ is a commutative subring of $R$.
+\end{remark}
+
+\begin{remark}
+A ring $R$ is commutative if and only if $Z(R) = R$.
+\end{remark}
+
+\begin{definition}
+Let $R$ be a commutative ring with $1_R$. A \hlt{$R$-algebra} is a ring $A$ with $1_A$ and ring homomorphism $f: R \rightarrow A$ such that
+\begin{enumerate}[label=(\roman*)]
+\item $f(1_R) = 1_A$; and
+\item $f(R) \subseteq Z(A)$
+\end{enumerate}
+For simplicity, write $ra := f(r)a$.
+Note that $\forall r \in R, \ \forall a, b \in A$
+\begin{align}
+ra &= ar \nonumber \\
+r(ab) = (ra)b &= a(rb) = a(br) = (ab)r \nonumber
+\end{align}
+A $R$-algebra $A$ has natural left (resp. right) $R$-module structure given as:
+\begin{alignat}{3}
+R \times A &\rightarrow A \ ; &\ A \times R \rightarrow& A& \nonumber \\
+(r, a) &\mapsto ra\  ; &(a,r) \mapsto& ar = ra& \nonumber
+\end{alignat}
+\end{definition}
+
+\begin{definition}
+Let $A$ and $B$ be two $R$-algebras.\\
+An \hlt{$R$-algebra homomorphism} is a ring homomorphism $\varphi: A \rightarrow B$ such that $\forall r \in R, \forall a \in A$
+\begin{enumerate}[label=(\roman*)]
+\item $\varphi(1_A) = 1_B$, and
+\item $\varphi(ra) = r \varphi(a)$
+\end{enumerate}
+An \hlt{$R$-algebra isomorphism} $\varphi: A \rightarrow B$ is a $R$-algebra homomorphism which is bijective.\\
+In this case, the inverse $\varphi^{-1}: B \rightarrow A$ is also an $R$-algebra isomorphism.
+\end{definition}
+
+\begin{remark}
+If $A$ is an $R$-algebra, then $A$ is a ring with $1_A$ which is a unital left $R$-module satisfying
+\begin{equation}
+(*) \ \ \ \ \ \ \ r(ab) = (ra)b = a(rb), \ \forall r\in R, \ \forall a,b \in A \nonumber
+\end{equation}
+Conversely, if $R$ is a commutative ring with $1_r$ and $A$ is a ring with $1_A$ which is a unital left $R$-module satisfying the condition $(*)$ above, then $A$ is an $R$-algebra by defining
+\begin{align}
+f: R &\rightarrow A \nonumber \\
+r &\mapsto r 1_A \nonumber
+\end{align}
+The condition $(*)$ is used as the defining axiom for $A$ to be an $R$-algebra.
+\end{remark}
+
+\subsection{Module Homomorphisms}
+
+Assume for this section that ring $R$ has $1$. Modules are assumed to be left $R$-modules.
+
+\begin{definition}
+Let $R$ be a ring, and $M, N$ be left $R$-modules. A map $\varphi: M \rightarrow N$ is a (left) $R$-module homomorphism if it respects the $R$-module structures of $M$ and $N$, i.e.,
+\begin{enumerate}[label=(\roman*)]
+\item $\varphi(x+y) = \varphi(x) + \varphi(y), \ \forall x,y \in M$; and
+\item $\varphi(rx) = r \varphi(x), \ \forall r \in R, \ \forall x \in M$	
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Let $R$ be a ring, and $M, N$ be left $R$-modules. A (left) $R$-module homomorphism $\varphi: M \rightarrow N$ is an isomorphism (of $R$-modules) if it is bijective. In this case, $M$ and $N$ are \hlt{isomorphic}, denoted
+\begin{align}
+\varphi : M \isomorp N, \textnormal{ or} \nonumber \\
+M \cong N, \textnormal{ or } \ M \simeq N \nonumber
+\end{align}
+\end{definition}
+
+\begin{definition}
+Let $R$ be a ring, and $M, N$ be left $R$-modules.\\
+If $\varphi: M \rightarrow N$ is a left $R$-module isomorphism, define and denote the \hlt{kernel of $\varphi$} as
+\begin{equation}
+\ker \varphi = \varphi^{-1}(0_N) = \{m \in M \ | \ \varphi(m) = 0\} \nonumber
+\end{equation}
+The \hlt{image} is defined as
+\begin{equation}
+\varphi(M) := \{n \in N \ | \ n = \varphi(m), \textnormal{ for some } m \in M\} \nonumber
+\end{equation}
+\end{definition}
+
+\begin{definition}
+Let $R$ be a ring, and $M, N$ be left $R$-modules.\\
+Let below be the set of all left $R$-module homomorphisms from $M$ into $N$:
+\begin{equation}
+\homs_R (M,N) := \{\varphi: M \rightarrow N \ | \ \varphi \textnormal{ is a left $R$-module homomorphism}\} \nonumber
+\end{equation}
+When $M=N$, a left $R$-module $\varphi: M \rightarrow M$ is an \hlt{endomorphism} of the left $R$-module $M$.\\
+This is denoted $\textnormal{End}_R (M) = \homs_R(M,M)$
+\end{definition}
+
+\begin{remark}
+Let $\varphi: M \rightarrow N$ be a left $R$-module homomorphism.\\
+Then $\ker \varphi$ is a left $R$-submodule of $N$, while the image $\varphi(M)$ is a left $R$-submodule of $N$.\\
+Moe generally, for any left $R$-submodule $M_i$ of $M$, the image $\varphi(M_i)$ is a left $R$-submodule of $N$.
+\end{remark}
+
+\begin{example}
+Let $M$ be a left $R$-module and $N$ a left $R$-submodule of $M$. Then the inclusion map
+\begin{align}
+\iota: N &\rightarrow M \nonumber \\
+n &\mapsto n \nonumber
+\end{align}
+is a homomorphism of left $R$-modules.
+\end{example}
+
+\begin{proposition}
+Let $R$ be a ring with $1$. Let $M, N$ be left $R$-modules.\\
+A map $\varphi: M \rightarrow N$ is a left $R$-module homomorphism if and only if:
+\begin{equation}
+\varphi(rx+y) = r\varphi(x) + \varphi(y), \ \forall r \in R; \ \forall x, y \in M \nonumber
+\end{equation}
+\end{proposition}
+
+\begin{proposition}
+Let $R$ be a ring with $1$. Let $M, N$ be left $R$-modules.\\
+Let $\varphi_i \in \homs_R(M,N)$ and $\alpha_i \in R$. Then the \hlt{linear combination} belongs to $\homs_R(M,N)$:
+\begin{align}
+\alpha_1 \varphi_1 + \alpha_2 \varphi_2: M &\rightarrow N, \nonumber \\
+m &\mapsto (\alpha_1 \varphi_1 + \alpha_2 \varphi_2)(m) := \alpha_1 \varphi_1(m) + \alpha_2 \varphi_2(m) \nonumber
+\end{align}
+In particular, 
+\begin{align}
+\varphi_1 + \varphi_2 &\in \homs_R(M,N) \nonumber \\
+\alpha_1 \varphi_1 &\in \homs_R(M,N) \nonumber
+\end{align}
+The addition is defined as
+\begin{align}
++ : R \times \homs_R(M,N) &\rightarrow \homs_R(M,N) \nonumber \\
+(\varphi_1, \varphi_2) &\mapsto \varphi_1 + \varphi_2 \nonumber
+\end{align}
+The action is defined as
+\begin{align}
+R \times \homs_R(M,N) &\rightarrow \homs_R(M,N) \nonumber \\
+(\alpha, \varphi) &\mapsto \alpha \varphi \nonumber
+\end{align}
+Hence we get a left $R$-module structure on the additive group $(\homs_R(M,N), +)$.
+\end{proposition}
+
+\begin{proposition}
+Let $R$ be a ring with $1$. Let $M, N, L$ be left $R$-modules.\\
+If $\varphi \in \homs_R(L,M)$ and $\psi \in \homs_R(M,N)$, then the composition is
+\begin{equation}
+\psi \circ \varphi \in \homs_R(L,N) \nonumber
+\end{equation}
+\end{proposition}
+
+\begin{proposition}
+Let $R$ be a ring with $1$. Let $M, N$ be left $R$-modules.\\
+The natural ring structure (with multiplicative identity $1$) is $(\homs_R(M,M), +, \circ)$ on the set $\homs_R(M,M)$, where the addition $+$ is defined above, and $\circ$ is a composition (Note that $\varphi \circ \psi$ is not $\varphi \times \psi$). The identity map
+\begin{align}
+I_M: M &\rightarrow M \nonumber \\
+m &\mapsto I_M(m) := m \nonumber
+\end{align}
+serves as the multiplicative identity of the ring $\homs_R(M,M)$.\\
+The \hlt{Endomorphism ring} of the left $R$-module $M$ is $\textnormal{End}_R(M) = \homs_R(M,M)$.
+\end{proposition}
+
+\begin{proposition}
+Let $R$ be a ring with $1$. Let $M, N$ be left $R$-modules.\\
+Suppose that $R$ is commutative. Then for $\alpha \in R$, the \hlt{scalar map} below belongs to $\homs_R(M,M)$:
+\begin{align}
+\alpha I_M: M &\rightarrow M \nonumber \\
+m &\mapsto \alpha M \nonumber
+\end{align}
+The map below is a ring homomorphism
+\begin{align}
+f: R &\rightarrow \homs_R(M,M) \nonumber \\
+\alpha &\mapsto \alpha I_M \nonumber
+\end{align}
+with $f(R) \subseteq Z(\homs_R(M,M))$ (the centre) with which $\homs_R(M,M)$ becomes an $R$-algebra.
+\end{proposition}
+
+\begin{proposition}
+Let $R$ be a ring, $M$ a left $R$-module, $N$ a left $R$-submodule, and $M/N$ the quotient additive abelian group. The action
+\begin{align}
+R \times (M/N) &\rightarrow M/N \nonumber \\
+(r, \overline{m} = m+N) &\mapsto \overline{rm} \nonumber
+\end{align}
+is well-defined and makes $M/N$ into a left $R$-module, called the \hlt{quotient left $R$-module} of $M$ by $N$.
+\end{proposition}
+
+\begin{proposition}
+Let $R$ be a ring, $M$ a left $R$-module, $N$ a left $R$-submodule, and $M/N$ the quotient additive abelian group. The quotient map
+\begin{align}
+\gamma : M &\rightarrow M/N \nonumber \\
+m &\mapsto \overline{m} = m+N \nonumber
+\end{align}
+is a left $R$-module surjective homomorphism with $\ker \gamma = N$.
+\end{proposition}
+
+\begin{remark}
+Let $N_1, \ldots, N_k$ be left $R$-submodules of a left $R$-module $M$.\\
+Then the addition $N_1 + \cdots + N_k$ is a left $R$-submodule of $M$, and is the smallest among all left $R$-submodules of $M$ containing all $N_i$. The sum is defined as
+\begin{equation}
+N_1 + \cdots + N_k := \{\sum_{i=1}^k n_i \ | \ n_i \in N_i\} \nonumber
+\end{equation}
+\end{remark}
+
+\subsection{Module Isomorphism Theorems}
+
+Assume for this section that ring $R$ has $1$. Modules are assumed to be left $R$-modules.
+
+\begin{theorem}
+\hlt{(First Isomorphism Theorem)}
+Let $M,N$ be left $R$-modules and let $\varphi: M \rightarrow N$ be a left $R$-module homomorphism. Then $\ker \varphi$ is a left $R$-submodule of $M$ and
+\begin{equation}
+M/(\ker \varphi) \cong \varphi(M) \nonumber
+\end{equation}
+\end{theorem}
+
+\begin{theorem}
+\hlt{(Second Isomorphism Theorem)} Let $A, B$ be left $R$-submodules of the left $R$-module $M$. Then
+\begin{equation}
+A/(A \ \cap \ B) \cong (A+B) / B \nonumber
+\end{equation}
+\end{theorem}
+
+\begin{theorem}
+\hlt{(Third Isomorphism Theorem)} Let $M$ be a left $R$-module, and let $A,B$ be left $R$-submodules of $M$ with $A \subseteq B$. Then
+\begin{equation}
+M/B \cong (M/A)/(B/A) \nonumber
+\end{equation}
+\end{theorem}
+
+\begin{theorem}
+\hlt{(Fourth Isomorphism Theorem)}/ Corresponding Theorem for Modules \\
+Let $N$ be a left $R$-submodule of the left $R$-module $M$. There is a bijection between the left $R$-submodules of $M$ which contains $N$ and the left $R$-submodules of $M/N$. The correspondence is given by
+\begin{equation}
+A \leftrightarrow A/N \nonumber
+\end{equation}
+for all $A \supseteq N$. This correspondence commutes with the processes of taking additions and intersections.
+\end{theorem}
+
+\subsection{Module Generation}
+
+\begin{definition}
+Let $M$ be a left $R$-module and let $N_1, \ldots, N_n$ be left $R$-submodules of $M$.\\
+\hlt{Addition} is defined as
+\begin{equation}
+N_1 + \cdots + N_n = \{\sum_{i=1}^n a_i \ | \ a_i \in N_i\} \nonumber
+\end{equation}
+which is a left $R$-submodule of $M$.
+\end{definition}
+
+\begin{definition}
+Let $M$ be a left $R$-module and let $N_1, \ldots, N_n$ be left $R$-submodules of $M$.\\
+For any subset $A \subseteq M$, let
+\begin{equation}
+RA := \{\sum_{i=1}^s r_i a_i \ | \ r_i \in R, \ a_i \in A, \ s \geq 1\} \nonumber
+\end{equation}
+$RA$ is a left $R$-submodule of $M$ and is the smallest among all left $R$-submodules of $M$ containing $A$.\\
+$RA$ is the \hlt{submodule of $M$ generated by $A$}. If $A = \{a_i, \ldots, a_t\}$, then
+\begin{equation}
+RA = Ra_1 + \cdots + Ra_t = \{\sum_{i=1}^t \ | \ r_i \in R\} \nonumber
+\end{equation}
+If $N$ is a left $R$-submodule of $M$ and $N = RA$ for some subset $A \subseteq M$, then $A$ is a \hlt{set of generators} or \hlt{generating set for $N$}. Then $N$ is \hlt{generated by $A$}.
+\end{definition}
+
+\begin{definition}
+Let $M$ be a left $R$-module and let $N_1, \ldots, N_n$ be left $R$-submodules of $M$.\\
+A submodule $N$ of $M$ (possibly $N=M$) is \hlt{finitely generated} if there is some finite subset $A$ of $M$ such that $N=RA$, that is, if $N$ is generated by some finite subset.
+\end{definition}
+
+\begin{definition}
+Let $M$ be a left $R$-module and let $N_1, \ldots, N_n$ be left $R$-submodules of $M$.\\
+A left $R$-submodule $N$ of $M$ (possibly $N=M$) is \hlt{cyclic} if there exists an element $a \in M$ such that $N = Ra$, that is, if $N$ is generated by one element:
+\begin{equation}
+N = Ra = \{ra \ | \ r \in R\} \nonumber
+\end{equation}
+\end{definition}
+
+\begin{definition}
+\label{def:directprod}
+Let $M_1, \ldots, M_k$ be a finite collection of left $R$-modules. The direct product
+\begin{equation}
+M := M_1 \times \cdots \times M_k := \{(m_1, \ldots, m_k) \ | \ m_i \in M_i\} \nonumber
+\end{equation}	
+has a natural left $R$-module structure. Define the addition
+\begin{align}
++ : M \times M &\rightarrow M \nonumber \\
+(X = (x_1, \ldots, x_k), Y = (y_1, \ldots, y_k)) &\mapsto X + Y := (x_1 + y_1, \ldots, x_k + y_k) \nonumber
+\end{align}
+Define the $R$-action as:
+\begin{align}
+R \times M &\rightarrow M \nonumber \\
+(r, Y=(y_1, \ldots, y_k)) &\mapsto rY := (ry_1, \ldots, ry_k) \nonumber
+\end{align}
+Then $M = M_1 \times \cdots \times M_k$ is a left $R$-module called the \hlt{direct product} of $M_1, \ldots, M_k$. \\
+More generally, the direct product can be defined as $\Pi_{\alpha \in \sum}$, any collection of left $R$-modules $M_{\alpha}$ ($\alpha \in \sum$, where $\sum$ may not be finite or countable).
+\end{definition}
+
+\begin{proposition}
+\label{prop:submoduleequiv}
+Let $N_1, \ldots, N_k$ be submodules of the left $R$-module $M$. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item The map
+\begin{align}
+\pi : N_1 \times \cdots \times N_k &\rightarrow N_1 + \cdots + N_k \nonumber \\
+(a_1, \ldots, a_k) &\mapsto a_1 + \cdots + a_k \nonumber
+\end{align}
+is an isomorphism of left $R$-modules. Namely, $N_1 \times \cdots \times N_k \cong N_1 + \cdots + N_k$.
+\item $N_j \ \cap \ (N_1 + \cdots + \N_{j-1}) = 0$, ($\forall 2 \leq j \leq k$).
+\item $N_k \ \cap \ (N_1 + \cdots + N_{j-1} + N_{j+1} + \cdots + _k) = 0$, ($\forall 1 \leq j \leq k$)
+\item Every $r \in N_1 + \cdots + N_k$ can be written uniquely in the form $r = a_1 + \cdots + a_k$ with $a_i \in N_i$.
+\end{enumerate}
+\end{proposition}
+
+\begin{definition}
+If a left $R$-module $M=N_1 + \cdots + N_k$ is the sum of left $R$-submodules $N_1, \ldots, N_k$ satisfying the equivalent conditions in Proposition \ref{prop:submoduleequiv}, then $M$ is the \hlt{(internal) direct sum} of $N_1, \ldots, N_k$, and is denoted as $M = N_1 \oplus \cdots \oplus N_k$.
+\end{definition}
+
+\begin{remark}
+Let $M := M_1 \times \cdots \times M_k := \{(m_1, \ldots, m_k) \ | \ m_i \in M_i\}$ be the product of left $R$-modules $M_i$ as in Definition \ref{def:directprod}. Let
+\begin{equation}
+N_i = \{(0, \ldots, 0, a_i, 0, \ldots, 0) \ | \ a_i \in M_i \textnormal{ is at $i$-th positiion}\} \nonumber
+\end{equation}
+Then $M_i \cong N_i$ (as left $R$-module), and $M = N_1 \oplus \cdots \oplus N_n$.\\
+Similarly, identify $M_i = N_i$ and write $M = M_1 \oplus \cdots \oplus M_n$.\\
+So the direct product $M=M_1 \times \cdots \times M_n$ of finitely many modules $M_i$ is just the direct sum $M_1 \oplus \cdots \oplus M_n$ of $M_i$ identified with the submodule of $M$:
+\begin{equation}
+\{0_{M_1}\} \times \cdots \times \{0_{M_{i-1}}\} \times \{0_{M_i}\} \times \{0_{M_{i+1}}\} \times \cdots \times \{0_{M_n}\} \nonumber
+\end{equation}
+\end{remark}
+
+\begin{theorem}
+\hlt{(Chinese Remainder Theorem for Modules)} Let $R$ be a commutative ring with $1$, and $A_i$ ideals of $R$ which are pairwise comaximal (i.e., $A_i + A_j = R$, $\forall i \neq j$). Then
+\begin{align}
+A_1 \ \cap \cdots \cap \ A_k &= A_1 \cdots A_k \nonumber \\
+M/(A_1, \ldots, A_k)M &\cong M/(A_1 M) \times \cdots \times M/(A_k M) \nonumber
+\end{align}
+\end{theorem}
+
+\begin{definition}
+A left $R$-module $F$ is \hlt{free on the subset} $A$ of $F$ if for every nonzero $x \in F$, there exists unique nonzero elements $r_1, \ldots, r_n \in R$ and unique $a_1, \ldots, a_n \in A$ such that
+\begin{equation}
+x = r_1 a_1 + \cdots + r_n a_n \nonumber
+\end{equation}
+In this situation, $A$ is a \hlt{basis or set of free generators} for $F$.\\
+If $R$ is a commutative ring, the \hlt{rank} of $F$ is defined as $\abs{A}$, the cardinality of $A$.
+\end{definition}
+
+\begin{theorem}
+\label{thm:universalproperty}
+For any set $A$ there is a free left $R$-module $F(A)$ on the set $A$ and $F(A)$ satisfies the universal property: If $M$ is any left $R$-module and $\varphi: A \rightarrow M$ is any map of sets, then there is a unique left $R$-module homomorphism such that $\varphi = \Phi \circ \iota$ where $\iota: A \rightarrow F(A)$ is the inclusion map.\\
+When $A=\{a_1, \ldots, a_n\}$ is a finite set, $F(a)=Ra_1 \oplus \cdots \oplus Ra_N \cong R^n$ (as left $R$-modules).
+\end{theorem}
+
+\begin{corollary}
+If $F_1$, $F_2$ are free left $R$-modules on the same set $A$, then there is a unique isomorphism $\varphi: F_1 \rightarrow F_2$ such that the restriction $\varphi|_{A}$ equals the identity map
+\begin{align}
+Id_{A}: A &\rightarrow A \nonumber \\
+a &\mapsto Id_{A}(a) = a \nonumber
+\end{align}
+\end{corollary}
+
+\begin{corollary}
+If $F$ is any free left $R$-module with basis $A$, then $F \cong F(A)$ (as left $R$-modules).\\
+In particular, $F$ enjoys the same universal property with respect to $A$ as $F(A)$ does in Theorem \ref{thm:universalproperty}.
+\end{corollary}
+
+\begin{remark}
+More generally, let $A_1$, $A_2$ be two sets and $\varphi_0 : A_1 \rightarrow A_2$ a bijection.\\
+Then there is a unique isomorphism (of left $R$-modules):
+\begin{equation}
+\varphi: F(A_1) \rightarrow F(A_2) \nonumber
+\end{equation}
+such that $\varphi|_{A_1} = \varphi_0$.
+\end{remark}
+
+\begin{remark}
+Let $M_i$ ($1 \leq i \leq n$) be left $R$-submodules of $M$.\\
+Suppose that $M_1 + \cdots + M_n = M_1 \oplus \cdots \oplus M_n$ is a direct sum and each $M_i$ is a free left $R$-module with basis $A_i$, then $M_1 + \cdots + M_n$ is a free left $R$-module with a basis $\Pi_{i=1}^n A_i$ (a disjoint union).
+\end{remark}
+
+\begin{remark}
+If $F$ is a free left $R$-module with basis $A$, then define the left $R$-module homomorphism $\varphi: F \rightarrow N$ from $F$ into other left $R$-module $N$ by simply specifying their $\varphi$-values on the elements of $A$ and then extend by linearity (apply Theorem \ref{thm:universalproperty} to $F = F(A)$).
+\end{remark}
+
+\begin{remark}
+When $R = \Z$, the free module on set $A$ is the \hlt{free abelian group on $A$}.\\
+If $A={a_1, \ldots, a_n}$, then $F(A)$ is the free abelian group of rank $n$ (with basis $A$). Then
+\begin{equation}
+F(A) = \Z a_i \times \cdots \times \Z a_n \cong \Z \times \cdots \times \Z \ (n \textnormal{ times}) \nonumber
+\end{equation}
+\end{remark}
+
+\subsection{Modules over PID}
+
+\begin{definition}
+Let $R$ be a ring and $M$ a left $R$-module. \\
+The left $R$-module $M$ is said to be a \hlt{Noetherian} $R$-module or to satisfy the Ascending Chain Condition on submodules (or \hlt{ACC} on submodules) if there are no infinite ascending chains of submodules, ie., whenever
+\begin{equation}
+M_1 \subseteq M_2 \subseteq M_3 \subseteq \cdots \nonumber
+\end{equation}
+is an ascending chain of left $R$-submodules of $M$, then there is a positive integer $m$ such that
+\begin{equation}
+M_m = M_{m+1} = M_{M+2} = \cdots \nonumber
+\end{equation}
+The ring $R$ is said to be \hlt{Noetherian} if it is Noetherian as a left module over itself, i.e., there are no infinite ascending chains of left ideals in $R$.
+\end{definition}
+
+\begin{theorem}
+Let $R$ be a ring with $1$ and $M$ a left $R$-module. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $M$ is a Noetherian left $R$-module
+\item Every nonempty set of submodules of $M$ contains a maximal element under inclusion
+\item Every submodule of $M$ is finitely generated.
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+A PID is Noetherian ring
+\end{corollary}
+
+\begin{proposition}
+Let $R$ be an integral domain and $M$ a free $R$-module of rank $n < \infty$. \\
+Then any $n+1$ elements of $M$ are $R$-linearly dependent, i.e. for any $y_1, \ldots, y_{n+1} \in M$, there are elements $r_1, \ldots r_{n+1} \in R$, not all zero, such that
+\begin{equation}
+r_1 y_1 + \cdots + r_{n+1} y_{n+1} = 0 \nonumber
+\end{equation}
+\end{proposition}
+
+\begin{definition}
+Let $R$ be an integral domain and $M$ an $R$-module.
+\begin{enumerate}[label=(\roman*)]
+\item \hlt{$R$-linearly (in)dependent} subset $A$ of $M$ can be defined as in linear algebra.
+\item The \hlt{rank} of an $R$-module $M$ is the maximal number of $R$-linearly independent elements of $M$.\\
+Hence it is either a finite number or infinity.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+If $A$ is a linearly independent subset of $M$, then the $R$-submodule
+\begin{equation}
+RA = \{\sum_{i=1}^n r_i a_i \ | \ r_i \in R, a_i \in A, n\geq 1\} \nonumber
+\end{equation}
+of $M$ is a free $R$-module with a basis $A$.\\
+Thus, if $M$ has a rank $r \in \Z_{>0}$ then $M$ contains an $R$-submodule isomorphic to $R^r$.
+\end{remark}
+
+\begin{theorem}
+Let $R$ be a PID, $M$ a free $R$-module of finite rank $n$, and $N$ a $R$-submodule of $M$. Then
+\begin{enumerate}[label=(\roman*)]
+\item $N$ is a free $R$-module of rank $m \leq n$, and
+\item There exist a basis $\{y_1, \leq, y_n\}$ of $M$ such that $\{a_1 y_1, \ldots, a_m y_m\}$ is a basis of $N$, where $a_1, \leq, a_m$ are nonzero elements of $R$ with the divisibility relations $a_1 \ | \ a_2 \ | \ \cdots \ | \ a_m$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proposition}
+Let $M$ be a left $R$-module, and $N_i$, $M_i$ submodules such that $N_i \subseteq M_i$.\\
+Suppose that $M_1 + \cdots + M_k = M_1 \oplus \cdots \oplus M_k$. Then $N_1 + \cdots + N_k = N_1 \oplus \cdots \oplus N_k$.
+\end{proposition}
+
+\begin{definition}
+Note that a left $R$-module $C$ is cyclic if $C=Ra$ for some $a \in C$.\\
+In this case, the surjective homomorphism
+\begin{align}
+\gamma: R &\rightarrow C \nonumber \\
+r &\mapsto ra \nonumber
+\end{align}
+induces an isomorphism $R/\ker \varphi \cong C$.\\
+Conversely, for every left ideal $I$ of $R$, the quotient ring $R/I$ is a cyclic left $R$-module since $R/I = R \overline{1_R}$ with $\overline{1_R} = 1_R + I \in R/I$.
+\end{definition}
+
+\begin{definition}
+Let $M$ be a left $R$-module.
+\begin{enumerate}[label=(\roman*)]
+\item An element $m \in M$ is a \hlt{torsion element} if $rm = 0$ for some nonzero element $r\in R$. The set of all torsion elements in $M$ is denoted
+\begin{equation}
+\tors(M) := \{m \in M \ | \ rm = 0 \textnormal{ for some nonzero } r \in R\} \nonumber
+\end{equation}
+\item The left $R$-module $M$ is \hlt{torsion free} if $\tors(M) = \{0\}$.
+\item $M$ is a \hlt{torsion module} if $\tors(M) = M$.
+\item Suppose $R$ is an integral domain. Then $\tors(M)$ is a left $R$-submodule of $M$, and every free module $N=R^n$ has $\tors(N) = 0$.
+\item If $R$ is a field, then $\tors(M) = 0$.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+\label{thm:pidmodule}
+Let $R$ be PID and $M$ a finitely generated $R$-module. Then
+\begin{enumerate}[label=(\roman*)]
+\item $M \cong R^r \oplus R/(a_1) \oplus \cdots \oplus R/(a_m)$ for some $r \geq 0$ and nonzero elements $a_1, \ldots, a_m$ of $R$ which are not units in $R$ and which satisfies the divisibility relations $a_1 \ | \ a_2 \ | \ \cdots \ | \ a_m$.
+\item $M$ is torsion free if and only if $M$ is a free left $R$-module.
+\item In the decomposition in (i), $\tors(M) \cong R/(a_1) \oplus \cdots \oplus R/(a_m)$ so that $M/\tors(M) \cong R^r$.\\
+In particular, $M$ is a torsion module if and only if $r=0$, and in this case $aM = 0 \Leftrightarrow a_m \ | \ a$.\\
+The \hlt{annihilator} is defined $\anns(M) := \{r \in R \ | \ rM = 0\}$ equals $(a_m)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+The integer $r$ in Theorem \ref{thm:pidmodule} is the \hlt{free rank} or \hlt{Betti number} of $M$.\\
+The elements $a_1, \ldots, a_m \in R$ (defined up to multiplication by units in $R$) are the \hlt{invariant factors of $M$}.
+\end{definition}
+
+\begin{theorem}
+\label{thm:pidfinite}
+Let $R$ be a PID and $M$ a finitely generated $R$-module. Then
+\begin{equation}
+M \cong R^r \oplus R/(p_1^{\alpha_1}) \oplus \cdots \oplus R/(p_t^{\alpha_t}) \nonumber
+\end{equation}
+where $r \geq 0$ is an integer and $ p_1^{\alpha_1}, \ldots, p_t^{\alpha_t}$ are positive powers of (not necessarily distinct or non-associate primes in $R$). Furthermore,
+\begin{equation}
+\tors(M) \cong R/(p_1^{\alpha_1}) \oplus \cdots \oplus R/(p_t^{\alpha_t}) \nonumber
+\end{equation}
+and $M/\tors(M) \cong R^r$.
+\end{theorem}
+
+\begin{definition}
+Let $R$ be a PID and $M$ a finitely generated $R$-module as in Theorem \ref{thm:pidfinite}. The prime powers $p_1^{\alpha_1}, \ldots, p_t^{\alpha_t}$ (defined up to multiplication by units in $R$) are \hlt{elementary divisors of $M$}.
+\end{definition}
+
+\begin{theorem}
+Let $R$ be a PID. Then
+\begin{enumerate}[label=(\roman*)]
+\item Two finitely generated $R$-modules $M_1$ and $M_2$ are isomorphic if and only if they have the same free rank and the same list of invariance factors.
+\item Two finitely generated $R$-modules $M_1$ and $M_2$ are isomorphic if and only if they have the same free rank and the same list of elementary factors.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+\label{thm:fundthmfgagiff}
+\hlt{(Fundamental Theorem of Finitely Generated Abelian Groups: Invariant Factor Form)}\\
+Let $G$ be a finitely generated abelian group. Then
+\begin{enumerate}[label=(\roman*)]
+\item $G \cong \Z^r \times \Z/(n_1) \times \cdots \times \Z/(n_u)$ for some integers $r, n_1, \ldots, n_u$ satisfying the following conditions
+\begin{enumerate}[label=\alph*.]
+\item $r \geq 0$; $n_j \geq 2$ ($\forall j$); and
+\item the divisibility relations $n_1 \ | \ n_2 \ | \ \cdots \ | \ n_u$
+\end{enumerate}
+\item The expression in (i) is unique if $G \cong \Z^t \times \Z/(nm1) \times \cdots \times \Z/(m_v)$ where $t$ and $m_1, \ldots, m_v$ satisfy (i)(a) and (i)(b), then $t=r$, $v=u$, and $m_i = n_i$ ($\forall i$).
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+The integer $r$ in Theorem \ref{thm:fundthmfgagiff} is the \hlt{free rank} or \hlt{Betti number of $G$} and the integers $n_1, \ldots, n_u$ are \hlt{invariant factors of $G$}.\\
+The description of $G$ in Theorem \ref{thm:fundthmfgagiff} is the \hlt{invariant factor decomposition of $G$}.
+\end{definition}
+
+\begin{theorem}
+\label{thm:fundthmfgagedf}
+\hlt{(Fundamental Theorem of Finitely Generated Abelian Groups: Elementary Divisor Form)}\\
+Let $G$ be an abelian group of order $n \geq 1$ and let the unique factorisation of $n$ into distinct prime powers be $n=p_1^{\alpha_1} \cdots p_k^{\alpha_k}$. Then
+\begin{enumerate}[label=(\roman*)]
+\item $G \cong A_1 \times \cdots \times A_k$ where $\abs{A_i} = p_i^{\alpha_i}$
+\item For each $A = A_i \in \{A_1, \ldots, A_k \}$ with $\abs{A} = p^{\alpha}$,
+\begin{equation}
+A \cong \Z/(p^{\beta_1}) \times \cdots \times \Z/(p^{\beta_t} \nonumber
+\end{equation}
+with $1 \leq \beta_1 \leq \cdots \leq \beta_t$ and $\beta_1 + \cdots + \beta_t = \alpha$, where $t$ and $\beta_1, \ldots, \beta_t$ depend on $i$.
+\item The decomposition in (i) and (ii) is unique if $G \cong B_1 \times \cdots \times B_t$ with $\abs{B_i} = p_i^{\alpha_i}$ for all $i$, then $B_i \cong A_i$ and $B_i$ and $A_i$ have the same invariant factors.
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+The integers $p^{\beta_j}$ in Theorem \ref{thm:fundthmfgagedf} are the \hlt{elementary divisors of $G$}.\\
+The description of $G$ in Theorem \ref{thm:fundthmfgagedf} is the \hlt{elementary divisor decomposition of $G$}.
+\end{definition}
+
+\subsection{Rational Canonical Form of a Matrix}
+
+\begin{definition}
+A monic polynomial $m_T(x) = x^s + b_{s-1} x^{s-1} + \cdots + b_1 x + b_0 \in R = F[x]$ is a \hlt{minimal polynomial} of the linear transformation $T: V \rightarrow V$ if:
+\begin{enumerate}[label=(\roman*)]
+\item $m_T(T) = 0$, the zero map (i.e., $m_T(x)V = 0$), and
+\item every nonzero $g(x) \in R$ with $g(T) = 0$ (i.e., $g(x)V = 0$ has degree $\degs \ g(x) \geq \degs \ m_T(x)$)
+\end{enumerate}
+For any polynomial $g(x) \in R$, $g(T) = 0 \Rightarrow m_T(x) | g(x)$.\\
+Minimal polynomial $m_T(x)$ is unique.
+\end{definition}
+
+\begin{theorem}
+\hlt{(Minimal Polynomial as the Annihilator)}
+\begin{enumerate}[label=(\roman*)]
+\item $V$ is a torsion $R = F[x]$-module
+\item More precisely, $r(x)V = 0$ if and only if $m_T(x) \ | \ r(x)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+\label{thm:fundthmfvpeiff}
+\hlt{(Fundamental Theorem for Vector Space, Existence: Invariant Factor Form)}\\
+Let $V$ be a finite-dimensional vector space over a field $F$ and $T: V \rightarrow V$ a linear transformation, so that $V$ is an $R = F[x]$-module: $f(x)v := f(T)(v)$. Then:
+\begin{enumerate}[label=(\roman*)]
+\item $V \cong R/(a_1(x)) \oplus \cdots \oplus R/(a_m(x))$ where (the invariant factors) $a_i(x) \in R = F[x]$ are non-constant monic polynomials such that $a_1(x) \ | \ \cdots \ | \ a_m(x)$.
+\item For any $r(x) \in R$, $r(x)V=0 \Leftrightarrow a_m(x) \ | \ r(x)$.
+\item There is equality $a_m(x) = m_T(x)$, the minimal polynomials of $T$.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+\label{thm:ifvro}
+\hlt{(Invariant Factors via Row Operations)}\\
+Let $V$ be an $n$-dimensional vector space over a field $F$. Let $T: V \rightarrow V$ be a linear transformation.\\
+Let $A=[T]_B$ be the representation matrix of $T$ relative to a basis $B$ of $V$.\\
+Then the matrix $xI - A \in M_n(R)$ in the matrix ring $M_n(R)$ (with entries in $R = F[x]$) is row equivalent to the following diagonal matrix: $\textnormal{Diag}[1, \ldots, 1, a_1(x), \ldots, a_m(x)] \in M_n(R)$ by the usual three types of row operations:
+\begin{enumerate}[label=(\roman*)]
+\item interchanging two rows
+\item adding a multiple of a row by some $f(x) \in R = F[x]$ to another row
+\item multiplying a row by a nonzero scalar $\alpha in F$
+\end{enumerate}
+where $a_1(x) \ | \ \cdots \ | \ a_m(x)$ is the list of invariant factors in Theorem \ref{thm:fundthmfvpeiff}.
+\end{theorem}
+
+\begin{definition}
+The \hlt{companion matrix} of the polynomial $a_i(x) = x^{s_i} + c(i)_{{s_i}-1}x^{{s_i}-1} + \cdots + c(i)_1 x + c(i)_0$ is the representation matrix
+\begin{equation}
+[T|_{V_{\alpha_i}}]_{B_i} = C_{\alpha_i (x)} =
+\begin{pmatrix}
+0 & 0 & \cdots & \cdots & \cdots & -c_0 \\
+1 & 0 & \cdots & \cdots & \cdots & -c_1 \\
+0 & 1 & \cdots & \cdots & \cdots & -c_2 \\
+0 & 0 & \cdots & \cdots & \cdots & \cdots \\
+0 & 0 & \cdots & \cdots & 1 & -c_{s_i -1}
+\end{pmatrix} \nonumber
+\end{equation}
+\end{definition}
+
+\begin{definition}
+A matrix is in \hlt{canonical form} if it is of the form $\textnormal{Diag}[C_{\alpha_1 (x)}, \ldots, C_{\alpha_m(x)}]$ where $a_i(x)$ are nonconstant monic polynomials with $a_1(x) \ | \ \cdots \ | \ a_m(x)$, and $C_{\alpha_i (x)}$ is the companion matrix of the polynomial $a_i(x)$. The polynomials $a_i(x)$ are the \hlt{invariant factors} of the matrix.\\
+A rational canonical form for a linear transformation $T: V \rightarrow V$ is a representation matrix $[T]_B$ which is in rational canonical form.
+\end{definition}
+
+\begin{theorem}
+\label{thm:ercflt}
+\hlt{(Existence of the Rational Canonical Form of a Linear Transformation)}\\
+Let $V$ be a finite-dimensional vector space over a field $F$, and let $T: V \rightarrow V$ be a linear transformation. Then
+\begin{enumerate}[label=(\roman*)]
+\item $V$ has a basis $B$ such that the representation matrix $[T]_B$ is in rational canonical form:
+\begin{equation}
+[T]_B = \textnormal{Diag}[C_{\alpha_1 (x)}, \ldots, C_{\alpha_m (x)}] \nonumber
+\end{equation}
+where $a_i(x)$ are nonconstant monic polynomials, $C_{\alpha_i (x)}$ is the companion matrix of polynomial $a_i(x)$, and
+\begin{equation}
+a_1(x) \ | \ \cdots \ | \ a_m(x) \nonumber
+\end{equation}
+\item The rational canonical form for $T$ is unique.
+\end{enumerate}
+\end{theorem}

@@ -1,0 +1,132 @@
+\section{Category Theory}
+
+Category theory provides the language and mathematical foundations for discussion of properties of large classes of mathematical objects, such as the class of 'all class' or 'all groups'. With this framework, we can explore commonality across classes of concepts and methods used in the study of each class, and introduce tools for studying relations between classes.
+
+\subsection{Categories, Functors, and Natural Transformations}
+
+\subsubsection{Introduction}
+
+Observe that many properties of mathematical systems can be unified and simplified with diagrams of arrows, where each arrow $f: X \rightarrow Y$ represents a function from a set $X$ to a set $Y$, and a rule $x \mapsto fx$ which assigns each element $x \in X$ to an element $fx \in Y$.\\
+
+A diagram of sets and functions is commutative when $h$ is $h = g \circ f$, where $g \circ f$ is the usual composite function $g \circ f: X \rightarrow Z$, defined by $x \mapsto g(fx)$.
+
+\begin{figure}[H]
+\centering
+\[\begin{tikzcd}
+X \arrow[swap]{dr}{f} \arrow{r}{h} & Z \arrow{d}{g} \\
+& Y
+\end{tikzcd}
+\]
+\caption{An example of a commutative diagram.}
+\end{figure}
+
+Many other properties of mathematical constructions may be represented by universal properties of diagrams. Consider the cartesian product $X \times Y$ of two sets, consisting of ordered pairs $\langle x, y \rangle$ of elements $x\in X, y\in Y$. The projections $\langle x, y \rangle \mapsto x$, $\langle x, y \rangle \mapsto y$ of the product on the axes $X, Y$ are functions $p: X \times Y \rightarrow X$, $q: X \times Y \rightarrow Y$. Any function $h: W \rightarrow X \times Y$ from a third set $W$ is uniquely determined by its composites $p \circ h$, $q \circ h$. Conversely, given $W$ and two functions $f, g$ as in diagram below, there is a unique function $h$ which makes the diagram commute, namely $hw = \langle fw, gw \rangle$ for each $w \in W$:
+
+\begin{figure}[H]
+\centering
+\[\begin{tikzcd}
+& W \arrow[swap]{ld}{f} \arrow{d}{h} \arrow{dr}{g} \\
+X &  X \times Y \arrow{l}{p} \arrow[swap]{r}{q} & Y
+\end{tikzcd}
+\]
+\caption{Cartesian product on the sets.}
+\end{figure}
+
+
+\begin{definition}
+A \hlt{category} $\mathfrak{C}$ consists of a \hlt{class of objects} $Ob(\mathfrak{C})$ and sets of morphisms between these objects. For every ordered pair $A,B$ of objects there is a set $\hom_{\mathfrak{C}}(A,B)$ morphisms from $A$ to $B$, and for every ordered triple $A,B,C$ of objects there is a \hlt{law of composition} of morphisms (i.e., a map)
+\begin{equation}
+\hom_{\mathfrak{C}}(A,B) \times \hom_{\mathfrak{C}}(B,C) \rightarrow \hom_{\mathfrak{C}}(A,C) \nonumber
+\end{equation}
+where $(f,g) \mapsto gf$, and $gf$ is the composition of $g$ with $f$. The objects and morphism satisfy the following axioms for objects $A,B,C,D$:
+\begin{enumerate}[label=(\roman*)]
+\setlength{\itemsep}{0pt}
+\item if $A \neq B$ or $C \neq D$, then $\hom_{\mathfrak{C}}(A,B)$ and $\hom_{\mathfrak{C}}(C,D)$ are disjoint sets;
+\item Associative Law: $h(gf) = (hg)f$ $\ \forall f \in \hom_{\mathfrak{C}}(A,B)$, $g \in \hom_{\mathfrak{C}}(B,C)$, $h \in \hom_{\mathfrak{C}}(C,D)$
+\item Identity Law: $1_B \circ f = f$, $g \circ 1_B = g$ $\ \forall f \in \hom_{\mathfrak{C}}(A,B)$, $g \in \hom_{\mathfrak{C}}(B,C)$ given identity $1_B \in \hom_{\mathfrak{C}}(B,B)$
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+A morphism from $A$ to $B$ will be denoted by $f: A \rightarrow B$ or $A \xrightarrow{f} B$.\\
+The object $A$ is the \hlt{domain} of $f$, and $B$ is the \hlt{codomain} of $f$.\\
+A morphism from $A$ to $A$ is an \hlt{endomorphism} of $A$.\\
+A morphism $f: A \rightarrow B$ is an \hlt{isomorphism} if there is a morphism $g: B \rightarrow A$ such that $gf = 1_A$ and $gf = 1_B$.\\
+A \hlt{subcategory} category $\mathfrak{C}$ of $\mathfrak{D}$ is such that every object of $\mathfrak{C}$ is also an object in $\mathfrak{D}$, and for objects $A,B \in \mathfrak{C}$, we have $\hom_{\mathfrak{C}}(A,B) \subseteq \hom_{\mathfrak{D}}(A,B)$.
+\end{definition}
+
+\begin{example}{\color{white}space}
+\begin{enumerate}[label=(\roman*)]
+\setlength{\itemsep}{0pt}
+\item $\textbf{Set}$ is the category of all sets. For any two sets $A,B$, $\hom (A,B)$ is the set of all functions from $A$ to $B$. Composition of morphisms is the composition of functions $gf = g \circ f$. The identity in $\hom (A,A)$ is the map $1_A(a)=a \  \forall a \in A$. This category contains the category of all finite sets as a subcategory.
+\item $\textbf{Grp}$ is the category of all groups, and morphisms are group homomorphisms. The composition of group homomorphisms are group homomorphisms. A subcategory of $\textbf{Grp}$ is $\textbf{Ab}$, category of all abelian groups.
+\item $\textbf{Ring}$ is the category of all nonzero rings with $1$, where morphism are ring homomorphisms that send $1$ to $1$. The category $\textbf{CRing}$ of all commutative rings with $1$ is a subcategory of $\textbf{Ring}$. For a fixed ring $R$, the category $R$-$\textbf{mod}$ consists of all left $R$-modules with morphisms being $R$-module homomorphisms.
+\item $\textbf{Top}$ is the category whose objects are topological spaces, and morphisms are continuous maps between topological spaces. The identity (set) map from a space to itself is continuous in every topology, so $\hom (A,A)$ always have an identity.
+\item If $G$ is a group, we can form the category $\textbf{G}$ where the only object is $G$, and $\hom (G,G) = G$. The composition of two functions $f,g$ is the product $gf$ in group $G$. The identity morphism is identity of $G$.
+\end{enumerate}
+\end{example}
+
+\begin{definition}
+Let $\mathfrak{C}$ and $\mathfrak{C}$ be categories. Then $\mathcal{F}$ is a \hlt{covariant functor} from $\mathfrak{C}$ to $\mathfrak{D}$ if:
+\begin{enumerate}[label=(\roman*)]
+\setlength{\itemsep}{0pt}
+\item for every object $A$ in $\mathfrak{C}$, $\mathcal{F}A$ is an object in $\mathfrak{D}$, and
+\item for every $f \in \hom_{\mathfrak{C}} (A,B)$ we have $\mathcal{F}(f) \in \hom_{\mathfrak{D}}(\mathcal{F}A, \mathcal{F}B)$ such that the following axioms are satisfied:
+\begin{enumerate}[label=\arabic*.]
+\setlength{\itemsep}{0pt}
+\item if $gf$ is a composition of morphisms in $\mathfrak{C}$, then $\mathcal{F}(gf) = \mathcal{F}(g) \mathcal{F}(f)$ in $\mathfrak{D}$, and
+\item $\mathcal{F}(1_A) = 1_{\mathcal{F}A}$.
+\end{enumerate}
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Let $\mathfrak{C}$ and $\mathfrak{C}$ be categories. Then $\mathcal{F}$ is a \hlt{contravariant functor} from $\mathfrak{C}$ to $\mathfrak{D}$ if:
+\begin{enumerate}[label=(\roman*)]
+\setlength{\itemsep}{0pt}
+\item for every object $A$ in $\mathfrak{C}$, $\mathcal{F}A$ is an object in $\mathfrak{D}$, and
+\item for every $f \in \hom_{\mathfrak{C}} (A,B)$ we have $\mathcal{F}(f) \in \hom_{\mathfrak{D}}(\mathcal{F}B, \mathcal{F}A)$ such that the following axioms are satisfied:
+\begin{enumerate}[label=\arabic*.]
+\setlength{\itemsep}{0pt}
+\item if $gf$ is a composition of morphisms in $\mathfrak{C}$, then $\mathcal{F}(gf) = \mathcal{F}(f) \mathcal{F}(g)$ in $\mathfrak{D}$, and
+\item $\mathcal{F}(1_A) = 1_{\mathcal{F}A}$.
+\end{enumerate}
+\end{enumerate}
+Contravariant functors reverse the arrows.
+\end{definition}
+
+\begin{example}{\color{white}space}
+\begin{enumerate}[label=(\roman*)]
+\setlength{\itemsep}{0pt}
+\item The identity function $\mathcal{I}_{\mathcal{C}}$ maps any category $\mathfrak{C}$ to itself by sending objects and morphisms to themselves. If $\mathfrak{C}$ issubcategory of $\mathfrak{D}$, \hlt{inclusion functor} maps $\mathfrak{C}$ into $\mathfrak{D}$ by sending objects, morphisms to themselves.
+\item Let $\mathcal{F}$ be the function from $\textbf{Grp}$ to $\textbf{Set}$ that maps any group $G$ to the same set $G$ and any group homomorphism $\varphi$ to the same set map $\varphi$. This is the \hlt{forgetful functor} as it 'removes' or 'forgets' the structure of the groups and the homomorphism between them.
+\item The \hlt{abelianizing functor} maps $\textbf{Grp}$ to $\textbf{Ab}$ by sending each group $G$ to the abelian group $G^{ab} = G/G'$, where $G'$ is the commutator subgroup of $G$. Each group homomorphism $\varphi: G \rightarrow H$ is mapped to the induced homomorphism on quotient groups:
+\begin{equation}
+\overline{\varphi}: G^{ab} \rightarrow H^{ab} \textnormal{\ \ by \ \ } \overline{\varphi}(xG') = \varphi(x)H' \nonumber
+\end{equation}
+The definition of commutator subgroup ensures $\overline{\varphi}$ is well defined and he axioms for a functor are satisfied.
+\item Let $R$ be a ring and let $D$ be a left $R$-module. For each left $R$-module $N$, the set $\hom_R(D,N)$ is an abelian group, and is an $R$-module if $R$ is commutative\\
+If $\varphi: N_1 \rightarrow N_2$ is an $R$-module homomorphism, then $\forall f \in \hom_R (D, N_1)$ we have $\varphi \circ f \in \hom_R (D, N_2)$\\
+Thus $\varphi': \hom_R(D, N_1) \rightarrow \hom_R {D, N_2}$ by $\varphi'(f) = \varphi \circ f$. The map
+\begin{align}
+\hom(D,\textunderscore): N &\rightarrow \hom_R (D,N) \nonumber \\
+\hom(D,\textunderscore): \varphi &\rightarrow \varphi' \nonumber
+\end{align}
+is a \hlt{covariant functor} from $R$-$\textbf{Mod}$ to $\textbf{Grp}$. If $R$ is commutative, it maps $R$-$\textbf{Mod}$ to itself.
+\item If $\varphi: N_1 \rightarrow N_2$ is an $R$-module homomorphism, then $\forall g \in \hom_R (N_2, D)$, we have $g \circ \varphi \in \hom_R(N_1, D)$.
+Thus $\varphi': \hom_R(N_2, D) \rightarrow \hom_R(N_1, D)$ by $\varphi'(g) = g \circ \varphi$. The map
+\begin{align}
+\hom(\textunderscore, D): N &\rightarrow \hom_R (N, D) \nonumber \\
+\hom(\textunderscore, D): \varphi &\rightarrow \varphi' \nonumber
+\end{align}
+is a \hlt{contravariant functor} from $R$-$\textbf{Mod}$ to $\textbf{Grp}$. If $R$ is commutative, it maps $R$-$\textbf{Mod}$ to itself.
+\item If $D$ is a right $R$-module map, the map $D \otimes_{R} \textunderscore : N \rightarrow D \otimes_{R} N$ is a covariant functor from $R$-$\textbf{Mod}$ to $\textbf{Ab}$ (or to $R$-$\textbf{Mod}$ when $R$ is commutative). The morphism $\varphi: N_1 \rightarrow N_2$ maps to morphism $1 \otimes_{\varphi}$.
+\end{enumerate}
+\end{example}
+
+\begin{definition}
+\end{definition}
+
+
+
+

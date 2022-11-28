@@ -1,0 +1,136 @@
+\section{Preliminaries}
+
+\subsection{Introductory Ideas and Definitions}
+
+\begin{definition}
+\hlt{Class} is a collection $ A $ of objects (elements) such that given any object $ x $ it is possible to determine if $ x $ is a member of $ A $.\\
+\end{definition}
+
+
+\begin{definition}
+\hlt{Axiom of extensionality} asserts that two classes with the same elements are equal. Formally, 
+\begin{equation}
+\left[x \in A \Longleftrightarrow x \in B \right] \Rightarrow A=B \nonumber
+\end{equation}
+\end{definition}
+
+\begin{definition}
+A class is defined to be a \hlt{set} if and only if there exists a class $ B $ such that $ A \in B $.\\
+A class that is not a set is called a \hlt{proper set}.\\
+\end{definition}
+
+\begin{definition}
+\hlt{Axiom of class formation} asserts that for any statement $ P(y) $ in the first predicate calculus involve a variable $ y $, there exists a class $ A $ such that $ x \in A $ if and only if $ x $ is a set and the statement $ P(x) $ is true. The class is denoted 	$\{ x | P(x) \}$.\\
+\end{definition}
+
+\begin{definition}
+A class $ A $ is a \hlt{subclass} of class $ B $ ($ B \subset A $) provided $ \forall x \in A, x \in A \Longleftrightarrow x \in B $. \\
+A subclass $ A $ of a class $ B $ that is itself a set is called a \hlt{subset} of $ B $.\\
+The \hlt{empty or null set} (denoted $\emptyset$) is the set with no elements.\\
+\end{definition}
+
+\begin{definition}
+\hlt{Power axiom} asserts that for every set $ A $ the class $ P(A) $ of all subsets of $ A $ is itself a set.\\
+$ P(A) $ is the \hlt{power set} of $ A $, denoted $ 2^A $.\\
+\end{definition}
+
+
+\begin{definition}
+A \hlt{family of sets} indexed by (nonempty) class $ I $ is a collection of sets $ A_i $, one for each $ i \in I $ (denoted $\{ A_i | i \in I \}$).\\
+The \hlt{union} is defined as 
+\begin{equation}
+\bigcup\limits_{i \in I}A_{i} = \{ x | x \in A_i \ for \ some \ i \in I \} \nonumber
+\end{equation}
+The \hlt{intersection} is defined as 
+\begin{equation}
+\bigcap\limits_{i \in I}A_{i} = \{ x | x \in A_i \ for \ every \ i \in I \} \nonumber
+\end{equation}
+If $ A \cap B = \emptyset $, then $ A $ and $ B $ are disjoint.\\
+\end{definition}
+
+
+\begin{definition}
+The \hlt{relative complement} of $ A $ in $ B $ is the following subclass of $ B $: \\
+\begin{equation}
+B-A = \{ x | x \in B \ and \ x \notin A \} \nonumber
+\end{equation}
+If all classes under discussion are subsets of some fixed set $ U $ (the universe of discussion), then $ U - A = A' $ is the \hlt{complement} of $ A $.\\
+\end{definition}
+
+
+\begin{definition}
+Given classes $ A $ and $ B $, a \hlt{function / map / mapping} $ f $ from $ A $ to $ B $ (written $ f: A \rightarrow B $ assigns to each $ a \in A $ exactly one element $ b \in B $.\newline
+Then $ b $ is the value of function at $ a $, or the \hlt{image} of $ a $, written $ f(a) $.\newline
+$ A $ is the \hlt{domain} of the function, written $ dom f $, and $ B $ is the \hlt{range} or \hlt{codomain}.\\
+Two functions are \hlt{equal} if they have the same domain and range, and have the same value for each element of their common domain.\\
+\end{definition}
+
+
+\begin{definition}
+If $ f: A \rightarrow B $ is a function and $ S \subset A$, the function from $ S $ to $ B $ given by $ a \mapsto f(a) $, for $ a \in S $, is \hlt{restriction} of $ f $ to $ S $, denoted $ f|S: S \rightarrow B$.\newline
+If $ S \in A$, the function $ 1_A | S: S \rightarrow A $ is the \hlt{inclusion map} of $S$ into $A$.\\
+\end{definition}
+
+
+\begin{definition}
+Let $ f: A \rightarrow B $ and $ g: B \rightarrow C $ be functions. The \hlt{composite} of $ f $ and $ g $ is the function
+\begin{align}
+g \circ f & = gf: A \rightarrow C \nonumber \\
+a & \mapsto g(f(a)),\ a \in A \nonumber
+\end{align}
+\end{definition}
+
+
+\begin{definition}
+The \hlt{diagram of functions} is said to be commutative if $ gf = h $, or if $ kh = gf $.\\
+
+\begin{equation}
+\label{diagram}
+\begin{tikzcd}
+A \arrow{rr}{f} \arrow[swap]{dr}{h} & & B \arrow{dl}{g} \\[10pt]
+    & C
+\end{tikzcd}
+\quad
+\begin{tikzcd}[row sep=2.5em]
+ A \ar{r}{f} \ar{d}{h} & B \ar{d}{g} \\
+ C \ar{r}{k} & D
+\end{tikzcd}
+\nonumber
+\end{equation}
+\end{definition}
+
+
+\begin{definition}
+Let $ f: A \rightarrow B $ be a function. If $ S \in A $, \hlt{the image of $ S $ under $ f $} is the class
+\begin{equation}
+f(S)) = \{ b \in B | b=f(a) \ for \ some \ a \in S\} \nonumber
+\end{equation}
+The class $ f(A) $ is the \hlt{image of $ f $}, denoted $ im \ f $.\\
+If $ T \subset B $, the \hlt{inverse image of $ T $} under $ f $ is the class 
+\begin{equation}
+f \textsuperscript{-1} (T) = \{ a \in A | f(a) \in T\} \nonumber
+\end{equation}
+\end{definition}
+
+
+\begin{definition}
+A function $ f: A \rightarrow B$ is said to be \hlt{injective} (or one-to-one) provided 
+\begin{align}
+\forall a, \ a' \in A, \ a \neq a' & \Rightarrow f(a) \neq f(a') \nonumber \\
+f(a) = f(a') & \Rightarrow a = a' \nonumber
+\end{align}
+A function $ f $ is \hlt{surjective} (or on-to) provided $ f(A) \approx B $; in other words, $\forall b \in B $, $ b=f(a) $ for some $ a \in A $.\\
+A function $ f $ is \hlt{bijective} (or one-to-one correspondence) if it is both injective and surjective.\\
+\end{definition}
+
+
+\begin{definition}
+The map $ g: B \rightarrow A $ is a \hlt{left inverse} of $ f $ if $ gf = 1_A $.\\
+The map $ h: B \rightarrow A $ is a \hlt{right inverse} of $ f $ if $ fb = 1_B $.\\
+If a map $ f: A \rightarrow B $ has both a left inverse $ g $ and a right inverse $ h $, then
+\begin{equation}
+g = g1_B = g(fh) = (gf)h = 1 \textsubscript{A} h = h
+\nonumber	
+\end{equation}
+and $ g=h $ is the \hlt{two-sided inverse}.\\
+\end{definition}
